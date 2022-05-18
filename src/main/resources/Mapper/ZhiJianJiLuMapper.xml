@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znczQydCs.dao.ZhiJianJiLuMapper">
+	<select id="queryForInt" resultType="java.lang.Integer">
+		select count(*) from zhi_jian_ji_lu zjjl,yong_hu yh,ding_dan dd,ding_dan_zhuang_tai ddzt where zjjl.zjyId=yh.id and zjjl.ddId=dd.id and dd.ddztId=ddzt.id
+		<if test="zt!=''&amp;zt!=null">
+			and zjjl.zt=#{zt}
+		</if> 
+		<if test="ddh!=''&amp;ddh!=null">
+			and dd.ddh like CONCAT('%',#{ddh},'%')
+		</if> 
+		<if test="ddztId!=''&amp;ddztId!=null">
+			and dd.ddztId=#{ddztId}
+		</if> 
+		<if test="ddh!=''&amp;ddh!=null">
+			and dd.ddh like CONCAT('%',#{zjyXm},'%')
+		</if> 
+		<if test="zjyXm!=''&amp;zjyXm!=null">
+			and yh.zsxm like CONCAT('%',#{zjyXm},'%')
+		</if> 
+	</select>
+	<select id="queryList" resultType="com.znczQydCs.entity.ZhiJianJiLu">
+		select zjjl.id,zjjl.zt,zjjl.zjsj,dd.ddh from zhi_jian_ji_lu zjjl,yong_hu yh,ding_dan dd,ding_dan_zhuang_tai ddzt where zjjl.zjyId=yh.id and zjjl.ddId=dd.id and dd.ddztId=ddzt.id
+		<if test="zt!=''&amp;zt!=null">
+			and zjjl.zt=#{zt}
+		</if> 
+		<if test="ddh!=''&amp;ddh!=null">
+			and dd.ddh like CONCAT('%',#{ddh},'%')
+		</if> 
+		<if test="ddztId!=''&amp;ddztId!=null">
+			and dd.ddztId=#{ddztId}
+		</if> 
+		<if test="ddh!=''&amp;ddh!=null">
+			and dd.ddh like CONCAT('%',#{zjyXm},'%')
+		</if> 
+		<if test="zjyXm!=''&amp;zjyXm!=null">
+			and yh.zsxm like CONCAT('%',#{zjyXm},'%')
+		</if> 
+	</select>
+</mapper>

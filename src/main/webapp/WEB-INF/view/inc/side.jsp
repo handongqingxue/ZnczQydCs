@@ -179,7 +179,7 @@ function showLeftMenuByQx(){
 <div class="layui-header header_div">
 		<div class="layui-logo">
 			<img class="bgLogo_img" alt="" src="<%=basePath%>resource/image/bgLogo.jpg"/>
-			<a>山东蓝帆健康科技称重平台</a>
+			<a>智能称重平台</a>
 		</div>
 		<ul class="layui-nav layui-layout-right">
 			<li class="layui-nav-item">
@@ -237,6 +237,20 @@ function showLeftMenuByQx(){
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>ddgl/shjl/list">
 							&nbsp;&nbsp;&nbsp;审核记录
+						</a>
+					</li>
+				</div>
+				<div class="first-level-div gbgl_first_div">
+					<li class="layui-nav-item first-level">
+						<a>
+							质检管理
+						</a>
+					</li>
+					<div class="line_div"></div>
+					<li class="layui-nav-item bdjl_item_li">
+						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
+						<a href="<%=basePath%>zjgl/zjjl/list">
+							&nbsp;&nbsp;&nbsp;质检记录
 						</a>
 					</li>
 				</div>
