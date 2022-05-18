@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znczQydCs.dao.CheLiangTaiZhangMapper">
+	<insert id="add" parameterType="com.znczQydCs.entity.CheLiangTaiZhang">
+		insert into che_liang_tai_zhang
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="jcsj!=null">
+				jcsj,
+			</if>
+			<if test="ccsj!=null">
+				ccsj,
+			</if>
+			<if test="ddId!=null">
+				ddId,
+			</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="jcsj!=null">
+				#{jcsj},
+			</if>
+			<if test="ccsj!=null">
+				#{ccsj},
+			</if>
+			<if test="ddId!=null">
+				#{ddId},
+			</if>
+		</trim>
+	</insert>
+	<delete id="deleteByIds">
+		delete from che_liang_tai_zhang where 1=1
+		<foreach collection="list" item="id" open=" and cast(id as char) in (" separator="," close=")">
+		#{id}
+		</foreach>
+	</delete>
+	<update id="edit" parameterType="com.znczQydCs.entity.CheLiangTaiZhang">
+		update che_liang_tai_zhang set 
+		<trim suffixOverrides=",">
+			<if test="jcsj!=null">
+				jcsj=#{jcsj},
+			</if>
+			<if test="ccsj!=null">
+				ccsj=#{ccsj},
+			</if>
+		</trim>
+		where id=#{id}
+	</update>
+	<select id="queryZHCXForInt" resultType="java.lang.Integer">
+		select count(*) from che_liang_tai_zhang cltz left join ding_dan dd on cltz.ddId=dd.id where 1=1
+		<if test="ddh!=''&amp;ddh!=null">
+			and dd.ddh like CONCAT('%',#{ddh},'%')
+		</if>
+		<if test="cph!=''&amp;cph!=null">
+			and dd.cph like CONCAT('%',#{cph},'%')
+		</if>
+		<if test="jcsjks!=''&amp;jcsjks!=null&amp;jcsjjs!=''&amp;jcsjjs!=null">
+			and cltz.jcsj between #{jcsjks} and #{jcsjjs}
+		</if>
+	</select>
+	<select id="queryZHCXList" resultType="com.znczQydCs.entity.CheLiangTaiZhang">
+		select cltz.*,dd.ddh,dd.cph,dd.sjzl from che_liang_tai_zhang cltz left join ding_dan dd on cltz.ddId=dd.id where 1=1
+		<if test="ddh!=''&amp;ddh!=null">
+			and dd.ddh like CONCAT('%',#{ddh},'%')
+		</if>
+		<if test="cph!=''&amp;cph!=null">
+			and dd.cph like CONCAT('%',#{cph},'%')
+		</if>
+		<if test="jcsjks!=''&amp;jcsjks!=null&amp;jcsjjs!=''&amp;jcsjjs!=null">
+			and cltz.jcsj between #{jcsjks} and #{jcsjjs}
+		</if>
+	</select>
+	<select id="selectById" resultType="com.znczQydCs.entity.CheLiangTaiZhang">
+		select cltz.*,dd.ddh from che_liang_tai_zhang cltz,ding_dan dd where cltz.ddId=dd.id and cltz.id=#{id}
+	</select>
+</mapper>

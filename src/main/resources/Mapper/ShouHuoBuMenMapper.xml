@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znczQydCs.dao.ShouHuoBuMenMapper">
+	<insert id="add" parameterType="com.znczQydCs.entity.ShouHuoBuMen">
+		insert into shou_huo_bu_men
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="mc!=null">
+				mc,
+			</if>
+				bjsj
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="mc!=null">
+				#{mc},
+			</if>
+				now()
+		</trim>
+	</insert>
+	<delete id="deleteByIds">
+		delete from shou_huo_bu_men where 1=1
+		<foreach collection="list" item="id" open=" and cast(id as char) in (" separator="," close=")">
+		#{id}
+		</foreach>
+	</delete>
+	<update id="edit" parameterType="com.znczQydCs.entity.ShouHuoBuMen">
+		update shou_huo_bu_men set 
+		<trim suffixOverrides=",">
+			<if test="mc!=null">
+				mc=#{mc},
+			</if>
+				bjsj=now()
+		</trim>
+		 where id=#{id}
+	</update>
+	<select id="queryForInt" resultType="java.lang.Integer">
+		select count(*) from shou_huo_bu_men where 1=1
+		<if test="mc!=''&amp;mc!=null">
+			and mc like CONCAT('%',#{mc},'%')
+		</if> 
+	</select>
+	<select id="queryList" resultType="com.znczQydCs.entity.ShouHuoBuMen">
+		select * from shou_huo_bu_men where 1=1
+		<if test="mc!=''&amp;mc!=null">
+			and mc like CONCAT('%',#{mc},'%')
+		</if> 
+	</select>
+	<select id="selectById" resultType="com.znczQydCs.entity.ShouHuoBuMen">
+		select * from shou_huo_bu_men where id=#{0}
+	</select>
+	<select id="queryCBBList" resultType="com.znczQydCs.entity.ShouHuoBuMen">
+		select id,mc from shou_huo_bu_men
+	</select>
+</mapper>

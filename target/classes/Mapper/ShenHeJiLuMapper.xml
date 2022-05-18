@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znczQydCs.dao.ShenHeJiLuMapper">
+	<insert id="add" parameterType="com.znczQydCs.entity.ShenHeJiLu">
+		insert into shen_he_ji_lu
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="ddId!=null">
+				ddId,
+			</if>
+			<if test="shlx!=null">
+				shlx,
+			</if>
+				shsj,
+			<if test="shjg!=null">
+				shjg,
+			</if>
+			<if test="shrId!=null">
+				shrId,
+			</if>
+			<if test="bz!=null">
+				bz,
+			</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="ddId!=null">
+				#{ddId},
+			</if>
+			<if test="shlx!=null">
+				#{shlx},
+			</if>
+				now(),
+			<if test="shjg!=null">
+				#{shjg},
+			</if>
+			<if test="shrId!=null">
+				#{shrId},
+			</if>
+			<if test="bz!=null">
+				#{bz},
+			</if>
+		</trim>
+	</insert>
+	<select id="queryForInt" resultType="java.lang.Integer">
+		select count(*) from shen_he_ji_lu shjl left join ding_dan dd on shjl.ddId=dd.id
+		 left join wu_zi wz on dd.wzId=wz.id left join yun_shu_shang yss on dd.yssId=yss.id left join fa_huo_dan_wei fhdw on dd.fhdwId=fhdw.id
+		 left join shou_huo_bu_men shbm on dd.shbmId=shbm.id left join yong_hu shr on shjl.shrId=shr.id where 1=1
+		<if test="ddh!=''&amp;ddh!=null">
+			and dd.ddh like CONCAT('%',#{ddh},'%')
+		</if>
+		<if test="shlx!=''&amp;shlx!=null">
+			and shjl.shlx=#{shlx}
+		</if>
+		<if test="shsjks!=''&amp;shsjks!=null&amp;shsjjs!=''&amp;shsjjs!=null">
+			and shjl.shsj between #{shsjks} and #{shsjjs}
+		</if>
+		<if test="cph!=''&amp;cph!=null">
+			and dd.cph like CONCAT('%',#{cph},'%')
+		</if>
+		<if test="shrYhm!=''&amp;shrYhm!=null">
+			and shr.shrYhm like CONCAT('%',#{shrYhm},'%')
+		</if>
+		<if test="yssMc!=''&amp;yssMc!=null">
+			and yss.mc like CONCAT('%',#{yssMc},'%')
+		</if>
+		<if test="wzMc!=''&amp;wzMc!=null">
+			and wz.mc like CONCAT('%',#{wzMc},'%')
+		</if>
+		<if test="fhdwMc!=''&amp;fhdwMc!=null">
+			and fhdw.mc like CONCAT('%',#{fhdwMc},'%')
+		</if>
+		<if test="shbmMc!=''&amp;shbmMc!=null">
+			and shbm.mc like CONCAT('%',#{shbmMc},'%')
+		</if>
+		<if test="sjxm!=''&amp;sjxm!=null">
+			and dd.sjxm like CONCAT('%',#{sjxm},'%')
+		</if>
+		<if test="sjsfzh!=''&amp;sjsfzh!=null">
+			and dd.sjsfzh like CONCAT('%',#{sjsfzh},'%')
+		</if>
+	</select>
+	<select id="queryList" resultType="com.znczQydCs.entity.ShenHeJiLu">
+		select shjl.*,dd.ddh,dd.sjxm,dd.sjsfzh,dd.cph,dd.lxlx,dd.yzxzl,dd.sjzl,dd.zlceb,wz.mc wzMc,yss.mc yssMc,fhdw.mc fhdwMc,shbm.mc shbmMc,shr.yhm shrYhm from shen_he_ji_lu shjl left join ding_dan dd on shjl.ddId=dd.id
+		 left join wu_zi wz on dd.wzId=wz.id left join yun_shu_shang yss on dd.yssId=yss.id left join fa_huo_dan_wei fhdw on dd.fhdwId=fhdw.id
+		 left join shou_huo_bu_men shbm on dd.shbmId=shbm.id left join yong_hu shr on shjl.shrId=shr.id where 1=1
+		<if test="ddh!=''&amp;ddh!=null">
+			and dd.ddh like CONCAT('%',#{ddh},'%')
+		</if>
+		<if test="shlx!=''&amp;shlx!=null">
+			and shjl.shlx=#{shlx}
+		</if>
+		<if test="shsjks!=''&amp;shsjks!=null&amp;shsjjs!=''&amp;shsjjs!=null">
+			and shjl.shsj between #{shsjks} and #{shsjjs}
+		</if>
+		<if test="cph!=''&amp;cph!=null">
+			and dd.cph like CONCAT('%',#{cph},'%')
+		</if>
+		<if test="shrYhm!=''&amp;shrYhm!=null">
+			and shr.shrYhm like CONCAT('%',#{shrYhm},'%')
+		</if>
+		<if test="yssMc!=''&amp;yssMc!=null">
+			and yss.mc like CONCAT('%',#{yssMc},'%')
+		</if>
+		<if test="wzMc!=''&amp;wzMc!=null">
+			and wz.mc like CONCAT('%',#{wzMc},'%')
+		</if>
+		<if test="fhdwMc!=''&amp;fhdwMc!=null">
+			and fhdw.mc like CONCAT('%',#{fhdwMc},'%')
+		</if>
+		<if test="shbmMc!=''&amp;shbmMc!=null">
+			and shbm.mc like CONCAT('%',#{shbmMc},'%')
+		</if>
+		<if test="sjxm!=''&amp;sjxm!=null">
+			and dd.sjxm like CONCAT('%',#{sjxm},'%')
+		</if>
+		<if test="sjsfzh!=''&amp;sjsfzh!=null">
+			and dd.sjsfzh like CONCAT('%',#{sjsfzh},'%')
+		</if>
+		order by shjl.shsj desc
+		limit #{rowNum},#{rows}
+	</select>
+	<delete id="deleteByIds">
+		delete from shen_he_ji_lu where 1=1
+		<foreach collection="list" item="id" open=" and cast(id as char) in (" separator="," close=")">
+		#{id}
+		</foreach>
+	</delete>
+</mapper>

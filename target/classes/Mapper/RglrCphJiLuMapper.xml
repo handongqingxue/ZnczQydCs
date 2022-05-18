@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znczQydCs.dao.RglrCphJiLuMapper">
+	<insert id="add" parameterType="com.znczQydCs.entity.RglrCphJiLu">
+		insert into rglr_cph_ji_lu
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="cph!=null">
+				cph,
+			</if>
+				lrsj,
+			<if test="ddId!=null">
+				ddId,
+			</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="cph!=null">
+				#{cph},
+			</if>
+				now(),
+			<if test="ddId!=null">
+				#{ddId},
+			</if>
+		</trim>
+	</insert>
+	<select id="getCount" resultType="java.lang.Integer">
+		select count(*) from rglr_cph_ji_lu where ddId=#{ddId} and cph=#{cph}
+	</select>
+	<select id="queryXzCphCBBList" resultType="java.lang.String">
+		select distinct cph from rglr_cph_ji_lu order by #{sort} #{order} limit #{rowNum},#{rows}
+	</select>
+	<select id="queryLrSjcCBBList" resultType="com.znczQydCs.entity.RglrCphJiLu">
+		select distinct left(cph,1) sjc from rglr_cph_ji_lu where 1=1 
+		<if test="sjc!=''&amp;sjc!=null">
+			and left(cph,1)=#{sjc}
+		</if>
+		 order by #{sort} #{order} limit #{rowNum},#{rows}
+	</select>
+	<select id="queryLrWscphCBBList" resultType="com.znczQydCs.entity.RglrCphJiLu">
+		select distinct right(cph,CHAR_LENGTH(cph)-1) wscph from rglr_cph_ji_lu where left(cph,1)=#{sjc} and right(cph,CHAR_LENGTH(cph)-1) like CONCAT('%',#{wscph},'%') order by #{sort} #{order} limit #{rowNum},#{rows}
+	</select>
+</mapper>

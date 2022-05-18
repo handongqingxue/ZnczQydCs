@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znczQydCs.dao.DingDanMapper">
+	<select id="queryZHCXForInt" resultType="java.lang.Integer">
+		select count(*) from ding_dan dd left join ding_dan_zhuang_tai ddzt on dd.ddztId=ddzt.id left join wu_zi_lei_xing wzlx on dd.wzlxId=wzlx.id left join wu_zi wz on dd.wzId=wz.id
+		 left join yun_shu_shang yss on dd.yssId=yss.id left join fa_huo_dan_wei fhdw on dd.fhdwId=fhdw.id
+		 left join shou_huo_bu_men shbm on dd.shbmId=shbm.id where 1=1
+		<if test="ddh!=''&amp;ddh!=null">
+			and dd.ddh like CONCAT('%',#{ddh},'%')
+		</if>
+		<if test="ddztId!=''&amp;ddztId!=null">
+			and dd.ddztId=#{ddztId}
+		</if>
+		<if test="ddztMc!=''&amp;ddztMc!=null">
+			and ddzt.mc=#{ddztMc}
+		</if>
+		<if test="cph!=''&amp;cph!=null">
+			and dd.cph like CONCAT('%',#{cph},'%')
+		</if>
+		<if test="yssMc!=''&amp;yssMc!=null">
+			and yss.mc like CONCAT('%',#{yssMc},'%')
+		</if>
+		<if test="wzMc!=''&amp;wzMc!=null">
+			and wz.mc like CONCAT('%',#{wzMc},'%')
+		</if>
+		<if test="fhdwMc!=''&amp;fhdwMc!=null">
+			and fhdw.mc like CONCAT('%',#{fhdwMc},'%')
+		</if>
+		<if test="shbmMc!=''&amp;shbmMc!=null">
+			and shbm.mc like CONCAT('%',#{shbmMc},'%')
+		</if>
+		<if test="sjxm!=''&amp;sjxm!=null">
+			and dd.sjxm like CONCAT('%',#{sjxm},'%')
+		</if>
+		<if test="sjsfzh!=''&amp;sjsfzh!=null">
+			and dd.sjsfzh like CONCAT('%',#{sjsfzh},'%')
+		</if>
+	</select>
+	<select id="queryZHCXList" resultType="com.znczQydCs.entity.DingDan">
+		select dd.*,ddzt.mc ddztMc,wzlx.mc wzlxMc,wz.mc wzMc,yss.mc yssMc,fhdw.mc fhdwMc,shbm.mc shbmMc from ding_dan dd
+		 left join ding_dan_zhuang_tai ddzt on dd.ddztId=ddzt.id left join wu_zi_lei_xing wzlx on dd.wzlxId=wzlx.id left join wu_zi wz on dd.wzId=wz.id
+		 left join yun_shu_shang yss on dd.yssId=yss.id left join fa_huo_dan_wei fhdw on dd.fhdwId=fhdw.id
+		 left join shou_huo_bu_men shbm on dd.shbmId=shbm.id where 1=1
+		<if test="ddh!=''&amp;ddh!=null">
+			and dd.ddh like CONCAT('%',#{ddh},'%')
+		</if>
+		<if test="ddztId!=''&amp;ddztId!=null">
+			and dd.ddztId=#{ddztId}
+		</if>
+		<if test="ddztMc!=''&amp;ddztMc!=null">
+			and ddzt.mc=#{ddztMc}
+		</if>
+		<if test="cph!=''&amp;cph!=null">
+			and dd.cph like CONCAT('%',#{cph},'%')
+		</if>
+		<if test="yssMc!=''&amp;yssMc!=null">
+			and yss.mc like CONCAT('%',#{yssMc},'%')
+		</if>
+		<if test="wzMc!=''&amp;wzMc!=null">
+			and wz.mc like CONCAT('%',#{wzMc},'%')
+		</if>
+		<if test="fhdwMc!=''&amp;fhdwMc!=null">
+			and fhdw.mc like CONCAT('%',#{fhdwMc},'%')
+		</if>
+		<if test="shbmMc!=''&amp;shbmMc!=null">
+			and shbm.mc like CONCAT('%',#{shbmMc},'%')
+		</if>
+		<if test="sjxm!=''&amp;sjxm!=null">
+			and dd.sjxm like CONCAT('%',#{sjxm},'%')
+		</if>
+		<if test="sjsfzh!=''&amp;sjsfzh!=null">
+			and dd.sjsfzh like CONCAT('%',#{sjsfzh},'%')
+		</if>
+		order by dd.bjsj desc
+		limit #{rowNum},#{rows}
+	</select>
+	<select id="selectById" resultType="com.znczQydCs.entity.DingDan">
+		select dd.*,wzlx.mc wzlxMc,wz.mc wzMc,yss.mc yssMc,fhdw.mc fhdwMc,shbm.mc shbmMc from ding_dan dd left join wu_zi_lei_xing wzlx on dd.wzlxId=wzlx.id left join wu_zi wz on dd.wzId=wz.id
+		 left join yun_shu_shang yss on dd.yssId=yss.id left join fa_huo_dan_wei fhdw on dd.fhdwId=fhdw.id
+		 left join shou_huo_bu_men shbm on dd.shbmId=shbm.id where dd.id=#{id}
+	</select>
+	<insert id="add" parameterType="com.znczQydCs.entity.DingDan">
+		insert into ding_dan
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="ddh!=null">
+				ddh,
+			</if>
+			<if test="ddztId!=null">
+				ddztId,
+			</if>
+				yjzt,
+				ejzt,
+			<if test="sjsfzh!=null">
+				sjsfzh,
+			</if>
+			<if test="sjxm!=null">
+				sjxm,
+			</if>
+			<if test="cph!=null">
+				cph,
+			</if>
+			<if test="lxlx!=null">
+				lxlx,
+			</if>
+			<if test="yzxzl!=null">
+				yzxzl,
+			</if>
+			<if test="sjzl!=null">
+				sjzl,
+			</if>
+			<if test="zlceb!=null">
+				zlceb,
+			</if>
+			<if test="wzlxId!=null">
+				wzlxId,
+			</if>
+			<if test="wzId!=null">
+				wzId,
+			</if>
+			<if test="yssId!=null">
+				yssId,
+			</if>
+			<if test="fhdwId!=null">
+				fhdwId,
+			</if>
+			<if test="shbmId!=null">
+				shbmId,
+			</if>
+				bjsj
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="ddh!=null">
+				#{ddh},
+			</if>
+			<if test="ddztId!=null">
+				#{ddztId},
+			</if>
+				1,
+				1,
+			<if test="sjsfzh!=null">
+				#{sjsfzh},
+			</if>
+			<if test="sjxm!=null">
+				#{sjxm},
+			</if>
+			<if test="cph!=null">
+				#{cph},
+			</if>
+			<if test="lxlx!=null">
+				#{lxlx},
+			</if>
+			<if test="yzxzl!=null">
+				#{yzxzl},
+			</if>
+			<if test="sjzl!=null">
+				#{sjzl},
+			</if>
+			<if test="zlceb!=null">
+				#{zlceb},
+			</if>
+			<if test="wzlxId!=null">
+				#{wzlxId},
+			</if>
+			<if test="wzId!=null">
+				#{wzId},
+			</if>
+			<if test="yssId!=null">
+				#{yssId},
+			</if>
+			<if test="fhdwId!=null">
+				#{fhdwId},
+			</if>
+			<if test="shbmId!=null">
+				#{shbmId},
+			</if>
+				now()
+		</trim>
+	</insert>
+	<delete id="deleteByIds">
+		delete from ding_dan where 1=1
+		<foreach collection="list" item="id" open=" and cast(id as char) in (" separator="," close=")">
+		#{id}
+		</foreach>
+	</delete>
+	<update id="edit" parameterType="com.znczQydCs.entity.DingDan">
+		update ding_dan set 
+		<trim suffixOverrides=",">
+			<if test="ddh!=null">
+				ddh=#{ddh},
+			</if>
+			<if test="ddztId!=null">
+				ddztId=#{ddztId},
+			</if>
+			<if test="yjzt!=null">
+				yjzt=#{yjzt},
+			</if>
+			<if test="ejzt!=null">
+				ejzt=#{ejzt},
+			</if>
+			<if test="sjsfzh!=null">
+				sjsfzh=#{sjsfzh},
+			</if>
+			<if test="sjxm!=null">
+				sjxm=#{sjxm},
+			</if>
+			<if test="cph!=null">
+				cph=#{cph},
+			</if>
+			<if test="yjbfh!=0">
+				yjbfh=#{yjbfh},
+			</if>
+			<if test="ejbfh!=0">
+				ejbfh=#{ejbfh},
+			</if>
+			<if test="lxlx!=null">
+				lxlx=#{lxlx},
+			</if>
+			<if test="yzxzl!=null">
+				yzxzl=#{yzxzl},
+			</if>
+			<if test="sjzl!=null">
+				sjzl=#{sjzl},
+			</if>
+			<if test="zlceb!=null">
+				zlceb=#{zlceb},
+			</if>
+			<if test="wzlxId!=null">
+				wzlxId=#{wzlxId},
+			</if>
+			<if test="wzId!=null">
+				wzId=#{wzId},
+			</if>
+			<if test="yssId!=null">
+				yssId=#{yssId},
+			</if>
+			<if test="fhdwId!=null">
+				fhdwId=#{fhdwId},
+			</if>
+			<if test="shbmId!=null">
+				shbmId=#{shbmId},
+			</if>
+				bjsj=now()
+		</trim>
+		where id=#{id}
+	</update>
+	<update id="editByZt" parameterType="com.znczQydCs.entity.DingDan">
+		update ding_dan set 
+		<trim suffixOverrides=",">
+			<if test="ddh!=null">
+				ddh=#{ddh},
+			</if>
+			<if test="xddztId!=null">
+				ddztId=#{xddztId},
+			</if>
+			<if test="xyjzt!=0">
+				yjzt=#{xyjzt},
+			</if>
+			<if test="xejzt!=0">
+				ejzt=#{xejzt},
+			</if>
+			<if test="sjsfzh!=null">
+				sjsfzh=#{sjsfzh},
+			</if>
+			<if test="sjxm!=null">
+				sjxm=#{sjxm},
+			</if>
+			<if test="cph!=null">
+				cph=#{cph},
+			</if>
+			<if test="lxlx!=null">
+				lxlx=#{lxlx},
+			</if>
+			<if test="yzxzl!=null">
+				yzxzl=#{yzxzl},
+			</if>
+			<if test="sjzl!=null">
+				sjzl=#{sjzl},
+			</if>
+			<if test="zlceb!=null">
+				zlceb=#{zlceb},
+			</if>
+			<if test="wzlxId!=null">
+				wzlxId=#{wzlxId},
+			</if>
+			<if test="wzId!=null">
+				wzId=#{wzId},
+			</if>
+			<if test="yssId!=null">
+				yssId=#{yssId},
+			</if>
+			<if test="fhdwId!=null">
+				fhdwId=#{fhdwId},
+			</if>
+			<if test="shbmId!=null">
+				shbmId=#{shbmId},
+			</if>
+				bjsj=now()
+		</trim>
+		where ddztId=#{ddztId}
+		<if test="yjbfh!=0">
+			and yjbfh=#{yjbfh}
+		</if>
+		<if test="ejbfh!=0">
+			and ejbfh=#{ejbfh}
+		</if>
+		<if test="yjzt!=0">
+			and yjzt=#{yjzt}
+		</if>
+		<if test="ejzt!=0">
+			and ejzt=#{ejzt}
+		</if>
+	</update>
+	<select id="getByZtCph" resultType="com.znczQydCs.entity.DingDan">
+		select * from ding_dan where ddztId=#{ddztId} and cph=#{cph}
+	</select>
+	<select id="getByZt" resultType="com.znczQydCs.entity.DingDan">
+		select dd.* from ding_dan dd,ding_dan_zhuang_tai ddzt where dd.ddztId=ddzt.id and ddzt.mc=#{ddztMc}
+		<if test="yjbfh!=0">
+		 and dd.yjbfh=#{yjbfh}
+		</if>
+		<if test="ejbfh!=0">
+		 and dd.ejbfh=#{ejbfh}
+		</if>
+		<if test="yjzt!=0">
+		 and dd.yjzt=#{yjzt}
+		</if>
+		<if test="ejzt!=0">
+		 and dd.ejzt=#{ejzt}
+		</if>
+	</select>
+	<update id="checkByIds">
+		update ding_dan set ddztId=#{ddztId} where 1=1
+		<foreach collection="idList" item="id" open=" and cast(id as char) in (" separator="," close=")">
+		#{id}
+		</foreach>
+	</update>
+	<select id="getCountByDdh" resultType="java.lang.Integer">
+		select count(*) from ding_dan where ddh=#{ddh}
+	</select>
+	<select id="getCountByZt" resultType="java.lang.Integer">
+		select count(*) from ding_dan dd,ding_dan_zhuang_tai ddzt where dd.ddztId=ddzt.id and dd.yjbfh=#{yjbfh} and dd.ejbfh=#{ejbfh} and ddzt.mc=#{ddztMc} and dd.yjzt=#{yjzt} and dd.ejzt=#{ejzt}
+	</select>
+	<select id="getByCphJL" resultType="com.znczQydCs.entity.DingDan">
+		select * from ding_dan where id in (select rcjl.ddId from(select ddId from rglr_cph_ji_lu where cph=#{cph} order by lrsj desc LIMIT 0,1)as rcjl)
+	</select>
+	<select id="getIdByDdh" resultType="java.lang.Integer">
+		select id from ding_dan where ddh=#{ddh}
+	</select>
+	<select id="getCountByIdCph" resultType="java.lang.Integer">
+		select count(*) from ding_dan where id=#{id} and cph=#{cph}
+	</select>
+	<select id="getCountByDdhDate" resultType="java.lang.Integer">
+		select count(*) from ding_dan where ddh like CONCAT(#{ddhDate},'%')
+	</select>
+</mapper>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znczQydCs.dao.WuZiMapper">
+	<insert id="add" parameterType="com.znczQydCs.entity.WuZi">
+		insert into wu_zi
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="mc!=null">
+				mc,
+			</if>
+				bjsj,
+			<if test="wzlxId!=null">
+				wzlxId,
+			</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="mc!=null">
+				#{mc},
+			</if>
+				now(),
+			<if test="wzlxId!=null">
+				#{wzlxId},
+			</if>
+		</trim>
+	</insert>
+	<delete id="deleteByIds">
+		delete from wu_zi where 1=1
+		<foreach collection="list" item="id" open=" and cast(id as char) in (" separator="," close=")">
+		#{id}
+		</foreach>
+	</delete>
+	<update id="edit" parameterType="com.znczQydCs.entity.WuZi">
+		update wu_zi set mc=#{mc},bjsj=now(),wzlxId=#{wzlxId} where id=#{id}
+	</update>
+	<select id="queryForInt" resultType="java.lang.Integer">
+		select count(*) from wu_zi_lei_xing wzlx,wu_zi wz where wzlx.id=wz.wzlxId
+		<if test="mc!=''&amp;mc!=null">
+			and wz.mc like CONCAT('%',#{mc},'%')
+		</if> 
+		<if test="wzlxmc!=''&amp;wzlxmc!=null">
+			and wzlx.mc like CONCAT('%',#{wzlxmc},'%')
+		</if> 
+	</select>
+	<select id="queryList" resultType="com.znczQydCs.entity.WuZi">
+		select wz.id,wz.mc,wzlx.mc wzlxmc,wz.bjsj from wu_zi_lei_xing wzlx,wu_zi wz where wzlx.id=wz.wzlxId
+		<if test="mc!=''&amp;mc!=null">
+			and wz.mc like CONCAT('%',#{mc},'%')
+		</if> 
+		<if test="wzlxmc!=''&amp;wzlxmc!=null">
+			and wzlx.mc like CONCAT('%',#{wzlxmc},'%')
+		</if> 
+		limit ${param3},${param4}
+	</select>
+	<select id="selectById" resultType="com.znczQydCs.entity.WuZi">
+		select wz.id,wz.mc,wzlx.id wzlxId,wzlx.mc wzlxmc,wz.bjsj from wu_zi wz,wu_zi_lei_xing wzlx where wz.wzlxId=wzlx.id and wz.id=#{0}
+	</select>
+	<select id="queryCBBList" resultType="com.znczQydCs.entity.WuZi">
+		select id,mc from wu_zi where wzlxId=#{wzlxId}
+	</select>
+	<select id="getCountByLxId" resultType="java.lang.Integer">
+		select count(*) from wu_zi where wzlxId=#{wzlxId}
+	</select>
+</mapper>

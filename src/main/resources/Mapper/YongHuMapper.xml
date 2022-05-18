@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znczQydCs.dao.YongHuMapper">
+	<insert id="add" parameterType="com.znczQydCs.entity.YongHu">
+		insert into yong_hu
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="yhm!=null">
+				yhm,
+			</if>
+			<if test="mm!=null">
+				mm,
+			</if>
+			<if test="zsxm!=null">
+				zsxm,
+			</if>
+				cjsj,
+				`check`,
+			<if test="qxIds!=null">
+				qxIds,
+			</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="yhm!=null">
+				#{yhm},
+			</if>
+			<if test="mm!=null">
+				#{mm},
+			</if>
+			<if test="zsxm!=null">
+				#{zsxm},
+			</if>
+				now(),
+				0,
+			<if test="qxIds!=null">
+				#{qxIds},
+			</if>
+		</trim>
+	</insert>
+	<update id="edit" parameterType="com.znczQydCs.entity.YongHu">
+		update yong_hu set 
+		<trim suffixOverrides=",">
+			<if test="yhm!=null">
+				yhm=#{yhm},
+			</if>
+			<if test="mm!=null">
+				mm=#{mm},
+			</if>
+			<if test="zsxm!=null">
+				zsxm=#{zsxm},
+			</if>
+			<if test="qxIds!=null">
+				qxIds=#{qxIds},
+			</if>
+			<if test="js!=null">
+				js=#{js},
+			</if>
+		</trim>
+		where id=#{id}
+	</update>
+	<select id="getYongHu" resultType="com.znczQydCs.entity.YongHu">
+		select * from yong_hu where yhm=#{yhm} and mm=#{mm}
+	</select>
+	<select id="queryForInt" resultType="java.lang.Integer">
+		select count(*) from yong_hu where yhm!='admin'
+		<if test="yhm!=''&amp;yhm!=null">
+			and yhm like CONCAT('%',#{yhm},'%')
+		</if>
+		<if test="check!=null">
+			and `check`=#{check}
+		</if>
+	</select>
+	<select id="queryList" resultType="com.znczQydCs.entity.YongHu">
+		select * from yong_hu where yhm!='admin'
+		<if test="yhm!=''&amp;yhm!=null">
+			and yhm like CONCAT('%',#{yhm},'%')
+		</if>
+		<if test="check!=null">
+			and `check`=#{check}
+		</if>
+		order by cjsj
+		limit #{rowNum},#{rows}
+	</select>
+	<select id="selectById" resultType="com.znczQydCs.entity.YongHu">
+		select * from yong_hu where id=#{id}
+	</select>
+	<update id="checkByIds">
+		update yong_hu set `check`=#{check} where 1=1
+		<foreach collection="idList" item="id" open=" and cast(id as char) in (" separator="," close=")">
+		#{id}
+		</foreach>
+	</update>
+</mapper>

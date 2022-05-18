@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znczQydCs.dao.ExportExcelMapper">
+	<select id="queryGBJList" resultType="com.znczQydCs.entity.GuoBangJiLu">
+		select gbjl.*,dd.ddh,dd.cph from guo_bang_ji_lu gbjl,ding_dan dd where gbjl.ddId=dd.id
+		<if test="ddh!=''&amp;ddh!=null">
+			and dd.ddh like CONCAT('%',#{ddh},'%')
+		</if>
+		<if test="cph!=''&amp;cph!=null">
+			and dd.cph like CONCAT('%',#{cph},'%')
+		</if>
+		<if test="gbsjks!=''&amp;gbsjks!=null&amp;gbsjjs!=''&amp;gbsjjs!=null">
+			and gbjl.gbsj between #{gbsjks} and #{gbsjjs}
+		</if>
+		order by gbjl.gbsj desc
+	</select>
+</mapper>
