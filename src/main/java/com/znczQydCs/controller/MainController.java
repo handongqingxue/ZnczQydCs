@@ -1,6 +1,8 @@
 package com.znczQydCs.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +21,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.znczQydCs.entity.*;
 import com.znczQydCs.util.*;
+import com.znczQydCs.service.*;
+
+import net.sf.json.JSONArray;
 
 import com.znczQydCs.service.*;
 import com.znczQydCs.socket.*;
@@ -26,10 +33,18 @@ import com.znczQydCs.socket.*;
 public class MainController {
 	@Autowired
 	private YongHuService yongHuService;
+	@Autowired
+	private ZhiJianJiLuService zhiJianJiLuService;
 	
 	static {
 		StartServer ss=new StartServer();
 		ss.start();
+	}
+	
+	@RequestMapping(value="/goSyncWithYf")
+	public String goSyncWithYf() {
+		
+		return "syncWithYf";
 	}
 
 	/**
@@ -46,6 +61,48 @@ public class MainController {
 	public String goRegist(HttpServletRequest request) {
 		
 		return "regist";
+	}
+
+	@RequestMapping(value="/syncWithYf")
+	@ResponseBody
+	public Map<String, Object> syncWithYf() {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		try {
+			JSONObject resultJO = CloudAPIUtil.selectZJJLListByQytb("yuejiazhuang", ZhiJianJiLu.WEI_TONG_BU);
+			if("ok".equals(resultJO.getString("status"))) {
+				int count=0;
+				org.json.JSONArray zjjlJA = (org.json.JSONArray)resultJO.get("zjjlList");
+				for (int i = 0; i < zjjlJA.length(); i++) {
+					org.json.JSONObject zjjlJO = (org.json.JSONObject)zjjlJA.get(i);
+					int ddId = zjjlJO.getInt("ddId");
+					int zjyId = zjjlJO.getInt("zjyId");
+					String zjsj = zjjlJO.getString("zjsj");
+					int jg = zjjlJO.getInt("jg");
+					String bz = zjjlJO.getString("bz");
+					
+					ZhiJianJiLu zjjl=new ZhiJianJiLu();
+					zjjl.setDdId(ddId);
+					zjjl.setZjyId(zjyId);
+					zjjl.setZjsj(zjsj);
+					zjjl.setJg(jg);
+					zjjl.setBz(bz);
+					count+=zhiJianJiLuService.add(zjjl);
+				}
+				if(count==zjjlJA.length()) {
+					JSONObject resultJO1 = CloudAPIUtil.updateZJJLToYtb("yuejiazhuang");
+				}
+			}
+			
+			jsonMap.put("status", "ok");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return jsonMap;
+		}
+		
 	}
 	
 	/**

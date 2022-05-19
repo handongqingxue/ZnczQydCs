@@ -98,7 +98,7 @@ public class DDGLController {
 		
 		//publicService.selectNav(request);
 		request.setAttribute("ddztMc", DingDanZhuangTai.DAI_SHEN_HE_TEXT);
-		request.setAttribute("checkDdztMc", DingDanZhuangTai.YI_JIAN_PAI_DUI_ZHONG_TEXT);
+		request.setAttribute("checkDdztMc", DingDanZhuangTai.ZHI_JIAN_PAI_DUI_ZHONG_TEXT);
 		request.setAttribute("shlx", ShenHeJiLu.XIA_DAN_SHEN_HE);
 		
 		return MODULE_NAME+"/dsh/list";

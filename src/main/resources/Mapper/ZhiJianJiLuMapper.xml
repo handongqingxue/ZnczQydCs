@@ -39,4 +39,38 @@
 			and zjy.zsxm like CONCAT('%',#{zjyZsxm},'%')
 		</if> 
 	</select>
+	<insert id="add" parameterType="com.znczQydCs.entity.ZhiJianJiLu">
+		insert into zhi_jian_ji_lu
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="ddId!=null">
+				ddId,
+			</if>
+			<if test="zjyId!=null">
+				zjyId,
+			</if>
+				zjsj,
+			<if test="jg!=null">
+				jg,
+			</if>
+			<if test="bz!=null">
+				bz,
+			</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="ddId!=null">
+				#{ddId},
+			</if>
+			<if test="zjyId!=null">
+				#{zjyId},
+			</if>
+				now(),
+			<if test="jg!=null">
+				#{jg},
+			</if>
+			<if test="bz!=null">
+				#{bz},
+			</if>
+		</trim>
+	</insert>
 </mapper>

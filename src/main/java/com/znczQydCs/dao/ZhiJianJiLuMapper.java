@@ -13,4 +13,6 @@ public interface ZhiJianJiLuMapper {
 	List<ZhiJianJiLu> queryList(@Param("jg") Integer jg, @Param("ddh") String ddh, @Param("ddztId") Integer ddztId, @Param("zjyZsxm") String zjyZsxm, @Param("rowNum") int rowNum, @Param("rows") int rows, String sort,
 			String order);
 
+	int add(ZhiJianJiLu zjjl);
+
 }

@@ -4,6 +4,10 @@ public class ZhiJianJiLu {
 
 	public static final Integer HE_GE=1;//合格
 	public static final Integer BU_HE_GE=2;//不合格
+	
+	public static final Integer WEI_TONG_BU=1;//未同步
+	public static final Integer TONG_BU_ZHONG=2;//同步中
+	public static final Integer YI_TONG_BU=3;//已同步
 	private Integer id;
 	public Integer getId() {
 		return id;
@@ -47,10 +51,24 @@ public class ZhiJianJiLu {
 	public void setBz(String bz) {
 		this.bz = bz;
 	}
+	public Integer getQytb() {
+		return qytb;
+	}
+	public void setQytb(Integer qytb) {
+		this.qytb = qytb;
+	}
+	public String getQyh() {
+		return qyh;
+	}
+	public void setQyh(String qyh) {
+		this.qyh = qyh;
+	}
 	private Integer ddId;
 	private Integer zjyId;
 	private String zjyZsxm;
 	private String zjsj;
 	private Integer jg;//结果 1.合格 2.不合格
 	private String bz;
+	private Integer qytb;//企业已同步 1.未同步 2.同步中 3.已同步
+	private String qyh;
 }

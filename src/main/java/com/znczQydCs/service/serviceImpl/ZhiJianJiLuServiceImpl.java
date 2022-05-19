@@ -27,4 +27,10 @@ public class ZhiJianJiLuServiceImpl implements ZhiJianJiLuService {
 		// TODO Auto-generated method stub
 		return zhiJianJiLuDao.queryList(jg, ddh, ddztId, zjyZsxm, (page-1)*rows, rows, sort, order);
 	}
+
+	@Override
+	public int add(ZhiJianJiLu zjjl) {
+		// TODO Auto-generated method stub
+		return zhiJianJiLuDao.add(zjjl);
+	}
 }
