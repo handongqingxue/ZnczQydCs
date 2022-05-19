@@ -30,6 +30,17 @@ public class ZJGLController {
 		return MODULE_NAME+"/zjjl/list";
 	}
 	
+	@RequestMapping(value="/zjjl/detail")
+	public String goZjjlDetail(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		ZhiJianJiLu zjjl=zhiJianJiLuService.selectById(id);
+		request.setAttribute("zjjl", zjjl);
+		
+		return MODULE_NAME+"/zjjl/detail";
+	}
+	
 	@RequestMapping(value="/queryZhiJianJiLuList")
 	@ResponseBody
 	public Map<String, Object> queryZhiJianJiLuList(Integer jg,String ddh,Integer ddztId,String zjyZsxm,int page,int rows,String sort,String order) {

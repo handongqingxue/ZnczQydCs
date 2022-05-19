@@ -14,15 +14,12 @@
 		<if test="ddztId!=''&amp;ddztId!=null">
 			and dd.ddztId=#{ddztId}
 		</if> 
-		<if test="ddh!=''&amp;ddh!=null">
-			and dd.ddh like CONCAT('%',#{zjyXm},'%')
-		</if> 
 		<if test="zjyZsxm!=''&amp;zjyZsxm!=null">
 			and zjy.zsxm like CONCAT('%',#{zjyZsxm},'%')
 		</if> 
 	</select>
 	<select id="queryList" resultType="com.znczQydCs.entity.ZhiJianJiLu">
-		select zjjl.id,zjjl.jg,zjjl.zjsj,dd.ddh,zjy.zsxm zjyZsxm from zhi_jian_ji_lu zjjl,yong_hu zjy,ding_dan dd,ding_dan_zhuang_tai ddzt where zjjl.zjyId=zjy.id and zjjl.ddId=dd.id and dd.ddztId=ddzt.id
+		select zjjl.id,zjjl.jg,zjjl.zjsj,dd.ddh,zjy.zsxm zjyZsxm,ddzt.mc ddztMc from zhi_jian_ji_lu zjjl,yong_hu zjy,ding_dan dd,ding_dan_zhuang_tai ddzt where zjjl.zjyId=zjy.id and zjjl.ddId=dd.id and dd.ddztId=ddzt.id
 		<if test="jg!=''&amp;jg!=null">
 			and zjjl.jg=#{jg}
 		</if> 
@@ -31,9 +28,6 @@
 		</if> 
 		<if test="ddztId!=''&amp;ddztId!=null">
 			and dd.ddztId=#{ddztId}
-		</if> 
-		<if test="ddh!=''&amp;ddh!=null">
-			and dd.ddh like CONCAT('%',#{zjyXm},'%')
 		</if> 
 		<if test="zjyZsxm!=''&amp;zjyZsxm!=null">
 			and zjy.zsxm like CONCAT('%',#{zjyZsxm},'%')
@@ -73,4 +67,7 @@
 			</if>
 		</trim>
 	</insert>
+	<select id="selectById" resultType="com.znczQydCs.entity.ZhiJianJiLu">
+		select zjjl.*,dd.ddh,ddzt.mc ddztMc,zjy.zsxm zjyZsxm from zhi_jian_ji_lu zjjl,yong_hu zjy,ding_dan dd,ding_dan_zhuang_tai ddzt where zjjl.zjyId=zjy.id and zjjl.ddId=dd.id and dd.ddztId=ddzt.id and zjjl.id=#{0}
+	</select>
 </mapper>

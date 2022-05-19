@@ -13,4 +13,6 @@ public interface ZhiJianJiLuService {
 
 	int add(ZhiJianJiLu zjjl);
 
+	ZhiJianJiLu selectById(String id);
+
 }

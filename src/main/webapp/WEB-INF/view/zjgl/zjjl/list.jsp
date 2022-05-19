@@ -86,22 +86,31 @@ function initTab1(){
 		pagination:true,
 		pageSize:10,
 		columns:[[
-			{field:"ddh",title:"订单号",width:200},
+			{field:"ddh",title:"订单号",width:150},
+			{field:"ddztMc",title:"订单状态",width:100},
 			{field:"zjyZsxm",title:"质检员",width:100},
             {field:"jg",title:"质检结果",width:100,formatter:function(value,row){
-            	
+            	var str;
+            	switch (value) {
+				case 1:
+					str="合格";
+					break;
+				case 2:
+					str="不合格";
+					break;
+				}
+            	return str;
             }},
-			{field:"zjsj",title:"编辑时间",width:200},
-            {field:"id",title:"操作",width:110,formatter:function(value,row){
-            	var str="<a href=\"edit?id="+value+"\">编辑</a>&nbsp;&nbsp;"
-            		+"<a href=\"detail?id="+value+"\">详情</a>";
+			{field:"zjsj",title:"质检时间",width:180},
+            {field:"id",title:"操作",width:60,formatter:function(value,row){
+            	var str="<a href=\"detail?id="+value+"\">详情</a>";
             	return str;
             }}
 	    ]],
         onLoadSuccess:function(data){
 			if(data.total==0){
 				$(this).datagrid("appendRow",{ddh:"<div style=\"text-align:center;\">暂无信息<div>"});
-				$(this).datagrid("mergeCells",{index:0,field:"ddh",colspan:5});
+				$(this).datagrid("mergeCells",{index:0,field:"ddh",colspan:6});
 				data.total=0;
 			}
 			

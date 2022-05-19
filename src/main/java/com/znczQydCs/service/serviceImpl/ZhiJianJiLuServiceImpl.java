@@ -33,4 +33,10 @@ public class ZhiJianJiLuServiceImpl implements ZhiJianJiLuService {
 		// TODO Auto-generated method stub
 		return zhiJianJiLuDao.add(zjjl);
 	}
+
+	@Override
+	public ZhiJianJiLu selectById(String id) {
+		// TODO Auto-generated method stub
+		return zhiJianJiLuDao.selectById(id);
+	}
 }

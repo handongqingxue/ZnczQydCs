@@ -15,4 +15,6 @@ public interface ZhiJianJiLuMapper {
 
 	int add(ZhiJianJiLu zjjl);
 
+	ZhiJianJiLu selectById(String id);
+
 }
