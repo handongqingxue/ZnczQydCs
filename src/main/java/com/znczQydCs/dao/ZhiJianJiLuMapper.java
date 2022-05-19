@@ -8,9 +8,9 @@ import com.znczQydCs.entity.ZhiJianJiLu;
 
 public interface ZhiJianJiLuMapper {
 
-	int queryForInt(@Param("zt") Integer zt, @Param("ddh") String ddh, @Param("ddztId") Integer ddztId, @Param("zjyXm") String zjyXm);
+	int queryForInt(@Param("jg") Integer jg, @Param("ddh") String ddh, @Param("ddztId") Integer ddztId, @Param("zjyZsxm") String zjyZsxm);
 
-	List<ZhiJianJiLu> queryList(@Param("zt") Integer zt, @Param("ddh") String ddh, @Param("ddztId") Integer ddztId, @Param("zjyXm") String zjyXm, @Param("rowNum") int rowNum, @Param("rows") int rows, String sort,
+	List<ZhiJianJiLu> queryList(@Param("jg") Integer jg, @Param("ddh") String ddh, @Param("ddztId") Integer ddztId, @Param("zjyZsxm") String zjyZsxm, @Param("rowNum") int rowNum, @Param("rows") int rows, String sort,
 			String order);
 
 }

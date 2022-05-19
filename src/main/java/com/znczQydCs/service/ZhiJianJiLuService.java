@@ -6,9 +6,9 @@ import com.znczQydCs.entity.*;
 
 public interface ZhiJianJiLuService {
 
-	int queryForInt(Integer zt, String ddh, Integer ddztId, String zjyXm);
+	int queryForInt(Integer jg, String ddh, Integer ddztId, String zjyZsxm);
 
-	List<ZhiJianJiLu> queryList(Integer zt, String ddh, Integer ddztId, String zjyXm, int page, int rows, String sort,
+	List<ZhiJianJiLu> queryList(Integer jg, String ddh, Integer ddztId, String zjyZsxm, int page, int rows, String sort,
 			String order);
 
 }

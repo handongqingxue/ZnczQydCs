@@ -32,12 +32,12 @@ public class ZJGLController {
 	
 	@RequestMapping(value="/queryZhiJianJiLuList")
 	@ResponseBody
-	public Map<String, Object> queryZhiJianJiLuList(Integer zt,String ddh,Integer ddztId,String zjyXm,int page,int rows,String sort,String order) {
+	public Map<String, Object> queryZhiJianJiLuList(Integer jg,String ddh,Integer ddztId,String zjyZsxm,int page,int rows,String sort,String order) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
-		int count = zhiJianJiLuService.queryForInt(zt, ddh, ddztId, zjyXm);
-		List<ZhiJianJiLu> zjjlList=zhiJianJiLuService.queryList(zt, ddh, ddztId, zjyXm, page, rows, sort, order);
+		int count = zhiJianJiLuService.queryForInt(jg, ddh, ddztId, zjyZsxm);
+		List<ZhiJianJiLu> zjjlList=zhiJianJiLuService.queryList(jg, ddh, ddztId, zjyZsxm, page, rows, sort, order);
 		
 		jsonMap.put("total", count);
 		jsonMap.put("rows", zjjlList);

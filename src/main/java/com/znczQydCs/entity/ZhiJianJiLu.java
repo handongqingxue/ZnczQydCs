@@ -23,17 +23,23 @@ public class ZhiJianJiLu {
 	public void setZjyId(Integer zjyId) {
 		this.zjyId = zjyId;
 	}
+	public String getZjyZsxm() {
+		return zjyZsxm;
+	}
+	public void setZjyZsxm(String zjyZsxm) {
+		this.zjyZsxm = zjyZsxm;
+	}
 	public String getZjsj() {
 		return zjsj;
 	}
 	public void setZjsj(String zjsj) {
 		this.zjsj = zjsj;
 	}
-	public Integer getZt() {
-		return zt;
+	public Integer getJg() {
+		return jg;
 	}
-	public void setZt(Integer zt) {
-		this.zt = zt;
+	public void setJg(Integer jg) {
+		this.jg = jg;
 	}
 	public String getBz() {
 		return bz;
@@ -43,7 +49,8 @@ public class ZhiJianJiLu {
 	}
 	private Integer ddId;
 	private Integer zjyId;
+	private String zjyZsxm;
 	private String zjsj;
-	private Integer zt;//结论 1.合格 2.不合格
+	private Integer jg;//结果 1.合格 2.不合格
 	private String bz;
 }

@@ -16,15 +16,15 @@ public class ZhiJianJiLuServiceImpl implements ZhiJianJiLuService {
 	private ZhiJianJiLuMapper zhiJianJiLuDao;
 
 	@Override
-	public int queryForInt(Integer zt, String ddh, Integer ddztId, String zjyXm) {
+	public int queryForInt(Integer jg, String ddh, Integer ddztId, String zjyZsxm) {
 		// TODO Auto-generated method stub
-		return zhiJianJiLuDao.queryForInt(zt, ddh, ddztId, zjyXm);
+		return zhiJianJiLuDao.queryForInt(jg, ddh, ddztId, zjyZsxm);
 	}
 
 	@Override
-	public List<ZhiJianJiLu> queryList(Integer zt, String ddh, Integer ddztId, String zjyXm, int page, int rows,
+	public List<ZhiJianJiLu> queryList(Integer jg, String ddh, Integer ddztId, String zjyZsxm, int page, int rows,
 			String sort, String order) {
 		// TODO Auto-generated method stub
-		return zhiJianJiLuDao.queryList(zt, ddh, ddztId, zjyXm, (page-1)*rows, rows, sort, order);
+		return zhiJianJiLuDao.queryList(jg, ddh, ddztId, zjyZsxm, (page-1)*rows, rows, sort, order);
 	}
 }
