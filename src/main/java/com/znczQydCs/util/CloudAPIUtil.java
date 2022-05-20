@@ -8,10 +8,15 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.json.JSONObject;
+
+import com.znczQydCs.entity.DingDan;
+
+import net.sf.json.JSONArray;
 
 public class CloudAPIUtil {
 
@@ -86,6 +91,23 @@ public class CloudAPIUtil {
 			Map parames = new HashMap<String, String>();
 	        parames.put("qyh", qyh);  
 	        resultJO = doHttp("updateZJJLToYtb",parames);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return resultJO;
+		}
+	}
+
+	public static JSONObject addDDToYf(String qyh, List<DingDan> ddList) {
+		// TODO Auto-generated method stub
+		JSONObject resultJO = null;
+		try {
+			Map parames = new HashMap<String, String>();
+	        parames.put("qyh", qyh);
+	        parames.put("ddJAStr", JSONArray.fromObject(ddList).toString());
+	        resultJO = doHttp("addDDToYf",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

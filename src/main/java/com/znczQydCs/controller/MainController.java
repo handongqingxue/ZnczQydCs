@@ -34,6 +34,8 @@ public class MainController {
 	@Autowired
 	private YongHuService yongHuService;
 	@Autowired
+	private DingDanService dingDanService;
+	@Autowired
 	private ZhiJianJiLuService zhiJianJiLuService;
 	
 	static {
@@ -69,30 +71,9 @@ public class MainController {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		try {
-			JSONObject resultJO = CloudAPIUtil.selectZJJLListByQytb("yuejiazhuang", ZhiJianJiLu.WEI_TONG_BU);
-			if("ok".equals(resultJO.getString("status"))) {
-				int count=0;
-				org.json.JSONArray zjjlJA = (org.json.JSONArray)resultJO.get("zjjlList");
-				for (int i = 0; i < zjjlJA.length(); i++) {
-					org.json.JSONObject zjjlJO = (org.json.JSONObject)zjjlJA.get(i);
-					int ddId = zjjlJO.getInt("ddId");
-					int zjyId = zjjlJO.getInt("zjyId");
-					String zjsj = zjjlJO.getString("zjsj");
-					int jg = zjjlJO.getInt("jg");
-					String bz = zjjlJO.getString("bz");
-					
-					ZhiJianJiLu zjjl=new ZhiJianJiLu();
-					zjjl.setDdId(ddId);
-					zjjl.setZjyId(zjyId);
-					zjjl.setZjsj(zjsj);
-					zjjl.setJg(jg);
-					zjjl.setBz(bz);
-					count+=zhiJianJiLuService.add(zjjl);
-				}
-				if(count==zjjlJA.length()) {
-					JSONObject resultJO1 = CloudAPIUtil.updateZJJLToYtb("yuejiazhuang");
-				}
-			}
+			String qyh = LoadProperties.getQyh();
+			syncDd(qyh);
+			syncZJJL(qyh);
 			
 			jsonMap.put("status", "ok");
 		} catch (JSONException e) {
@@ -103,6 +84,53 @@ public class MainController {
 			return jsonMap;
 		}
 		
+	}
+	
+	public void syncDd(String qyh) {
+		// TODO Auto-generated method stub
+		try {
+			boolean bool=dingDanService.checkIfWtbToYf();
+			if(bool) {
+				List<DingDan> ddList=dingDanService.selectListByYfwtb(Main.WEI_TONG_BU);
+				dingDanService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
+				JSONObject resultJO = CloudAPIUtil.addDDToYf(qyh,ddList);
+				if("ok".equals(resultJO.getString("status"))) {
+					dingDanService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void syncZJJL(String qyh) {
+		JSONObject resultJO = CloudAPIUtil.selectZJJLListByQytb(qyh, Main.WEI_TONG_BU);
+		if("ok".equals(resultJO.getString("status"))) {
+			int count=0;
+			org.json.JSONArray zjjlJA = (org.json.JSONArray)resultJO.get("zjjlList");
+			for (int i = 0; i < zjjlJA.length(); i++) {
+				org.json.JSONObject zjjlJO = (org.json.JSONObject)zjjlJA.get(i);
+				int id = zjjlJO.getInt("id");
+				int ddId = zjjlJO.getInt("ddId");
+				int zjyId = zjjlJO.getInt("zjyId");
+				String zjsj = zjjlJO.getString("zjsj");
+				int jg = zjjlJO.getInt("jg");
+				String bz = zjjlJO.getString("bz");
+				
+				ZhiJianJiLu zjjl=new ZhiJianJiLu();
+				zjjl.setYfwjlId(id);
+				zjjl.setDdId(ddId);
+				zjjl.setZjyId(zjyId);
+				zjjl.setZjsj(zjsj);
+				zjjl.setJg(jg);
+				zjjl.setBz(bz);
+				count+=zhiJianJiLuService.add(zjjl);
+			}
+			if(count==zjjlJA.length()) {
+				CloudAPIUtil.updateZJJLToYtb(qyh);
+			}
+		}
 	}
 	
 	/**

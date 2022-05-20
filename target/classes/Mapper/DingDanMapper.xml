@@ -128,7 +128,8 @@
 			<if test="shbmId!=null">
 				shbmId,
 			</if>
-				bjsj
+				bjsj,
+				yfwtb
 		</trim>
 		values
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -176,7 +177,8 @@
 			<if test="shbmId!=null">
 				#{shbmId},
 			</if>
-				now()
+				now(),
+				${@com.znczQydCs.entity.Main@WEI_TONG_BU}
 		</trim>
 	</insert>
 	<delete id="deleteByIds">
@@ -355,4 +357,13 @@
 	<select id="getCountByDdhDate" resultType="java.lang.Integer">
 		select count(*) from ding_dan where ddh like CONCAT(#{ddhDate},'%')
 	</select>
+	<select id="getWtbToYfCount" resultType="java.lang.Integer">
+		select count(*) from ding_dan where yfwtb=${@com.znczQydCs.entity.Main@WEI_TONG_BU}
+	</select>
+	<select id="selectListByYfwtb" resultType="com.znczQydCs.entity.DingDan">
+		select * from ding_dan where yfwtb=#{yfwtb}
+	</select>
+	<update id="updateTbZtByYfwtb">
+		update ding_dan set yfwtb=#{xtbzt} where yfwtb=#{yfwtb}
+	</update>
 </mapper>

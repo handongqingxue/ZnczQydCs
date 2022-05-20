@@ -43,4 +43,10 @@ public interface DingDanMapper {
 
 	int getCountByDdhDate(@Param("ddhDate") String ddhDate);
 
+	int getWtbToYfCount();
+
+	List<DingDan> selectListByYfwtb(@Param("yfwtb") Integer yfwtb);
+
+	int updateTbZtByYfwtb(@Param("yfwtb") int yfwtb, @Param("xtbzt") int xtbzt);
+
 }

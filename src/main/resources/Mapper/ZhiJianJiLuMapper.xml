@@ -36,6 +36,9 @@
 	<insert id="add" parameterType="com.znczQydCs.entity.ZhiJianJiLu">
 		insert into zhi_jian_ji_lu
 		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="yfwjlId!=null">
+				yfwjlId,
+			</if>
 			<if test="ddId!=null">
 				ddId,
 			</if>
@@ -52,6 +55,9 @@
 		</trim>
 		values
 		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="yfwjlId!=null">
+				#{yfwjlId},
+			</if>
 			<if test="ddId!=null">
 				#{ddId},
 			</if>

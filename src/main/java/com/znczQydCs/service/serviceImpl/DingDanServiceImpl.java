@@ -170,4 +170,23 @@ public class DingDanServiceImpl implements DingDanService {
 			ddhxhStr="0"+ddhxh;
 		return ddhDate+ddhxhStr;
 	}
+
+	@Override
+	public boolean checkIfWtbToYf() {
+		// TODO Auto-generated method stub
+		int count=dingDanDao.getWtbToYfCount();
+		return count>0?true:false;
+	}
+
+	@Override
+	public List<DingDan> selectListByYfwtb(Integer yfwtb) {
+		// TODO Auto-generated method stub
+		return dingDanDao.selectListByYfwtb(yfwtb);
+	}
+
+	@Override
+	public int updateTbZtByYfwtb(int yfwtb, int xtbzt) {
+		// TODO Auto-generated method stub
+		return dingDanDao.updateTbZtByYfwtb(yfwtb, xtbzt);
+	}
 }

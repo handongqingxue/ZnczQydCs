@@ -40,4 +40,10 @@ public interface DingDanService {
 
 	String createDdhByDateYMD();
 
+	boolean checkIfWtbToYf();
+
+	List<DingDan> selectListByYfwtb(Integer yfwtb);
+
+	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
+
 }

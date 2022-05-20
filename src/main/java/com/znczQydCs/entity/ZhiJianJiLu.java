@@ -4,16 +4,18 @@ public class ZhiJianJiLu {
 
 	public static final Integer HE_GE=1;//合格
 	public static final Integer BU_HE_GE=2;//不合格
-	
-	public static final Integer WEI_TONG_BU=1;//未同步
-	public static final Integer TONG_BU_ZHONG=2;//同步中
-	public static final Integer YI_TONG_BU=3;//已同步
 	private Integer id;
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	public Integer getYfwjlId() {
+		return yfwjlId;
+	}
+	public void setYfwjlId(Integer yfwjlId) {
+		this.yfwjlId = yfwjlId;
 	}
 	public Integer getDdId() {
 		return ddId;
@@ -75,6 +77,7 @@ public class ZhiJianJiLu {
 	public void setDdztMc(String ddztMc) {
 		this.ddztMc = ddztMc;
 	}
+	private Integer yfwjlId;
 	private Integer ddId;
 	private Integer zjyId;
 	private String zjyZsxm;
