@@ -19,8 +19,30 @@ import com.znczQydCs.service.*;
 public class ZJGLController {
 
 	@Autowired
+	private DingDanService dingDanService;
+	@Autowired
 	private ZhiJianJiLuService zhiJianJiLuService;
 	public static final String MODULE_NAME="zjgl";
+	
+	@RequestMapping(value="/dzj/list")
+	public String goDzjList(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		request.setAttribute("ddztMc", DingDanZhuangTai.ZHI_JIAN_PAI_DUI_ZHONG_TEXT);
+		
+		return MODULE_NAME+"/dzj/list";
+	}
+	
+	@RequestMapping(value="/dzj/detail")
+	public String goDzjDetail(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		DingDan dd=dingDanService.selectById(id);
+		request.setAttribute("dd", dd);
+		
+		return MODULE_NAME+"/dzj/detail";
+	}
 	
 	@RequestMapping(value="/zjjl/list")
 	public String goZjjlList(HttpServletRequest request) {

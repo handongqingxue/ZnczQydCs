@@ -249,6 +249,13 @@ function showLeftMenuByQx(){
 					<div class="line_div"></div>
 					<li class="layui-nav-item bdjl_item_li">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
+						<a href="<%=basePath%>zjgl/dzj/list">
+							&nbsp;&nbsp;&nbsp;待质检
+						</a>
+					</li>
+					<div class="line_div"></div>
+					<li class="layui-nav-item bdjl_item_li">
+						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>zjgl/zjjl/list">
 							&nbsp;&nbsp;&nbsp;质检记录
 						</a>

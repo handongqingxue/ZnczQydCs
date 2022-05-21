@@ -13,13 +13,12 @@
 	height:32px;
 }
 .tab1_div .toolbar .ddh_span,
-.tab1_div .toolbar .zjjg_span,
-.tab1_div .toolbar .ddzt_span,
+.tab1_div .toolbar .cph_span,
 .tab1_div .toolbar .search_but{
 	margin-left: 13px;
 }
 .tab1_div .toolbar .ddh_inp,
-.tab1_div .toolbar .zjyZsxm_inp{
+.tab1_div .toolbar .cph_inp{
 	width: 120px;
 	height: 25px;
 }
@@ -30,79 +29,50 @@
 var path='<%=basePath %>';
 var ddglPath=path+'ddgl/';
 var zjglPath=path+'zjgl/';
+var ddztMc='${requestScope.ddztMc}';
 $(function(){
-	initZJJGCBB();
-	initDDZTCBB();
 	initSearchLB();
 	initTab1();
 });
-
-function initZJJGCBB(){
-	zjjgCBB=$("#zjjg_cbb").combobox({
-		valueField:"value",
-		textField:"text",
-		//multiple:true,
-		data:[{"value":"","text":"请选择"},{"value":"1","text":"合格"},{"value":"2","text":"不合格"}]
-	});
-}
-
-function initDDZTCBB(){
-	var data=[];
-	data.push({"value":"","text":"请选择"});
-	$.post(ddglPath+"queryDingDanZhuangTaiCBBList",
-		function(result){
-			var rows=result.rows;
-			for(var i=0;i<rows.length;i++){
-				data.push({"value":rows[i].id,"text":rows[i].mc});
-			}
-			ddztCBB=$("#ddzt_cbb").combobox({
-				valueField:"value",
-				textField:"text",
-				//multiple:true,
-				data:data
-			});
-		}
-	,"json");
-}
 
 function initSearchLB(){
 	$("#search_but").linkbutton({
 		iconCls:"icon-search",
 		onClick:function(){
 			var ddh=$("#toolbar #ddh_inp").val();
-			var jg=zjjgCBB.combobox("getValue");
-			var ddztId=ddztCBB.combobox("getValue");
-			var zjyZsxm=$("#toolbar #zjyZsxm_inp").val();
-			tab1.datagrid("load",{ddh:ddh,jg:jg,ddztId:ddztId,zjyZsxm:zjyZsxm});
+			var cph=$("#toolbar #cph_inp").val();
+			tab1.datagrid("load",{ddh:ddh,cph:cph,ddztMc:ddztMc});
 		}
 	});
 }
 
 function initTab1(){
 	tab1=$("#tab1").datagrid({
-		title:"质检记录查询",
-		url:zjglPath+"queryZhiJianJiLuList",
+		title:"待质检查询",
+		url:ddglPath+"queryZHCXList",
 		toolbar:"#toolbar",
 		width:setFitWidthInParent("body"),
+		queryParams:{ddztMc:ddztMc},
 		pagination:true,
 		pageSize:10,
 		columns:[[
 			{field:"ddh",title:"订单号",width:150},
-			{field:"ddztMc",title:"订单状态",width:100},
-			{field:"zjyZsxm",title:"质检员",width:100},
-            {field:"jg",title:"质检结果",width:100,formatter:function(value,row){
+			{field:"cph",title:"车牌号",width:100},
+			{field:"yssMc",title:"运输商",width:150},
+            {field:"lxlx",title:"流向类型",width:100,formatter:function(value,row){
             	var str;
             	switch (value) {
 				case 1:
-					str="合格";
+					str="送运";
 					break;
 				case 2:
-					str="不合格";
+					str="取运";
 					break;
 				}
             	return str;
             }},
-			{field:"zjsj",title:"质检时间",width:180},
+			{field:"yzxzl",title:"预装卸重量",width:100},
+			{field:"bjsj",title:"编辑时间",width:180},
             {field:"id",title:"操作",width:60,formatter:function(value,row){
             	var str="<a href=\"detail?id="+value+"\">详情</a>";
             	return str;
@@ -111,7 +81,7 @@ function initTab1(){
         onLoadSuccess:function(data){
 			if(data.total==0){
 				$(this).datagrid("appendRow",{ddh:"<div style=\"text-align:center;\">暂无信息<div>"});
-				$(this).datagrid("mergeCells",{index:0,field:"ddh",colspan:6});
+				$(this).datagrid("mergeCells",{index:0,field:"ddh",colspan:7});
 				data.total=0;
 			}
 			
@@ -136,12 +106,8 @@ function setFitWidthInParent(o){
 		<div class="toolbar" id="toolbar">
 			<span class="ddh_span">订单号：</span>
 			<input type="text" class="ddh_inp" id="ddh_inp" placeholder="请输入订单号"/>
-			<span class="zjjg_span">质检结果：</span>
-			<input id="zjjg_cbb"/>
-			<span class="ddzt_span">订单状态：</span>
-			<input id="ddzt_cbb"/>
-			<span class="ddh_span">质检员姓名：</span>
-			<input type="text" class="zjyZsxm_inp" id="zjyZsxm_inp" placeholder="请输入质检员姓名"/>
+			<span class="ddh_span">车牌号：</span>
+			<input type="text" class="cph_inp" id="cph_inp" placeholder="请输入车牌号"/>
 			<a class="search_but" id="search_but">查询</a>
 		</div>
 		<table id="tab1">
