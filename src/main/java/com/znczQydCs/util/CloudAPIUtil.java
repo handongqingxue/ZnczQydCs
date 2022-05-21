@@ -68,6 +68,23 @@ public class CloudAPIUtil {
 		return resultJO;
 	}
 
+	public static JSONObject selectPDJLListByQytb(String qyh, Integer qytb) {
+		// TODO Auto-generated method stub
+		JSONObject resultJO = null;
+		try {
+			Map parames = new HashMap<String, String>();
+	        parames.put("qyh", qyh);  
+	        parames.put("qytb", qytb);
+	        resultJO = doHttp("selectPDJLListByQytb",parames);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return resultJO;
+		}
+	}
+
 	public static JSONObject selectZJJLListByQytb(String qyh, Integer qytb) {
 		JSONObject resultJO = null;
 		try {
@@ -75,6 +92,22 @@ public class CloudAPIUtil {
 	        parames.put("qyh", qyh);  
 	        parames.put("qytb", qytb);
 	        resultJO = doHttp("selectZJJLListByQytb",parames);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return resultJO;
+		}
+	}
+
+	public static JSONObject updatePDJLToYtb(String qyh) {
+		// TODO Auto-generated method stub
+		JSONObject resultJO = null;
+		try {
+			Map parames = new HashMap<String, String>();
+	        parames.put("qyh", qyh);  
+	        resultJO = doHttp("updatePDJLToYtb",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

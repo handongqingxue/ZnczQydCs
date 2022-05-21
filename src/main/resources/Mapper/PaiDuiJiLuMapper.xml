@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znczQydCs.dao.PaiDuiJiLuMapper">
+	<insert id="add" parameterType="com.znczQydCs.entity.PaiDuiJiLu">
+		insert into pai_dui_ji_lu
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="yfwjlId!=null">
+				yfwjlId,
+			</if>
+			<if test="ddId!=null">
+				ddId,
+			</if>
+				zjsj,
+			<if test="dlh!=null">
+				dlh,
+			</if>
+			<if test="pdh!=null">
+				pdh,
+			</if>
+				zt
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="yfwjlId!=null">
+				#{yfwjlId},
+			</if>
+			<if test="ddId!=null">
+				#{ddId},
+			</if>
+				now(),
+			<if test="dlh!=null">
+				#{dlh},
+			</if>
+			<if test="pdh!=null">
+				#{pdh},
+			</if>
+				${@com.znczQydCs.entity.PaiDuiJiLu@PAI_DUI_ZHONG}
+		</trim>
+	</insert>
+</mapper>
