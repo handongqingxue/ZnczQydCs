@@ -109,31 +109,36 @@ public class MainController {
 	
 	public void syncPDJL(String qyh) {
 		// TODO Auto-generated method stub
-		JSONObject resultJO = CloudAPIUtil.selectPDJLListByQytb(qyh, Main.WEI_TONG_BU);
-		if("ok".equals(resultJO.getString("status"))) {
-			int count=0;
-			org.json.JSONArray pdjlJA = (org.json.JSONArray)resultJO.get("pdjlList");
-			for (int i = 0; i < pdjlJA.length(); i++) {
-				org.json.JSONObject zjjlJO = (org.json.JSONObject)pdjlJA.get(i);
-				int id = zjjlJO.getInt("id");
-				int ddId = zjjlJO.getInt("ddId");
-				String pdsj = zjjlJO.getString("pdsj");
-				int dlh = zjjlJO.getInt("dlh");
-				int pdh = zjjlJO.getInt("pdh");
-				int zt = zjjlJO.getInt("zt");
-				
-				PaiDuiJiLu pdjl=new PaiDuiJiLu();
-				pdjl.setYfwjlId(id);
-				pdjl.setDdId(ddId);
-				pdjl.setPdsj(pdsj);
-				pdjl.setDlh(dlh);
-				pdjl.setPdh(pdh);
-				pdjl.setZt(zt);
-				count+=paiDuiJiLuService.add(pdjl);
+		try {
+			JSONObject resultJO = CloudAPIUtil.selectPDJLListByQytb(qyh, Main.WEI_TONG_BU);
+			if("ok".equals(resultJO.getString("status"))) {
+				int count=0;
+				org.json.JSONArray pdjlJA = (org.json.JSONArray)resultJO.get("pdjlList");
+				for (int i = 0; i < pdjlJA.length(); i++) {
+					org.json.JSONObject zjjlJO = (org.json.JSONObject)pdjlJA.get(i);
+					int id = zjjlJO.getInt("id");
+					int ddId = zjjlJO.getInt("ddId");
+					String pdsj = zjjlJO.getString("pdsj");
+					int dlh = zjjlJO.getInt("dlh");
+					int pdh = zjjlJO.getInt("pdh");
+					int zt = zjjlJO.getInt("zt");
+					
+					PaiDuiJiLu pdjl=new PaiDuiJiLu();
+					pdjl.setYfwjlId(id);
+					pdjl.setDdId(ddId);
+					pdjl.setPdsj(pdsj);
+					pdjl.setDlh(dlh);
+					pdjl.setPdh(pdh);
+					pdjl.setZt(zt);
+					count+=paiDuiJiLuService.add(pdjl);
+				}
+				if(count==pdjlJA.length()) {
+					CloudAPIUtil.updatePDJLToYtb(qyh);
+				}
 			}
-			if(count==pdjlJA.length()) {
-				CloudAPIUtil.updatePDJLToYtb(qyh);
-			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

@@ -12,14 +12,15 @@
 			<if test="ddId!=null">
 				ddId,
 			</if>
-				zjsj,
+				pdsj,
 			<if test="dlh!=null">
 				dlh,
 			</if>
 			<if test="pdh!=null">
 				pdh,
 			</if>
-				zt
+				zt,
+				qytb
 		</trim>
 		values
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -36,7 +37,27 @@
 			<if test="pdh!=null">
 				#{pdh},
 			</if>
-				${@com.znczQydCs.entity.PaiDuiJiLu@PAI_DUI_ZHONG}
+				${@com.znczQydCs.entity.PaiDuiJiLu@PAI_DUI_ZHONG},
+				${@com.znczQydCs.entity.Main@WEI_TONG_BU}
 		</trim>
 	</insert>
+	<select id="queryForInt" resultType="java.lang.Integer">
+		select count(*) from pai_dui_ji_lu where 1=1
+		<if test="ddh!=''&amp;ddh!=null">
+			and ddh like CONCAT('%',#{ddh},'%')
+		</if>
+		<if test="cph!=''&amp;cph!=null">
+			and cph like CONCAT('%',#{cph},'%')
+		</if>
+	</select>
+	<select id="queryList" resultType="com.znczQydCs.entity.PaiDuiJiLu">
+		select pdjl.*,dd.ddh from pai_dui_ji_lu pdjl,ding_dan dd where pdjl.ddId=dd.id
+		<if test="ddh!=''&amp;ddh!=null">
+			and dd.ddh like CONCAT('%',#{ddh},'%')
+		</if>
+		<if test="cph!=''&amp;cph!=null">
+			and dd.cph like CONCAT('%',#{cph},'%')
+		</if>
+		limit #{rowNum},#{rows}
+	</select>
 </mapper>

@@ -25,6 +25,12 @@ public class PaiDuiJiLu {
 	public void setDdId(Integer ddId) {
 		this.ddId = ddId;
 	}
+	public String getDdh() {
+		return ddh;
+	}
+	public void setDdh(String ddh) {
+		this.ddh = ddh;
+	}
 	public String getPdsj() {
 		return pdsj;
 	}
@@ -63,6 +69,7 @@ public class PaiDuiJiLu {
 	}
 	private Integer yfwjlId;
 	private Integer ddId;
+	private String ddh;
 	private String pdsj;
 	private Integer dlh;
 	private Integer pdh;

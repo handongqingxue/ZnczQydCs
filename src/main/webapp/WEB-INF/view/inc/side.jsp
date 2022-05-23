@@ -243,6 +243,20 @@ function showLeftMenuByQx(){
 				<div class="first-level-div gbgl_first_div">
 					<li class="layui-nav-item first-level">
 						<a>
+							排队管理
+						</a>
+					</li>
+					<div class="line_div"></div>
+					<li class="layui-nav-item bdjl_item_li">
+						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
+						<a href="<%=basePath%>pdgl/pdjl/list">
+							&nbsp;&nbsp;&nbsp;排队记录
+						</a>
+					</li>
+				</div>
+				<div class="first-level-div gbgl_first_div">
+					<li class="layui-nav-item first-level">
+						<a>
 							质检管理
 						</a>
 					</li>
