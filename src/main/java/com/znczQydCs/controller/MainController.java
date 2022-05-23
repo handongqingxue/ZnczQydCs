@@ -32,6 +32,8 @@ import com.znczQydCs.socket.*;
 @RequestMapping("/main")
 public class MainController {
 	@Autowired
+	private MainService mainService;
+	@Autowired
 	private YongHuService yongHuService;
 	@Autowired
 	private DingDanService dingDanService;
@@ -117,15 +119,18 @@ public class MainController {
 				for (int i = 0; i < pdjlJA.length(); i++) {
 					org.json.JSONObject zjjlJO = (org.json.JSONObject)pdjlJA.get(i);
 					int id = zjjlJO.getInt("id");
-					int ddId = zjjlJO.getInt("ddId");
+					int yfwDdId = zjjlJO.getInt("ddId");
 					String pdsj = zjjlJO.getString("pdsj");
 					int dlh = zjjlJO.getInt("dlh");
 					int pdh = zjjlJO.getInt("pdh");
 					int zt = zjjlJO.getInt("zt");
 					
+					Object colValObj=mainService.getQyColValByYfwColVal("id",String.valueOf(yfwDdId),"yfwjlId","ding_dan");
+					
 					PaiDuiJiLu pdjl=new PaiDuiJiLu();
 					pdjl.setYfwjlId(id);
-					pdjl.setDdId(ddId);
+					pdjl.setYfwDdId(yfwDdId);
+					pdjl.setQyDdId(Integer.valueOf(colValObj.toString()));
 					pdjl.setPdsj(pdsj);
 					pdjl.setDlh(dlh);
 					pdjl.setPdh(pdh);

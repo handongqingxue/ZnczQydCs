@@ -19,17 +19,29 @@ public class PaiDuiJiLu {
 	public void setYfwjlId(Integer yfwjlId) {
 		this.yfwjlId = yfwjlId;
 	}
-	public Integer getDdId() {
-		return ddId;
+	public Integer getYfwDdId() {
+		return yfwDdId;
 	}
-	public void setDdId(Integer ddId) {
-		this.ddId = ddId;
+	public void setYfwDdId(Integer yfwDdId) {
+		this.yfwDdId = yfwDdId;
+	}
+	public Integer getQyDdId() {
+		return qyDdId;
+	}
+	public void setQyDdId(Integer qyDdId) {
+		this.qyDdId = qyDdId;
 	}
 	public String getDdh() {
 		return ddh;
 	}
 	public void setDdh(String ddh) {
 		this.ddh = ddh;
+	}
+	public String getCph() {
+		return cph;
+	}
+	public void setCph(String cph) {
+		this.cph = cph;
 	}
 	public String getPdsj() {
 		return pdsj;
@@ -68,8 +80,10 @@ public class PaiDuiJiLu {
 		this.qyh = qyh;
 	}
 	private Integer yfwjlId;
-	private Integer ddId;
+	private Integer yfwDdId;
+	private Integer qyDdId;
 	private String ddh;
+	private String cph;
 	private String pdsj;
 	private Integer dlh;
 	private Integer pdh;

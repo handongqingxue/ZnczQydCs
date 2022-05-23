@@ -73,6 +73,7 @@ function initTab1(){
 		pageSize:10,
 		columns:[[
 			{field:"ddh",title:"订单号",width:150},
+			{field:"cph",title:"车牌号",width:150},
 			{field:"dlh",title:"队列号",width:100},
             {field:"pdh",title:"排队号",width:100},
             {field:"pdsj",title:"排队时间",width:150},
@@ -99,7 +100,7 @@ function initTab1(){
         onLoadSuccess:function(data){
 			if(data.total==0){
 				$(this).datagrid("appendRow",{ddh:"<div style=\"text-align:center;\">暂无信息<div>"});
-				$(this).datagrid("mergeCells",{index:0,field:"ddh",colspan:6});
+				$(this).datagrid("mergeCells",{index:0,field:"ddh",colspan:7});
 				data.total=0;
 			}
 			
