@@ -43,6 +43,8 @@ public class MainController {
 	private ZhiJianJiLuService zhiJianJiLuService;
 	@Autowired
 	private BangDanJiLuService bangDanJiLuService;
+	@Autowired
+	private GuoBangJiLuService guoBangJiLuService;
 	
 	static {
 		StartServer ss=new StartServer();
@@ -82,6 +84,7 @@ public class MainController {
 			syncPDJL(qyh);
 			syncZJJL(qyh);
 			syncBDJL(qyh);
+			syncGBJL(qyh);
 			
 			jsonMap.put("status", "ok");
 		} catch (JSONException e) {
@@ -121,7 +124,25 @@ public class MainController {
 				bangDanJiLuService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
 				JSONObject resultJO = CloudAPIUtil.addBDJLToYf(qyh,bdjlList);
 				if("ok".equals(resultJO.getString("status"))) {
-					dingDanService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
+					bangDanJiLuService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void syncGBJL(String qyh) {
+		// TODO Auto-generated method stub
+		try {
+			boolean bool=guoBangJiLuService.checkIfWtbToYf();
+			if(bool) {
+				List<GuoBangJiLu> gbjlList=guoBangJiLuService.selectListByYfwtb(Main.WEI_TONG_BU);
+				guoBangJiLuService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
+				JSONObject resultJO = CloudAPIUtil.addGBJLToYf(qyh,gbjlList);
+				if("ok".equals(resultJO.getString("status"))) {
+					guoBangJiLuService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
 				}
 			}
 		} catch (Exception e) {

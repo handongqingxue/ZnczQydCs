@@ -30,4 +30,10 @@ public interface GuoBangJiLuMapper {
 	int deleteByDdId(@Param("gblx") Integer gblx, @Param("ddId") Integer ddId);
 
 	int getCountByDdId(@Param("gblx") Integer gblx, @Param("ddId") Integer ddId);
+
+	int getWtbToYfCount();
+
+	List<GuoBangJiLu> selectListByYfwtb(@Param("yfwtb") Integer yfwtb);
+
+	int updateTbZtByYfwtb(@Param("yfwtb") int yfwtb, @Param("xtbzt") int xtbzt);
 }

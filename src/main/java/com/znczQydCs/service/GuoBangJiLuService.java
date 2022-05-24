@@ -27,4 +27,10 @@ public interface GuoBangJiLuService {
 
 	int deleteByDdId(Integer gblx,Integer ddId);
 
+	boolean checkIfWtbToYf();
+
+	List<GuoBangJiLu> selectListByYfwtb(Integer yfwtb);
+
+	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
+
 }

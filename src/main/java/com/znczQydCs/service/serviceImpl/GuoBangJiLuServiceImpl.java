@@ -82,4 +82,23 @@ public class GuoBangJiLuServiceImpl implements GuoBangJiLuService {
 		// TODO Auto-generated method stub
 		return guoBangJiLuDao.deleteByDdId(gblx, ddId);
 	}
+
+	@Override
+	public boolean checkIfWtbToYf() {
+		// TODO Auto-generated method stub
+		int count=guoBangJiLuDao.getWtbToYfCount();
+		return count>0?true:false;
+	}
+
+	@Override
+	public List<GuoBangJiLu> selectListByYfwtb(Integer yfwtb) {
+		// TODO Auto-generated method stub
+		return guoBangJiLuDao.selectListByYfwtb(yfwtb);
+	}
+
+	@Override
+	public int updateTbZtByYfwtb(int yfwtb, int xtbzt) {
+		// TODO Auto-generated method stub
+		return guoBangJiLuDao.updateTbZtByYfwtb(yfwtb, xtbzt);
+	}
 }

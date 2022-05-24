@@ -156,4 +156,13 @@
 	<select id="getCountByDdId" resultType="java.lang.Integer">
 		select count(*) from guo_bang_ji_lu where gblx=#{gblx} and ddId=#{ddId}
 	</select>
+	<select id="getWtbToYfCount" resultType="java.lang.Integer">
+		select count(*) from guo_bang_ji_lu where yfwtb=${@com.znczQydCs.entity.Main@WEI_TONG_BU}
+	</select>
+	<select id="selectListByYfwtb" resultType="com.znczQydCs.entity.GuoBangJiLu">
+		select * from guo_bang_ji_lu where yfwtb=#{yfwtb}
+	</select>
+	<update id="updateTbZtByYfwtb">
+		update guo_bang_ji_lu set yfwtb=#{xtbzt} where yfwtb=#{yfwtb}
+	</update>
 </mapper>
