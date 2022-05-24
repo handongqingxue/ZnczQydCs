@@ -30,6 +30,17 @@ public class PDGLController {
 		return MODULE_NAME+"/pdjl/list";
 	}
 	
+	@RequestMapping(value="/pdjl/detail")
+	public String goPdjlDetail(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		PaiDuiJiLu pdjl=paiDuiJiLuService.selectById(id);
+		request.setAttribute("pdjl", pdjl);
+		
+		return MODULE_NAME+"/pdjl/detail";
+	}
+	
 	@RequestMapping(value="/queryPDJLList")
 	@ResponseBody
 	public Map<String, Object> queryPDJLList(String ddh,String cph,int page,int rows,String sort,String order) {

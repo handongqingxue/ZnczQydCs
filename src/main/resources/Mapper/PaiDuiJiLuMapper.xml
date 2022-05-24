@@ -23,7 +23,7 @@
 				pdh,
 			</if>
 				zt,
-				qytb
+				yfwtb
 		</trim>
 		values
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -65,5 +65,8 @@
 			and dd.cph like CONCAT('%',#{cph},'%')
 		</if>
 		limit #{rowNum},#{rows}
+	</select>
+	<select id="selectById" resultType="com.znczQydCs.entity.PaiDuiJiLu">
+		select pdjl.*,dd.ddh,dd.cph from pai_dui_ji_lu pdjl,ding_dan dd where pdjl.qyDdId=dd.id and pdjl.id=#{id}
 	</select>
 </mapper>

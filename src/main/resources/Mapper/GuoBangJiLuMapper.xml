@@ -16,8 +16,8 @@
 			<if test="gblx!=null">
 				gblx,
 			</if>
-			<if test="ddId!=null">
-				ddId,
+			<if test="qyDdId!=null">
+				qyDdId,
 			</if>
 		</trim>
 		values
@@ -32,8 +32,8 @@
 			<if test="gblx!=null">
 				#{gblx},
 			</if>
-			<if test="ddId!=null">
-				#{ddId},
+			<if test="qyDdId!=null">
+				#{qyDdId},
 			</if>
 		</trim>
 	</insert>
@@ -53,7 +53,7 @@
 		where id=#{id}
 	</update>
 	<select id="queryForInt" resultType="java.lang.Integer">
-		select count(*) from guo_bang_ji_lu gbjl,ding_dan dd where gbjl.ddId=dd.id
+		select count(*) from guo_bang_ji_lu gbjl,ding_dan dd where gbjl.qyDdId=dd.id
 		<if test="ddh!=''&amp;ddh!=null">
 			and dd.ddh like CONCAT('%',#{ddh},'%')
 		</if>
@@ -65,7 +65,7 @@
 		</if>
 	</select>
 	<select id="queryList" resultType="com.znczQydCs.entity.GuoBangJiLu">
-		select gbjl.*,dd.ddh,dd.cph from guo_bang_ji_lu gbjl,ding_dan dd where gbjl.ddId=dd.id
+		select gbjl.*,dd.ddh,dd.cph from guo_bang_ji_lu gbjl,ding_dan dd where gbjl.qyDdId=dd.id
 		<if test="ddh!=''&amp;ddh!=null">
 			and dd.ddh like CONCAT('%',#{ddh},'%')
 		</if>
@@ -79,10 +79,10 @@
 		limit #{rowNum},#{rows}
 	</select>
 	<select id="selectById" resultType="com.znczQydCs.entity.GuoBangJiLu">
-		select gbjl.*,dd.ddh from guo_bang_ji_lu gbjl,ding_dan dd where gbjl.ddId=dd.id and gbjl.id=#{id}
+		select gbjl.*,dd.ddh from guo_bang_ji_lu gbjl,ding_dan dd where gbjl.qyDdId=dd.id and gbjl.id=#{id}
 	</select>
 	<select id="queryDJYForInt" resultType="java.lang.Integer">
-		select count(*) from guo_bang_ji_lu gbjl left join ding_dan dd on gbjl.ddId=dd.id left join ding_dan_zhuang_tai ddzt on dd.ddztId=ddzt.id
+		select count(*) from guo_bang_ji_lu gbjl left join ding_dan dd on gbjl.qyDdId=dd.id left join ding_dan_zhuang_tai ddzt on dd.ddztId=ddzt.id
 		 left join yun_shu_shang yss on dd.yssId=yss.id left join fa_huo_dan_wei fhdw on dd.fhdwId=fhdw.id
 		 left join shou_huo_bu_men shbm on dd.shbmId=shbm.id where ddzt.mc=#{ddztMc}
 		<if test="ddh!=''&amp;ddh!=null">
@@ -114,7 +114,7 @@
 		</if>
 	</select>
 	<select id="queryDJYList" resultType="com.znczQydCs.entity.GuoBangJiLu">
-		select gbjl.*,dd.sjxm,dd.sjsfzh,dd.ddh,dd.cph,dd.lxlx,yss.mc yssMc,fhdw.mc fhdwMc,shbm.mc shbmMc from guo_bang_ji_lu gbjl left join ding_dan dd on gbjl.ddId=dd.id
+		select gbjl.*,dd.sjxm,dd.sjsfzh,dd.ddh,dd.cph,dd.lxlx,yss.mc yssMc,fhdw.mc fhdwMc,shbm.mc shbmMc from guo_bang_ji_lu gbjl left join ding_dan dd on gbjl.qyDdId=dd.id
 		 left join ding_dan_zhuang_tai ddzt on dd.ddztId=ddzt.id left join yun_shu_shang yss on dd.yssId=yss.id left join fa_huo_dan_wei fhdw on dd.fhdwId=fhdw.id
 		 left join shou_huo_bu_men shbm on dd.shbmId=shbm.id where ddzt.mc=#{ddztMc}
 		<if test="ddh!=''&amp;ddh!=null">
@@ -148,7 +148,7 @@
 		limit #{rowNum},#{rows}
 	</select>
 	<select id="selectPrintInfo" resultType="com.znczQydCs.entity.GuoBangJiLu">
-		select gbjl.*,dd.ddh,dd.cph,dd.sjxm,dd.sjsfzh from guo_bang_ji_lu gbjl,ding_dan dd where gbjl.ddId=dd.id and gbjl.gblx=#{gblx} and dd.id=#{ddId}
+		select gbjl.*,dd.ddh,dd.cph,dd.sjxm,dd.sjsfzh from guo_bang_ji_lu gbjl,ding_dan dd where gbjl.qyDdId=dd.id and gbjl.gblx=#{gblx} and dd.id=#{ddId}
 	</select>
 	<delete id="deleteByDdId">
 		delete from guo_bang_ji_lu where gblx=#{gblx} and ddId=#{ddId}

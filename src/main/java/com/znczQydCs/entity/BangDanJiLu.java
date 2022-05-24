@@ -9,6 +9,12 @@ public class BangDanJiLu {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	public Integer getYfwjlId() {
+		return yfwjlId;
+	}
+	public void setYfwjlId(Integer yfwjlId) {
+		this.yfwjlId = yfwjlId;
+	}
 	public Float getMz() {
 		return mz;
 	}
@@ -33,11 +39,17 @@ public class BangDanJiLu {
 	public void setRq(String rq) {
 		this.rq = rq;
 	}
-	public Integer getDdId() {
-		return ddId;
+	public Integer getYfwDdId() {
+		return yfwDdId;
 	}
-	public void setDdId(Integer ddId) {
-		this.ddId = ddId;
+	public void setYfwDdId(Integer yfwDdId) {
+		this.yfwDdId = yfwDdId;
+	}
+	public Integer getQyDdId() {
+		return qyDdId;
+	}
+	public void setQyDdId(Integer qyDdId) {
+		this.qyDdId = qyDdId;
 	}
 	public String getDdh() {
 		return ddh;
@@ -99,11 +111,13 @@ public class BangDanJiLu {
 	public void setQygbsj(String qygbsj) {
 		this.qygbsj = qygbsj;
 	}
+	private Integer yfwjlId;
 	private Float mz;
 	private Float pz;
 	private Float jz;
 	private String rq;
-	private Integer ddId;
+	private Integer yfwDdId;
+	private Integer qyDdId;
 	private String ddh;
 	private String bz;
 	private String sjxm;

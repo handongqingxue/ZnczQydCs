@@ -67,11 +67,11 @@ public class PaiDuiJiLu {
 	public void setZt(Integer zt) {
 		this.zt = zt;
 	}
-	public Integer getQytb() {
-		return qytb;
+	public Integer getYfwtb() {
+		return yfwtb;
 	}
-	public void setQytb(Integer qytb) {
-		this.qytb = qytb;
+	public void setYfwtb(Integer yfwtb) {
+		this.yfwtb = yfwtb;
 	}
 	public String getQyh() {
 		return qyh;
@@ -88,6 +88,6 @@ public class PaiDuiJiLu {
 	private Integer dlh;
 	private Integer pdh;
 	private Integer zt;
-	private Integer qytb;//企业同步 1.未同步 2.同步中 3.已同步
+	private Integer yfwtb;//云服务同步 1.未同步 2.同步中 3.已同步
 	private String qyh;
 }

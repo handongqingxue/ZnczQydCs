@@ -14,4 +14,6 @@ public interface PaiDuiJiLuMapper {
 
 	List<PaiDuiJiLu> queryList(@Param("ddh") String ddh, @Param("cph") String cph, @Param("rowNum") int rowNum, @Param("rows") int rows, String sort, String order);
 
+	PaiDuiJiLu selectById(String id);
+
 }

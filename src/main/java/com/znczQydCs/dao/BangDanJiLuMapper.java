@@ -23,4 +23,10 @@ public interface BangDanJiLuMapper {
 	int deleteByDdId(@Param("ddId") Integer ddId);
 
 	int getCountByDdId(@Param("ddId") Integer ddId);
+
+	int getWtbToYfCount();
+
+	List<BangDanJiLu> selectListByYfwtb(@Param("yfwtb") Integer yfwtb);
+
+	int updateTbZtByYfwtb(@Param("yfwtb") int yfwtb, @Param("xtbzt") int xtbzt);
 }

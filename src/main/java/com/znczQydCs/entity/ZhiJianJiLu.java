@@ -17,11 +17,17 @@ public class ZhiJianJiLu {
 	public void setYfwjlId(Integer yfwjlId) {
 		this.yfwjlId = yfwjlId;
 	}
-	public Integer getDdId() {
-		return ddId;
+	public Integer getYfwDdId() {
+		return yfwDdId;
 	}
-	public void setDdId(Integer ddId) {
-		this.ddId = ddId;
+	public void setYfwDdId(Integer yfwDdId) {
+		this.yfwDdId = yfwDdId;
+	}
+	public Integer getQyDdId() {
+		return qyDdId;
+	}
+	public void setQyDdId(Integer qyDdId) {
+		this.qyDdId = qyDdId;
 	}
 	public Integer getZjyId() {
 		return zjyId;
@@ -78,7 +84,8 @@ public class ZhiJianJiLu {
 		this.ddztMc = ddztMc;
 	}
 	private Integer yfwjlId;
-	private Integer ddId;
+	private Integer yfwDdId;
+	private Integer qyDdId;
 	private Integer zjyId;
 	private String zjyZsxm;
 	private String zjsj;

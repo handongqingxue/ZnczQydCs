@@ -12,4 +12,6 @@ public interface PaiDuiJiLuService {
 
 	List<PaiDuiJiLu> queryList(String ddh, String cph, int page, int rows, String sort, String order);
 
+	PaiDuiJiLu selectById(String id);
+
 }

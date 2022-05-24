@@ -132,7 +132,7 @@ public class GkjController {
 	@ResponseBody
 	public Map<String, Object> newBangDanJiLu(BangDanJiLu bdjl) {
 
-		System.out.println("ddId==="+bdjl.getDdId());
+		System.out.println("qyDdId==="+bdjl.getQyDdId());
 		System.out.println("mz==="+bdjl.getMz());
 		System.out.println("pz==="+bdjl.getPz());
 		System.out.println("jz==="+bdjl.getJz());
@@ -157,7 +157,7 @@ public class GkjController {
 	@ResponseBody
 	public Map<String, Object> editBangDanJiLu(BangDanJiLu bdjl) {
 
-		System.out.println("ddId==="+bdjl.getDdId());
+		System.out.println("qyDdId==="+bdjl.getQyDdId());
 		System.out.println("mz==="+bdjl.getMz());
 		System.out.println("pz==="+bdjl.getPz());
 		System.out.println("jz==="+bdjl.getJz());

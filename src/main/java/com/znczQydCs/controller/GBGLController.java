@@ -49,7 +49,7 @@ public class GBGLController {
 		BangDanJiLu bdjl=bangDanJiLuService.selectById(id);
 		request.setAttribute("bdjl", bdjl);
 		
-		DingDan dd=dingDanService.selectById(bdjl.getDdId().toString());
+		DingDan dd=dingDanService.selectById(bdjl.getQyDdId().toString());
 		request.setAttribute("dd", dd);
 		
 		return MODULE_NAME+"/bdjl/edit";
@@ -81,7 +81,7 @@ public class GBGLController {
 		BangDanJiLu bdjl=bangDanJiLuService.selectById(id);
 		request.setAttribute("bdjl", bdjl);
 		
-		DingDan dd=dingDanService.selectById(bdjl.getDdId().toString());
+		DingDan dd=dingDanService.selectById(bdjl.getQyDdId().toString());
 		request.setAttribute("dd", dd);
 		
 		return MODULE_NAME+"/bdjl/detail";

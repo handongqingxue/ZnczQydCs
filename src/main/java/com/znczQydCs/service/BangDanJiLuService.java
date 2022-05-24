@@ -21,4 +21,10 @@ public interface BangDanJiLuService {
 	boolean checkIfExistByDdId(Integer ddId);
 
 	int deleteByDdId(Integer id);
+
+	boolean checkIfWtbToYf();
+
+	List<BangDanJiLu> selectListByYfwtb(Integer yfwtb);
+
+	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
 }

@@ -41,6 +41,8 @@ public class MainController {
 	private PaiDuiJiLuService paiDuiJiLuService;
 	@Autowired
 	private ZhiJianJiLuService zhiJianJiLuService;
+	@Autowired
+	private BangDanJiLuService bangDanJiLuService;
 	
 	static {
 		StartServer ss=new StartServer();
@@ -79,6 +81,7 @@ public class MainController {
 			syncDd(qyh);
 			syncPDJL(qyh);
 			syncZJJL(qyh);
+			syncBDJL(qyh);
 			
 			jsonMap.put("status", "ok");
 		} catch (JSONException e) {
@@ -99,6 +102,24 @@ public class MainController {
 				List<DingDan> ddList=dingDanService.selectListByYfwtb(Main.WEI_TONG_BU);
 				dingDanService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
 				JSONObject resultJO = CloudAPIUtil.addDDToYf(qyh,ddList);
+				if("ok".equals(resultJO.getString("status"))) {
+					dingDanService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void syncBDJL(String qyh) {
+		// TODO Auto-generated method stub
+		try {
+			boolean bool=bangDanJiLuService.checkIfWtbToYf();
+			if(bool) {
+				List<BangDanJiLu> bdjlList=bangDanJiLuService.selectListByYfwtb(Main.WEI_TONG_BU);
+				bangDanJiLuService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
+				JSONObject resultJO = CloudAPIUtil.addBDJLToYf(qyh,bdjlList);
 				if("ok".equals(resultJO.getString("status"))) {
 					dingDanService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
 				}
@@ -155,15 +176,18 @@ public class MainController {
 			for (int i = 0; i < zjjlJA.length(); i++) {
 				org.json.JSONObject zjjlJO = (org.json.JSONObject)zjjlJA.get(i);
 				int id = zjjlJO.getInt("id");
-				int ddId = zjjlJO.getInt("ddId");
+				int yfwDdId = zjjlJO.getInt("ddId");
 				int zjyId = zjjlJO.getInt("zjyId");
 				String zjsj = zjjlJO.getString("zjsj");
 				int jg = zjjlJO.getInt("jg");
 				String bz = zjjlJO.getString("bz");
 				
+				Object colValObj=mainService.getQyColValByYfwColVal("id",String.valueOf(yfwDdId),"yfwjlId","ding_dan");
+				
 				ZhiJianJiLu zjjl=new ZhiJianJiLu();
 				zjjl.setYfwjlId(id);
-				zjjl.setDdId(ddId);
+				zjjl.setYfwDdId(yfwDdId);
+				zjjl.setQyDdId(Integer.valueOf(colValObj.toString()));
 				zjjl.setZjyId(zjyId);
 				zjjl.setZjsj(zjsj);
 				zjjl.setJg(jg);

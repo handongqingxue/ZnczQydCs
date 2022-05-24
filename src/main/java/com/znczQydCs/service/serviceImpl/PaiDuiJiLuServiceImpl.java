@@ -38,4 +38,10 @@ public class PaiDuiJiLuServiceImpl implements PaiDuiJiLuService {
 		// TODO Auto-generated method stub
 		return paiDuiJiLuDao.queryList(ddh, cph, (page-1)*rows, rows, sort, order);
 	}
+
+	@Override
+	public PaiDuiJiLu selectById(String id) {
+		// TODO Auto-generated method stub
+		return paiDuiJiLuDao.selectById(id);
+	}
 }

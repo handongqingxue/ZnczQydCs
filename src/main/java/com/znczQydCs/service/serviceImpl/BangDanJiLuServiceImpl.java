@@ -63,4 +63,23 @@ public class BangDanJiLuServiceImpl implements BangDanJiLuService {
 		// TODO Auto-generated method stub
 		return bangDanJiLuDao.deleteByDdId(ddId);
 	}
+
+	@Override
+	public boolean checkIfWtbToYf() {
+		// TODO Auto-generated method stub
+		int count=bangDanJiLuDao.getWtbToYfCount();
+		return count>0?true:false;
+	}
+
+	@Override
+	public List<BangDanJiLu> selectListByYfwtb(Integer yfwtb) {
+		// TODO Auto-generated method stub
+		return bangDanJiLuDao.selectListByYfwtb(yfwtb);
+	}
+
+	@Override
+	public int updateTbZtByYfwtb(int yfwtb, int xtbzt) {
+		// TODO Auto-generated method stub
+		return bangDanJiLuDao.updateTbZtByYfwtb(yfwtb, xtbzt);
+	}
 }
