@@ -22,7 +22,7 @@ import net.sf.json.JSONArray;
 
 public class CloudAPIUtil {
 
-	public static final String CLOUD_SERVICE_URL="http://192.168.1.8:8080/ZnczXcx/main/";
+	public static final String CLOUD_SERVICE_URL="http://192.168.1.3:8080/ZnczXcx/main/";
 
 	//https://www.cnblogs.com/aeolian/p/7746158.html
 	//https://www.cnblogs.com/bobc/p/8809761.html

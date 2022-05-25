@@ -1,5 +1,6 @@
 package com.znczQydCs.service.serviceImpl;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.znczQydCs.dao.*;
 import com.znczQydCs.entity.*;
 import com.znczQydCs.service.*;
+import com.znczQydCs.util.*;
 
 @Service
 public class DingDanServiceImpl implements DingDanService {
@@ -53,6 +55,20 @@ public class DingDanServiceImpl implements DingDanService {
 		// TODO Auto-generated method stub
 		int ddztId=dingDanZhuangTaiDao.getIdByMc(DingDanZhuangTai.DAI_SHEN_HE_TEXT);
 		dd.setDdztId(ddztId);
+
+		String ddh = dd.getDdh();
+		String fileName = ddh + ".jpg";
+		File file = new File("D:/resource/ZnczQydCs/DDQrcode/"+fileName);
+	    //判断文件或文件夹是否存在
+	    boolean flag = file.exists();
+	    if(!flag) {
+			String avaPath="/ZnczQydCs/upload/DDQrcode/"+fileName;
+			String path = "D:/resource/ZnczQydCs/DDQrcode";
+	        QrcodeUtil.createQrCode(ddh, path, fileName);
+			
+	        dd.setEwmlj(avaPath);
+	    }
+	    
 		return dingDanDao.add(dd);
 	}
 

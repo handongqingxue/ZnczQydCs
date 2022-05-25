@@ -27,6 +27,10 @@
 	width: 150px;
 	height:30px;
 }
+.ewm_img{
+	width: 120px;
+	height:120px;
+}
 </style>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -89,7 +93,7 @@ function initEditDialog(){
 	$("#edit_div").dialog({
 		title:"订单信息",
 		width:setFitWidthInParent("body","edit_div"),
-		height:370,
+		height:460,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -108,7 +112,7 @@ function initEditDialog(){
 	$("#edit_div table .td2").css("width","30%");
 	$("#edit_div table tr").css("border-bottom","#CAD9EA solid 1px");
 	$("#edit_div table tr").each(function(i){
-		$(this).css("height","45px");
+		$(this).css("height",(i==5?135:45)+"px");
 	});
 
 	$(".panel.window").eq(edNum).css("margin-top","20px");
@@ -564,8 +568,10 @@ function setFitWidthInParent(parent,self){
 					<input type="hidden" id="shbmId" name="shbmId"/>
 				</td>
 				<td class="td1" align="right">
+					二维码
 				</td>
 				<td class="td2">
+					<img class="ewm_img" alt="" src="${requestScope.dd.ewmlj }">
 				</td>
 			  </tr>
 			</table>

@@ -129,6 +129,9 @@
 				shbmId,
 			</if>
 				bjsj,
+			<if test="ewmlj!=null">
+				ewmlj,
+			</if>
 				yfwtb
 		</trim>
 		values
@@ -178,6 +181,9 @@
 				#{shbmId},
 			</if>
 				now(),
+			<if test="ewmlj!=null">
+				#{ewmlj},
+			</if>
 				${@com.znczQydCs.entity.Main@WEI_TONG_BU}
 		</trim>
 	</insert>
