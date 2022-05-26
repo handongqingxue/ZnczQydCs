@@ -53,4 +53,13 @@
 	<select id="queryCBBList" resultType="com.znczQydCs.entity.YunShuShang">
 		select id,mc from yun_shu_shang
 	</select>
+	<select id="getWtbToYfCount" resultType="java.lang.Integer">
+		select count(*) from yun_shu_shang where yfwtb=${@com.znczQydCs.entity.Main@WEI_TONG_BU}
+	</select>
+	<select id="selectListByYfwtb" resultType="com.znczQydCs.entity.YunShuShang">
+		select * from yun_shu_shang where yfwtb=#{yfwtb}
+	</select>
+	<update id="updateTbZtByYfwtb">
+		update yun_shu_shang set yfwtb=#{xtbzt} where yfwtb=#{yfwtb}
+	</update>
 </mapper>

@@ -21,4 +21,10 @@ public interface YunShuShangMapper {
 	public YunShuShang selectById(String id);
 
 	List<YunShuShang> queryCBBList();
+
+	public int getWtbToYfCount();
+
+	public List<YunShuShang> selectListByYfwtb(@Param("yfwtb") Integer yfwtb);
+
+	public int updateTbZtByYfwtb(@Param("yfwtb") int yfwtb, @Param("xtbzt") int xtbzt);
 }

@@ -19,4 +19,10 @@ public interface YunShuShangService {
 	public YunShuShang selectById(String id);
 
 	List<YunShuShang> queryCBBList();
+
+	public boolean checkIfWtbToYf();
+
+	public List<YunShuShang> selectListByYfwtb(Integer yfwtb);
+
+	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
 }

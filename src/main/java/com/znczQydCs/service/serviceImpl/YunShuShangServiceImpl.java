@@ -60,4 +60,23 @@ public class YunShuShangServiceImpl implements YunShuShangService {
 		// TODO Auto-generated method stub
 		return yunShuShangDao.queryCBBList();
 	}
+
+	@Override
+	public boolean checkIfWtbToYf() {
+		// TODO Auto-generated method stub
+		int count=yunShuShangDao.getWtbToYfCount();
+		return count>0?true:false;
+	}
+
+	@Override
+	public List<YunShuShang> selectListByYfwtb(Integer yfwtb) {
+		// TODO Auto-generated method stub
+		return yunShuShangDao.selectListByYfwtb(yfwtb);
+	}
+
+	@Override
+	public int updateTbZtByYfwtb(int yfwtb, int xtbzt) {
+		// TODO Auto-generated method stub
+		return yunShuShangDao.updateTbZtByYfwtb(yfwtb, xtbzt);
+	}
 }
