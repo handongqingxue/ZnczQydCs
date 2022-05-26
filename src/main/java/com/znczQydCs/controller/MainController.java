@@ -38,6 +38,8 @@ public class MainController {
 	@Autowired
 	private YongHuService yongHuService;
 	@Autowired
+	private FaHuoDanWeiService faHuoDanWeiService;
+	@Autowired
 	private DingDanService dingDanService;
 	@Autowired
 	private PaiDuiJiLuService paiDuiJiLuService;
@@ -82,7 +84,8 @@ public class MainController {
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		try {
 			String qyh = LoadProperties.getQyh();
-			syncYss(qyh);
+			syncYSS(qyh);
+			syncFHDW(qyh);
 			syncDd(qyh);
 			syncPDJL(qyh);
 			syncZJJL(qyh);
@@ -100,7 +103,7 @@ public class MainController {
 		
 	}
 
-	public void syncYss(String qyh) {
+	public void syncYSS(String qyh) {
 		// TODO Auto-generated method stub
 		try {
 			boolean bool=yunShuShangService.checkIfWtbToYf();
@@ -110,6 +113,24 @@ public class MainController {
 				JSONObject resultJO = CloudAPIUtil.addYSSToYf(qyh,yssList);
 				if("ok".equals(resultJO.getString("status"))) {
 					yunShuShangService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void syncFHDW(String qyh) {
+		// TODO Auto-generated method stub
+		try {
+			boolean bool=faHuoDanWeiService.checkIfWtbToYf();
+			if(bool) {
+				List<FaHuoDanWei> fhdwList=faHuoDanWeiService.selectListByYfwtb(Main.WEI_TONG_BU);
+				faHuoDanWeiService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
+				JSONObject resultJO = CloudAPIUtil.addFHDWToYf(qyh,fhdwList);
+				if("ok".equals(resultJO.getString("status"))) {
+					faHuoDanWeiService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
 				}
 			}
 		} catch (Exception e) {

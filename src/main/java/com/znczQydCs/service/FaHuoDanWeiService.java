@@ -20,4 +20,10 @@ public interface FaHuoDanWeiService {
 
 	List<FaHuoDanWei> queryCBBList();
 
+	public boolean checkIfWtbToYf();
+
+	public List<FaHuoDanWei> selectListByYfwtb(Integer yfwtb);
+
+	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
+
 }

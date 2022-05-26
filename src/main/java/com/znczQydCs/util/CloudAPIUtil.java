@@ -16,6 +16,7 @@ import org.json.JSONObject;
 
 import com.znczQydCs.entity.BangDanJiLu;
 import com.znczQydCs.entity.DingDan;
+import com.znczQydCs.entity.FaHuoDanWei;
 import com.znczQydCs.entity.GuoBangJiLu;
 import com.znczQydCs.entity.YunShuShang;
 
@@ -195,6 +196,23 @@ public class CloudAPIUtil {
 	        parames.put("qyh", qyh);
 	        parames.put("yssJAStr", JSONArray.fromObject(yssList).toString());
 	        resultJO = doHttp("addYSSToYf",parames);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return resultJO;
+		}
+	}
+
+	public static JSONObject addFHDWToYf(String qyh, List<FaHuoDanWei> fhdwList) {
+		// TODO Auto-generated method stub
+		JSONObject resultJO = null;
+		try {
+			Map parames = new HashMap<String, String>();
+	        parames.put("qyh", qyh);
+	        parames.put("fhdwJAStr", JSONArray.fromObject(fhdwList).toString());
+	        resultJO = doHttp("addFHDWToYf",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

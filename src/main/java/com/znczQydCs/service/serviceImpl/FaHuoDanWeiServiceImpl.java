@@ -60,4 +60,23 @@ public class FaHuoDanWeiServiceImpl implements FaHuoDanWeiService {
 		// TODO Auto-generated method stub
 		return faHuoDanWeiDao.queryCBBList();
 	}
+
+	@Override
+	public boolean checkIfWtbToYf() {
+		// TODO Auto-generated method stub
+		int count=faHuoDanWeiDao.getWtbToYfCount();
+		return count>0?true:false;
+	}
+
+	@Override
+	public List<FaHuoDanWei> selectListByYfwtb(Integer yfwtb) {
+		// TODO Auto-generated method stub
+		return faHuoDanWeiDao.selectListByYfwtb(yfwtb);
+	}
+
+	@Override
+	public int updateTbZtByYfwtb(int yfwtb, int xtbzt) {
+		// TODO Auto-generated method stub
+		return faHuoDanWeiDao.updateTbZtByYfwtb(yfwtb, xtbzt);
+	}
 }

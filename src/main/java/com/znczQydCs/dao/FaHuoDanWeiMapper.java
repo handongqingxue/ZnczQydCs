@@ -22,4 +22,10 @@ public interface FaHuoDanWeiMapper {
 
 	List<FaHuoDanWei> queryCBBList();
 
+	public int getWtbToYfCount();
+
+	public List<FaHuoDanWei> selectListByYfwtb(@Param("yfwtb") Integer yfwtb);
+
+	public int updateTbZtByYfwtb(@Param("yfwtb") int yfwtb, @Param("xtbzt") int xtbzt);
+
 }
