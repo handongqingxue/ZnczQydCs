@@ -60,4 +60,23 @@ public class WuZiLeiXingServiceImpl implements WuZiLeiXingService {
 		// TODO Auto-generated method stub
 		return wuZiLeiXingDao.queryCBBList();
 	}
+
+	@Override
+	public boolean checkIfWtbToYf() {
+		// TODO Auto-generated method stub
+		int count=wuZiLeiXingDao.getWtbToYfCount();
+		return count>0?true:false;
+	}
+
+	@Override
+	public List<WuZiLeiXing> selectListByYfwtb(Integer yfwtb) {
+		// TODO Auto-generated method stub
+		return wuZiLeiXingDao.selectListByYfwtb(yfwtb);
+	}
+
+	@Override
+	public int updateTbZtByYfwtb(int yfwtb, int xtbzt) {
+		// TODO Auto-generated method stub
+		return wuZiLeiXingDao.updateTbZtByYfwtb(yfwtb, xtbzt);
+	}
 }

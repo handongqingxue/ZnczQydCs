@@ -24,4 +24,10 @@ public interface WuZiMapper {
 	public List<WuZi> queryCBBList(@Param("wzlxId") String wzlxId);
 
 	public int getCountByLxId(@Param("wzlxId") String wzlxId);
+
+	public int getWtbToYfCount();
+
+	public List<WuZi> selectListByYfwtb(@Param("yfwtb") Integer yfwtb);
+
+	public int updateTbZtByYfwtb(@Param("yfwtb") int yfwtb, @Param("xtbzt") int xtbzt);
 }

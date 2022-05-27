@@ -20,6 +20,8 @@ import com.znczQydCs.entity.DingDanZhuangTai;
 import com.znczQydCs.entity.FaHuoDanWei;
 import com.znczQydCs.entity.GuoBangJiLu;
 import com.znczQydCs.entity.ShouHuoBuMen;
+import com.znczQydCs.entity.WuZi;
+import com.znczQydCs.entity.WuZiLeiXing;
 import com.znczQydCs.entity.YunShuShang;
 
 import net.sf.json.JSONArray;
@@ -198,6 +200,40 @@ public class CloudAPIUtil {
 	        parames.put("qyh", qyh);
 	        parames.put("gbjlJAStr", JSONArray.fromObject(gbjlList).toString());
 	        resultJO = doHttp("addGBJLToYf",parames);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return resultJO;
+		}
+	}
+
+	public static JSONObject addWZLXToYf(String qyh, List<WuZiLeiXing> wzlxList) {
+		// TODO Auto-generated method stub
+		JSONObject resultJO = null;
+		try {
+			Map parames = new HashMap<String, String>();
+	        parames.put("qyh", qyh);
+	        parames.put("wzlxJAStr", JSONArray.fromObject(wzlxList).toString());
+	        resultJO = doHttp("addWZLXToYf",parames);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return resultJO;
+		}
+	}
+
+	public static JSONObject addWZToYf(String qyh, List<WuZi> wzList) {
+		// TODO Auto-generated method stub
+		JSONObject resultJO = null;
+		try {
+			Map parames = new HashMap<String, String>();
+	        parames.put("qyh", qyh);
+	        parames.put("wzJAStr", JSONArray.fromObject(wzList).toString());
+	        resultJO = doHttp("addWZToYf",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

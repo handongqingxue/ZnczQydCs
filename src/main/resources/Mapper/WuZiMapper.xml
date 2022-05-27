@@ -62,4 +62,13 @@
 	<select id="getCountByLxId" resultType="java.lang.Integer">
 		select count(*) from wu_zi where wzlxId=#{wzlxId}
 	</select>
+	<select id="getWtbToYfCount" resultType="java.lang.Integer">
+		select count(*) from wu_zi where yfwtb=${@com.znczQydCs.entity.Main@WEI_TONG_BU}
+	</select>
+	<select id="selectListByYfwtb" resultType="com.znczQydCs.entity.WuZi">
+		select * from wu_zi where yfwtb=#{yfwtb}
+	</select>
+	<update id="updateTbZtByYfwtb">
+		update wu_zi set yfwtb=#{xtbzt} where yfwtb=#{yfwtb}
+	</update>
 </mapper>

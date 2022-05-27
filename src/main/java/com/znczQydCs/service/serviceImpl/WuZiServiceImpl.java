@@ -79,4 +79,23 @@ public class WuZiServiceImpl implements WuZiService {
 		}
 		return wzlxList;
 	}
+
+	@Override
+	public boolean checkIfWtbToYf() {
+		// TODO Auto-generated method stub
+		int count=wuZiDao.getWtbToYfCount();
+		return count>0?true:false;
+	}
+
+	@Override
+	public List<WuZi> selectListByYfwtb(Integer yfwtb) {
+		// TODO Auto-generated method stub
+		return wuZiDao.selectListByYfwtb(yfwtb);
+	}
+
+	@Override
+	public int updateTbZtByYfwtb(int yfwtb, int xtbzt) {
+		// TODO Auto-generated method stub
+		return wuZiDao.updateTbZtByYfwtb(yfwtb, xtbzt);
+	}
 }

@@ -20,4 +20,10 @@ public interface WuZiLeiXingService {
 
 	List<WuZiLeiXing> queryCBBList();
 
+	boolean checkIfWtbToYf();
+
+	List<WuZiLeiXing> selectListByYfwtb(Integer yfwtb);
+
+	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
+
 }

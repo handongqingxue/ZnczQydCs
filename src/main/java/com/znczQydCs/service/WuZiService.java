@@ -22,4 +22,10 @@ public interface WuZiService {
 	public List<WuZi> queryCBBList(String wzlxId);
 
 	public List<WuZiLeiXing> checkIfExistByLxIds(String lxIds,String lxMcs);
+
+	public boolean checkIfWtbToYf();
+
+	public List<WuZi> selectListByYfwtb(Integer yfwtb);
+
+	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
 }

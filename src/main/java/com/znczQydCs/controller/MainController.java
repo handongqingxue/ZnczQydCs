@@ -36,6 +36,10 @@ public class MainController {
 	@Autowired
 	private DingDanZhuangTaiService dingDanZhuangTaiService;
 	@Autowired
+	private WuZiLeiXingService wuZiLeiXingService;
+	@Autowired
+	private WuZiService wuZiService;
+	@Autowired
 	private YunShuShangService yunShuShangService;
 	@Autowired
 	private YongHuService yongHuService;
@@ -89,6 +93,8 @@ public class MainController {
 		try {
 			String qyh = LoadProperties.getQyh();
 			syncDDZT(qyh);
+			syncWZLX(qyh);
+			syncWZ(qyh);
 			syncYSS(qyh);
 			syncFHDW(qyh);
 			syncSHBM(qyh);
@@ -119,6 +125,42 @@ public class MainController {
 				JSONObject resultJO = CloudAPIUtil.addDDZTToYf(qyh,ddztList);
 				if("ok".equals(resultJO.getString("status"))) {
 					dingDanZhuangTaiService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void syncWZLX(String qyh) {
+		// TODO Auto-generated method stub
+		try {
+			boolean bool=wuZiLeiXingService.checkIfWtbToYf();
+			if(bool) {
+				List<WuZiLeiXing> wzlxList=wuZiLeiXingService.selectListByYfwtb(Main.WEI_TONG_BU);
+				wuZiLeiXingService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
+				JSONObject resultJO = CloudAPIUtil.addWZLXToYf(qyh,wzlxList);
+				if("ok".equals(resultJO.getString("status"))) {
+					wuZiLeiXingService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void syncWZ(String qyh) {
+		// TODO Auto-generated method stub
+		try {
+			boolean bool=wuZiService.checkIfWtbToYf();
+			if(bool) {
+				List<WuZi> wzList=wuZiService.selectListByYfwtb(Main.WEI_TONG_BU);
+				wuZiService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
+				JSONObject resultJO = CloudAPIUtil.addWZToYf(qyh,wzList);
+				if("ok".equals(resultJO.getString("status"))) {
+					wuZiService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
 				}
 			}
 		} catch (Exception e) {
