@@ -113,20 +113,35 @@
 			<if test="zlceb!=null">
 				zlceb,
 			</if>
-			<if test="wzlxId!=null">
-				wzlxId,
+			<if test="yfwWzlxId!=null">
+				yfwWzlxId,
 			</if>
-			<if test="wzId!=null">
-				wzId,
+			<if test="qyWzlxId!=null">
+				qyWzlxId,
 			</if>
-			<if test="yssId!=null">
-				yssId,
+			<if test="yfwWzId!=null">
+				yfwWzId,
 			</if>
-			<if test="fhdwId!=null">
-				fhdwId,
+			<if test="qyWzId!=null">
+				qyWzId,
 			</if>
-			<if test="shbmId!=null">
-				shbmId,
+			<if test="yfwYssId!=null">
+				yfwYssId,
+			</if>
+			<if test="qyYssId!=null">
+				qyYssId,
+			</if>
+			<if test="yfwFhdwId!=null">
+				yfwFhdwId,
+			</if>
+			<if test="qyFhdwId!=null">
+				qyFhdwId,
+			</if>
+			<if test="yfwShbmId!=null">
+				yfwShbmId,
+			</if>
+			<if test="qyShbmId!=null">
+				qyShbmId,
 			</if>
 				bjsj,
 			<if test="ewmlj!=null">
@@ -165,20 +180,35 @@
 			<if test="zlceb!=null">
 				#{zlceb},
 			</if>
-			<if test="wzlxId!=null">
-				#{wzlxId},
+			<if test="yfwWzlxId!=null">
+				#{yfwWzlxId},
 			</if>
-			<if test="wzId!=null">
-				#{wzId},
+			<if test="qyWzlxId!=null">
+				#{qyWzlxId},
 			</if>
-			<if test="yssId!=null">
-				#{yssId},
+			<if test="yfwWzId!=null">
+				#{yfwWzId},
 			</if>
-			<if test="fhdwId!=null">
-				#{fhdwId},
+			<if test="qyWzId!=null">
+				#{qyWzId},
 			</if>
-			<if test="shbmId!=null">
-				#{shbmId},
+			<if test="yfwYssId!=null">
+				#{yfwYssId},
+			</if>
+			<if test="qyYssId!=null">
+				#{qyYssId},
+			</if>
+			<if test="yfwFhdwId!=null">
+				#{yfwFhdwId},
+			</if>
+			<if test="qyFhdwId!=null">
+				#{qyFhdwId},
+			</if>
+			<if test="yfwShbmId!=null">
+				#{yfwShbmId},
+			</if>
+			<if test="qyShbmId!=null">
+				#{qyShbmId},
 			</if>
 				now(),
 			<if test="ewmlj!=null">

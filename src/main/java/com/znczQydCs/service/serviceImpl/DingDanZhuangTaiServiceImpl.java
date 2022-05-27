@@ -50,4 +50,23 @@ public class DingDanZhuangTaiServiceImpl implements DingDanZhuangTaiService {
 		// TODO Auto-generated method stub
 		return dingDanZhuangTaiDao.queryCBBList();
 	}
+
+	@Override
+	public boolean checkIfWtbToYf() {
+		// TODO Auto-generated method stub
+		int count=dingDanZhuangTaiDao.getWtbToYfCount();
+		return count>0?true:false;
+	}
+
+	@Override
+	public List<DingDanZhuangTai> selectListByYfwtb(Integer yfwtb) {
+		// TODO Auto-generated method stub
+		return dingDanZhuangTaiDao.selectListByYfwtb(yfwtb);
+	}
+
+	@Override
+	public int updateTbZtByYfwtb(int yfwtb, int xtbzt) {
+		// TODO Auto-generated method stub
+		return dingDanZhuangTaiDao.updateTbZtByYfwtb(yfwtb, xtbzt);
+	}
 }

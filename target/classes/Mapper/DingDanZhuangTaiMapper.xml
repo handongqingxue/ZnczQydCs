@@ -49,4 +49,13 @@
 	<select id="getIdByMc" resultType="java.lang.Integer">
 		select id from ding_dan_zhuang_tai where mc=#{mc}
 	</select>
+	<select id="getWtbToYfCount" resultType="java.lang.Integer">
+		select count(*) from ding_dan_zhuang_tai where yfwtb=${@com.znczQydCs.entity.Main@WEI_TONG_BU}
+	</select>
+	<select id="selectListByYfwtb" resultType="com.znczQydCs.entity.DingDanZhuangTai">
+		select * from ding_dan_zhuang_tai where yfwtb=#{yfwtb}
+	</select>
+	<update id="updateTbZtByYfwtb">
+		update ding_dan_zhuang_tai set yfwtb=#{xtbzt} where yfwtb=#{yfwtb}
+	</update>
 </mapper>

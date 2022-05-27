@@ -34,6 +34,8 @@ public class MainController {
 	@Autowired
 	private MainService mainService;
 	@Autowired
+	private DingDanZhuangTaiService dingDanZhuangTaiService;
+	@Autowired
 	private YunShuShangService yunShuShangService;
 	@Autowired
 	private YongHuService yongHuService;
@@ -86,6 +88,7 @@ public class MainController {
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		try {
 			String qyh = LoadProperties.getQyh();
+			syncDDZT(qyh);
 			syncYSS(qyh);
 			syncFHDW(qyh);
 			syncSHBM(qyh);
@@ -104,6 +107,24 @@ public class MainController {
 			return jsonMap;
 		}
 		
+	}
+
+	public void syncDDZT(String qyh) {
+		// TODO Auto-generated method stub
+		try {
+			boolean bool=dingDanZhuangTaiService.checkIfWtbToYf();
+			if(bool) {
+				List<DingDanZhuangTai> ddztList=dingDanZhuangTaiService.selectListByYfwtb(Main.WEI_TONG_BU);
+				dingDanZhuangTaiService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
+				JSONObject resultJO = CloudAPIUtil.addDDZTToYf(qyh,ddztList);
+				if("ok".equals(resultJO.getString("status"))) {
+					dingDanZhuangTaiService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void syncYSS(String qyh) {

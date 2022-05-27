@@ -21,4 +21,10 @@ public interface DingDanZhuangTaiMapper {
 	List<DingDanZhuangTai> queryCBBList();
 
 	int getIdByMc(@Param("mc") String mc);
+
+	int getWtbToYfCount();
+
+	List<DingDanZhuangTai> selectListByYfwtb(@Param("yfwtb") Integer yfwtb);
+
+	int updateTbZtByYfwtb(@Param("yfwtb") int yfwtb, @Param("xtbzt") int xtbzt);
 }

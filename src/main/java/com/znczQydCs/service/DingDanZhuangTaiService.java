@@ -17,4 +17,10 @@ public interface DingDanZhuangTaiService {
 	DingDanZhuangTai selectById(String id);
 
 	List<DingDanZhuangTai> queryCBBList();
+
+	boolean checkIfWtbToYf();
+
+	List<DingDanZhuangTai> selectListByYfwtb(Integer yfwtb);
+
+	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
 }
