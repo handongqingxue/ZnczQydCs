@@ -22,4 +22,10 @@ public interface ShouHuoBuMenMapper {
 
 	List<ShouHuoBuMen> queryCBBList();
 
+	public int getWtbToYfCount();
+
+	public List<ShouHuoBuMen> selectListByYfwtb(@Param("yfwtb") Integer yfwtb);
+
+	public int updateTbZtByYfwtb(@Param("yfwtb") int yfwtb, @Param("xtbzt") int xtbzt);
+
 }

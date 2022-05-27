@@ -40,6 +40,8 @@ public class MainController {
 	@Autowired
 	private FaHuoDanWeiService faHuoDanWeiService;
 	@Autowired
+	private ShouHuoBuMenService shouHuoBuMenService;
+	@Autowired
 	private DingDanService dingDanService;
 	@Autowired
 	private PaiDuiJiLuService paiDuiJiLuService;
@@ -86,6 +88,7 @@ public class MainController {
 			String qyh = LoadProperties.getQyh();
 			syncYSS(qyh);
 			syncFHDW(qyh);
+			syncSHBM(qyh);
 			syncDd(qyh);
 			syncPDJL(qyh);
 			syncZJJL(qyh);
@@ -131,6 +134,24 @@ public class MainController {
 				JSONObject resultJO = CloudAPIUtil.addFHDWToYf(qyh,fhdwList);
 				if("ok".equals(resultJO.getString("status"))) {
 					faHuoDanWeiService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void syncSHBM(String qyh) {
+		// TODO Auto-generated method stub
+		try {
+			boolean bool=shouHuoBuMenService.checkIfWtbToYf();
+			if(bool) {
+				List<ShouHuoBuMen> shbmList=shouHuoBuMenService.selectListByYfwtb(Main.WEI_TONG_BU);
+				shouHuoBuMenService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
+				JSONObject resultJO = CloudAPIUtil.addSHBMToYf(qyh,shbmList);
+				if("ok".equals(resultJO.getString("status"))) {
+					shouHuoBuMenService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
 				}
 			}
 		} catch (Exception e) {

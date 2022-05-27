@@ -18,6 +18,7 @@ import com.znczQydCs.entity.BangDanJiLu;
 import com.znczQydCs.entity.DingDan;
 import com.znczQydCs.entity.FaHuoDanWei;
 import com.znczQydCs.entity.GuoBangJiLu;
+import com.znczQydCs.entity.ShouHuoBuMen;
 import com.znczQydCs.entity.YunShuShang;
 
 import net.sf.json.JSONArray;
@@ -213,6 +214,23 @@ public class CloudAPIUtil {
 	        parames.put("qyh", qyh);
 	        parames.put("fhdwJAStr", JSONArray.fromObject(fhdwList).toString());
 	        resultJO = doHttp("addFHDWToYf",parames);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return resultJO;
+		}
+	}
+
+	public static JSONObject addSHBMToYf(String qyh, List<ShouHuoBuMen> shbmList) {
+		// TODO Auto-generated method stub
+		JSONObject resultJO = null;
+		try {
+			Map parames = new HashMap<String, String>();
+	        parames.put("qyh", qyh);
+	        parames.put("shbmJAStr", JSONArray.fromObject(shbmList).toString());
+	        resultJO = doHttp("addSHBMToYf",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

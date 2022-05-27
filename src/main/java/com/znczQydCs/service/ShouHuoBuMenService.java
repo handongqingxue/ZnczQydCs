@@ -20,4 +20,10 @@ public interface ShouHuoBuMenService {
 
 	List<ShouHuoBuMen> queryCBBList();
 
+	public boolean checkIfWtbToYf();
+
+	public List<ShouHuoBuMen> selectListByYfwtb(Integer yfwtb);
+
+	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
+
 }

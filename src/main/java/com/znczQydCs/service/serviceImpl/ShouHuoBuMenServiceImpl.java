@@ -60,4 +60,23 @@ public class ShouHuoBuMenServiceImpl implements ShouHuoBuMenService {
 		// TODO Auto-generated method stub
 		return shouHuoBuMenDao.queryCBBList();
 	}
+
+	@Override
+	public boolean checkIfWtbToYf() {
+		// TODO Auto-generated method stub
+		int count=shouHuoBuMenDao.getWtbToYfCount();
+		return count>0?true:false;
+	}
+
+	@Override
+	public List<ShouHuoBuMen> selectListByYfwtb(Integer yfwtb) {
+		// TODO Auto-generated method stub
+		return shouHuoBuMenDao.selectListByYfwtb(yfwtb);
+	}
+
+	@Override
+	public int updateTbZtByYfwtb(int yfwtb, int xtbzt) {
+		// TODO Auto-generated method stub
+		return shouHuoBuMenDao.updateTbZtByYfwtb(yfwtb, xtbzt);
+	}
 }
