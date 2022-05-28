@@ -52,12 +52,12 @@ function showCompontByQx(){
 		$("#edit_div #ddh").removeAttr("disabled");
 		lxlxCBB.combobox({disabled:false});
 		setTimeout(function(){
-			wzlxCBB.combobox({disabled:false});
+			qyWzlxCBB.combobox({disabled:false});
 			yssCBB.combobox({disabled:false});
-			fhdwCBB.combobox({disabled:false});
-			shbmCBB.combobox({disabled:false});
+			qyFhdwCBB.combobox({disabled:false});
+			qyShbmCBB.combobox({disabled:false});
 		},"2000");
-		wzCBB.combobox({disabled:false});
+		qyWzCBB.combobox({disabled:false});
 	}
 	else{
 		var qxIdsArr=qxIds.split(",");
@@ -68,10 +68,10 @@ function showCompontByQx(){
 				setTimeout(function(){
 					wzlxCBB.combobox({disabled:false});
 					yssCBB.combobox({disabled:false});
-					fhdwCBB.combobox({disabled:false});
-					shbmCBB.combobox({disabled:false});
+					qyFhdwCBB.combobox({disabled:false});
+					qyShbmCBB.combobox({disabled:false});
 				},"2000");
-				wzCBB.combobox({disabled:false});
+				qyWzCBB.combobox({disabled:false});
 			}
 		}
 	}
@@ -135,14 +135,14 @@ function initEditDialog(){
 	initXZCPHCBB();
 	initLRSJCCBB();
 	initLXLXCBB();
-	initWZLXCBB();
-	initWZCBB();
-	initYSSCBB();
-	initFHDWCBB();
-	initSHBMCBB();
+	initQYWZLXCBB();
+	initQYWZCBB();
+	initQYYSSCBB();
+	initQYFHDWCBB();
+	initQYSHBMCBB();
 	setTimeout(function(){
 		loadLRCPHData();
-		loadWZCBBData();
+		loadQyWZCBBData();
 	},"1000");
 }
 
@@ -247,7 +247,7 @@ function initLXLXCBB(){
 	});
 }
 
-function initWZLXCBB(){
+function initQYWZLXCBB(){
 	var data=[];
 	data.push({"value":"","text":"请选择物资类型"});
 	$.post(wzglPath+"queryWuZiLeiXingCBBList",
@@ -256,51 +256,51 @@ function initWZLXCBB(){
 			for(var i=0;i<rows.length;i++){
 				data.push({"value":rows[i].id,"text":rows[i].mc});
 			}
-			wzlxCBB=$("#edit_div #wzlx_cbb").combobox({
+			qyWzlxCBB=$("#edit_div #qyWzlx_cbb").combobox({
 				valueField:"value",
 				textField:"text",
 				data:data,
 				onLoadSuccess:function(){
-					$(this).combobox("setValue",'${requestScope.dd.wzlxId }');
+					$(this).combobox("setValue",'${requestScope.dd.qyWzlxId }');
 				},
 				onSelect:function(){
-					loadWZCBBData();
+					loadQyWZCBBData();
 				}
 			});
 		}
 	,"json");
 }
 
-function initWZCBB(){
+function initQYWZCBB(){
 	var data=[];
 	data.push({"value":"","text":"请选择物资名称"});
-	wzCBB=$("#edit_div #wz_cbb").combobox({
+	qyWzCBB=$("#edit_div #qyWz_cbb").combobox({
 		valueField:"value",
 		textField:"text",
 		data:data,
 		onLoadSuccess:function(){
-			$(this).combobox("setValue",'${requestScope.dd.wzId }');
+			$(this).combobox("setValue",'${requestScope.dd.qyWzId }');
 		}
 	});
 }
 
-function loadWZCBBData(){
+function loadQyWZCBBData(){
 	var data=[];
 	data.push({"value":"","text":"请选择物资名称"});
-	var wzlxId=wzlxCBB.combobox("getValue");
+	var qyWzlxId=qyWzlxCBB.combobox("getValue");
 	$.post(wzglPath+"queryWuZiCBBList",
-		{wzlxId:wzlxId},
+		{wzlxId:qyWzlxId},
 		function(result){
 			var rows=result.rows;
 			for(var i=0;i<rows.length;i++){
 				data.push({"value":rows[i].id,"text":rows[i].mc});
 			}
-			wzCBB.combobox("loadData",data);
+			qyWzCBB.combobox("loadData",data);
 		}
 	,"json");
 }
 
-function initYSSCBB(){
+function initQYYSSCBB(){
 	var data=[];
 	data.push({"value":"","text":"请选择运输商"});
 	$.post(dwglPath+"queryYunShuShangCBBList",
@@ -309,19 +309,19 @@ function initYSSCBB(){
 			for(var i=0;i<rows.length;i++){
 				data.push({"value":rows[i].id,"text":rows[i].mc});
 			}
-			yssCBB=$("#edit_div #yss_cbb").combobox({
+			yssCBB=$("#edit_div #qyYss_cbb").combobox({
 				valueField:"value",
 				textField:"text",
 				data:data,
 				onLoadSuccess:function(){
-					$(this).combobox("setValue",'${requestScope.dd.yssId }');
+					$(this).combobox("setValue",'${requestScope.dd.qyYssId }');
 				}
 			});
 		}
 	,"json");
 }
 
-function initFHDWCBB(){
+function initQYFHDWCBB(){
 	var data=[];
 	data.push({"value":"","text":"请选择发货单位"});
 	$.post(dwglPath+"queryFaHuoDanWeiCBBList",
@@ -330,19 +330,19 @@ function initFHDWCBB(){
 			for(var i=0;i<rows.length;i++){
 				data.push({"value":rows[i].id,"text":rows[i].mc});
 			}
-			fhdwCBB=$("#edit_div #fhdw_cbb").combobox({
+			qyFhdwCBB=$("#edit_div #qyFhdw_cbb").combobox({
 				valueField:"value",
 				textField:"text",
 				data:data,
 				onLoadSuccess:function(){
-					$(this).combobox("setValue",'${requestScope.dd.fhdwId }');
+					$(this).combobox("setValue",'${requestScope.dd.qyFhdwId }');
 				}
 			});
 		}
 	,"json");
 }
 
-function initSHBMCBB(){
+function initQYSHBMCBB(){
 	var data=[];
 	data.push({"value":"","text":"请选择收货部门"});
 	$.post(dwglPath+"queryShouHuoBuMenCBBList",
@@ -351,12 +351,12 @@ function initSHBMCBB(){
 			for(var i=0;i<rows.length;i++){
 				data.push({"value":rows[i].id,"text":rows[i].mc});
 			}
-			shbmCBB=$("#edit_div #shbm_cbb").combobox({
+			qyShbmCBB=$("#edit_div #qyShbm_cbb").combobox({
 				valueField:"value",
 				textField:"text",
 				data:data,
 				onLoadSuccess:function(){
-					$(this).combobox("setValue",'${requestScope.dd.shbmId }');
+					$(this).combobox("setValue",'${requestScope.dd.qyShbmId }');
 				}
 			});
 		}
@@ -364,8 +364,8 @@ function initSHBMCBB(){
 }
 
 function checkEdit(){
-	if(checkWZLXId()){
-		if(checkWZId()){
+	if(checkQYWZLXId()){
+		if(checkQYWZId()){
 			editDingDanZongHeChaXun();
 		}
 	}
@@ -375,16 +375,16 @@ function editDingDanZongHeChaXun(){
 	var sjc=lrSjcCBB.combobox("getValue");
 	var wscph=lrWscphCBB.combobox("getValue");
 	$("#edit_div #cph").val(sjc+wscph);
-	var wzlxId=wzlxCBB.combobox("getValue");
-	$("#edit_div #wzlxId").val(wzlxId);
-	var wzId=wzCBB.combobox("getValue");
-	$("#edit_div #wzId").val(wzId);
-	var yssId=yssCBB.combobox("getValue");
-	$("#edit_div #yssId").val(yssId);
-	var fhdwId=fhdwCBB.combobox("getValue");
-	$("#edit_div #fhdwId").val(fhdwId);
-	var shbmId=shbmCBB.combobox("getValue");
-	$("#edit_div #shbmId").val(shbmId);
+	var qyWzlxId=qyWzlxCBB.combobox("getValue");
+	$("#edit_div #qyWzlxId").val(qyWzlxId);
+	var qyWzId=qyWzCBB.combobox("getValue");
+	$("#edit_div #qyWzId").val(qyWzId);
+	var qyYssId=qyYssCBB.combobox("getValue");
+	$("#edit_div #qyYssId").val(qyYssId);
+	var qyFhdwId=qyFhdwCBB.combobox("getValue");
+	$("#edit_div #qyFhdwId").val(qyFhdwId);
+	var qyShbmId=qyShbmCBB.combobox("getValue");
+	$("#edit_div #qyShbmId").val(qyShbmId);
 	
 	var formData = new FormData($("#form1")[0]);
 	
@@ -409,9 +409,9 @@ function editDingDanZongHeChaXun(){
 }
 
 //验证物资类型
-function checkWZLXId(){
-	var wzlxId=wzlxCBB.combobox("getValue");
-	if(wzlxId==null||wzlxId==""){
+function checkQYWZLXId(){
+	var qyWzlxId=qyWzlxCBB.combobox("getValue");
+	if(qyWzlxId==null||qyWzlxId==""){
 	  	alert("请选择物资类型");
 	  	return false;
 	}
@@ -420,9 +420,9 @@ function checkWZLXId(){
 }
 
 //验证物资
-function checkWZId(){
-	var wzId=wzCBB.combobox("getValue");
-	if(wzId==null||wzId==""){
+function checkQYWZId(){
+	var qyWzId=qyWzCBB.combobox("getValue");
+	if(qyWzId==null||qyWzId==""){
 	  	alert("请选择物资");
 	  	return false;
 	}
@@ -438,15 +438,15 @@ function getDingDanByCphJL(cph){
 			if(result.status==1){
 				var dd=result.data;
 				lxlxCBB.combobox("setValue",dd.lxlx);
-				yssCBB.combobox("setValue",dd.yssId);
-				fhdwCBB.combobox("setValue",dd.fhdwId);
-				shbmCBB.combobox("setValue",dd.shbmId);
+				qyYssCBB.combobox("setValue",dd.qyYssId);
+				qyFhdwCBB.combobox("setValue",dd.qyFhdwId);
+				qyShbmCBB.combobox("setValue",dd.qyShbmId);
 			}
 			else{
 				lxlxCBB.combobox("setValue","");
-				yssCBB.combobox("setValue","");
-				fhdwCBB.combobox("setValue","");
-				shbmCBB.combobox("setValue","");
+				qyYssCBB.combobox("setValue","");
+				qyFhdwCBB.combobox("setValue","");
+				qyShbmCBB.combobox("setValue","");
 			}
 		}
 	,"json");
@@ -532,15 +532,15 @@ function setFitWidthInParent(parent,self){
 					物资类型
 				</td>
 				<td class="td2">
-					<input id="wzlx_cbb" disabled="disabled"/>
-					<input type="hidden" id="wzlxId" name="wzlxId" value="${requestScope.dd.wzlxId }"/>
+					<input id="qyWzlx_cbb" disabled="disabled"/>
+					<input type="hidden" id="qyWzlxId" name="qyWzlxId" value="${requestScope.dd.qyWzlxId }"/>
 				</td>
 				<td class="td1" align="right">
 					物资名称
 				</td>
 				<td class="td2">
-					<input id="wz_cbb" disabled="disabled"/>
-					<input type="hidden" id="wzId" name="wzId" value="${requestScope.dd.wzId }"/>
+					<input id="qyWz_cbb" disabled="disabled"/>
+					<input type="hidden" id="qyWzId" name="qyWzId" value="${requestScope.dd.qyWzId }"/>
 				</td>
 			  </tr>
 			  <tr>
@@ -548,15 +548,15 @@ function setFitWidthInParent(parent,self){
 					运输商
 				</td>
 				<td class="td2">
-					<input id="yss_cbb" disabled="disabled"/>
-					<input type="hidden" id="yssId" name="yssId"/>
+					<input id="qyYss_cbb" disabled="disabled"/>
+					<input type="hidden" id="qyYssId" name="qyYssId"/>
 				</td>
 				<td class="td1" align="right">
 					发货单位
 				</td>
 				<td class="td2">
-					<input id="fhdw_cbb" disabled="disabled"/>
-					<input type="hidden" id="fhdwId" name="fhdwId"/>
+					<input id="qyFhdw_cbb" disabled="disabled"/>
+					<input type="hidden" id="qyFhdwId" name="qyFhdwId"/>
 				</td>
 			  </tr>
 			  <tr>
@@ -564,8 +564,8 @@ function setFitWidthInParent(parent,self){
 					收货部门
 				</td>
 				<td class="td2">
-					<input id="shbm_cbb" disabled="disabled"/>
-					<input type="hidden" id="shbmId" name="shbmId"/>
+					<input id="qyShbm_cbb" disabled="disabled"/>
+					<input type="hidden" id="qyShbmId" name="qyShbmId"/>
 				</td>
 				<td class="td1" align="right">
 					二维码

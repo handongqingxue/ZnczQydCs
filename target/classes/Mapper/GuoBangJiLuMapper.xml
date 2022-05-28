@@ -82,9 +82,9 @@
 		select gbjl.*,dd.ddh from guo_bang_ji_lu gbjl,ding_dan dd where gbjl.qyDdId=dd.id and gbjl.id=#{id}
 	</select>
 	<select id="queryDJYForInt" resultType="java.lang.Integer">
-		select count(*) from guo_bang_ji_lu gbjl left join ding_dan dd on gbjl.qyDdId=dd.id left join ding_dan_zhuang_tai ddzt on dd.ddztId=ddzt.id
-		 left join yun_shu_shang yss on dd.yssId=yss.id left join fa_huo_dan_wei fhdw on dd.fhdwId=fhdw.id
-		 left join shou_huo_bu_men shbm on dd.shbmId=shbm.id where ddzt.mc=#{ddztMc}
+		select count(*) from guo_bang_ji_lu gbjl left join ding_dan dd on gbjl.qyDdId=dd.id left join ding_dan_zhuang_tai ddzt on dd.qyDdztId=ddzt.id
+		 left join yun_shu_shang yss on dd.qyYssId=yss.id left join fa_huo_dan_wei fhdw on dd.qyFhdwId=fhdw.id
+		 left join shou_huo_bu_men shbm on dd.qyShbmId=shbm.id where ddzt.mc=#{ddztMc}
 		<if test="ddh!=''&amp;ddh!=null">
 			and dd.ddh like CONCAT('%',#{ddh},'%')
 		</if>
@@ -115,8 +115,8 @@
 	</select>
 	<select id="queryDJYList" resultType="com.znczQydCs.entity.GuoBangJiLu">
 		select gbjl.*,dd.sjxm,dd.sjsfzh,dd.ddh,dd.cph,dd.lxlx,yss.mc yssMc,fhdw.mc fhdwMc,shbm.mc shbmMc from guo_bang_ji_lu gbjl left join ding_dan dd on gbjl.qyDdId=dd.id
-		 left join ding_dan_zhuang_tai ddzt on dd.ddztId=ddzt.id left join yun_shu_shang yss on dd.yssId=yss.id left join fa_huo_dan_wei fhdw on dd.fhdwId=fhdw.id
-		 left join shou_huo_bu_men shbm on dd.shbmId=shbm.id where ddzt.mc=#{ddztMc}
+		 left join ding_dan_zhuang_tai ddzt on dd.qyDdztId=ddzt.id left join yun_shu_shang yss on dd.qyYssId=yss.id left join fa_huo_dan_wei fhdw on dd.qyFhdwId=fhdw.id
+		 left join shou_huo_bu_men shbm on dd.qyShbmId=shbm.id where ddzt.mc=#{ddztMc}
 		<if test="ddh!=''&amp;ddh!=null">
 			and dd.ddh like CONCAT('%',#{ddh},'%')
 		</if>

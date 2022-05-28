@@ -89,7 +89,7 @@ function initDetailDialog(){
 	shtgBut.css("left","45%");
 	shtgBut.css("position","absolute");
 	
-	if('${requestScope.dd.ddztId }'==1)
+	if('${requestScope.dd.qyDdztId }'==1)
 		shtgBut.linkbutton('enable');
 	else
 		shtgBut.linkbutton('disable');

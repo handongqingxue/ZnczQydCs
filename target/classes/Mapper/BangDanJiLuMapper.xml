@@ -62,8 +62,8 @@
 		where id=#{id}
 	</update>
 	<select id="queryForInt" resultType="java.lang.Integer">
-		select count(*) from bang_dan_ji_lu bdjl left join ding_dan dd on bdjl.qyDdId=dd.id left join wu_zi wz on dd.wzId=wz.id 
-		 left join shou_huo_bu_men shbm on dd.shbmId=shbm.id left join fa_huo_dan_wei fhdw on dd.fhdwId=fhdw.id 
+		select count(*) from bang_dan_ji_lu bdjl left join ding_dan dd on bdjl.qyDdId=dd.id left join wu_zi wz on dd.qyWzId=wz.id 
+		 left join shou_huo_bu_men shbm on dd.qyShbmId=shbm.id left join fa_huo_dan_wei fhdw on dd.qyFhdwId=fhdw.id 
 		 left join (select * from guo_bang_ji_lu where gblx=1) gbjl on dd.id=gbjl.qyDdId 
 		 left join (select * from guo_bang_ji_lu where gblx=2) qygbjl on dd.id=qygbjl.qyDdId where 1=1
 		<if test="ddh!=''&amp;ddh!=null">
@@ -71,8 +71,8 @@
 		</if>
 	</select>
 	<select id="queryList" resultType="com.znczQydCs.entity.BangDanJiLu">
-		select bdjl.*,dd.ddh,dd.sjxm,dd.cph,dd.lxlx,wz.mc wzMc,shbm.mc shbmMc,fhdw.mc fhdwMc,sygbjl.gbsj sygbsj,qygbjl.gbsj qygbsj from bang_dan_ji_lu bdjl left join ding_dan dd on bdjl.qyDdId=dd.id left join wu_zi wz on dd.wzId=wz.id
-		 left join shou_huo_bu_men shbm on dd.shbmId=shbm.id left join fa_huo_dan_wei fhdw on dd.fhdwId=fhdw.id 
+		select bdjl.*,dd.ddh,dd.sjxm,dd.cph,dd.lxlx,wz.mc wzMc,shbm.mc shbmMc,fhdw.mc fhdwMc,sygbjl.gbsj sygbsj,qygbjl.gbsj qygbsj from bang_dan_ji_lu bdjl left join ding_dan dd on bdjl.qyDdId=dd.id left join wu_zi wz on dd.qyWzId=wz.id
+		 left join shou_huo_bu_men shbm on dd.qyShbmId=shbm.id left join fa_huo_dan_wei fhdw on dd.qyFhdwId=fhdw.id 
 		 left join (select * from guo_bang_ji_lu where gblx=1) sygbjl on dd.id=sygbjl.qyDdId 
 		 left join (select * from guo_bang_ji_lu where gblx=2) qygbjl on dd.id=qygbjl.qyDdId where 1=1
 		<if test="ddh!=''&amp;ddh!=null">

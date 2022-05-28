@@ -4,14 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.znczQydCs.dao.DingDanMapper">
 	<select id="queryZHCXForInt" resultType="java.lang.Integer">
-		select count(*) from ding_dan dd left join ding_dan_zhuang_tai ddzt on dd.ddztId=ddzt.id left join wu_zi_lei_xing wzlx on dd.wzlxId=wzlx.id left join wu_zi wz on dd.wzId=wz.id
-		 left join yun_shu_shang yss on dd.yssId=yss.id left join fa_huo_dan_wei fhdw on dd.fhdwId=fhdw.id
-		 left join shou_huo_bu_men shbm on dd.shbmId=shbm.id where 1=1
+		select count(*) from ding_dan dd left join ding_dan_zhuang_tai ddzt on dd.qyDdztId=ddzt.id left join wu_zi_lei_xing wzlx on dd.qyWzlxId=wzlx.id left join wu_zi wz on dd.qyWzId=wz.id
+		 left join yun_shu_shang yss on dd.qyYssId=yss.id left join fa_huo_dan_wei fhdw on dd.qyFhdwId=fhdw.id
+		 left join shou_huo_bu_men shbm on dd.qyShbmId=shbm.id where 1=1
 		<if test="ddh!=''&amp;ddh!=null">
 			and dd.ddh like CONCAT('%',#{ddh},'%')
 		</if>
 		<if test="ddztId!=''&amp;ddztId!=null">
-			and dd.ddztId=#{ddztId}
+			and dd.qyDdztId=#{ddztId}
 		</if>
 		<if test="ddztMc!=''&amp;ddztMc!=null">
 			and ddzt.mc=#{ddztMc}
@@ -40,14 +40,14 @@
 	</select>
 	<select id="queryZHCXList" resultType="com.znczQydCs.entity.DingDan">
 		select dd.*,ddzt.mc ddztMc,wzlx.mc wzlxMc,wz.mc wzMc,yss.mc yssMc,fhdw.mc fhdwMc,shbm.mc shbmMc from ding_dan dd
-		 left join ding_dan_zhuang_tai ddzt on dd.ddztId=ddzt.id left join wu_zi_lei_xing wzlx on dd.wzlxId=wzlx.id left join wu_zi wz on dd.wzId=wz.id
-		 left join yun_shu_shang yss on dd.yssId=yss.id left join fa_huo_dan_wei fhdw on dd.fhdwId=fhdw.id
-		 left join shou_huo_bu_men shbm on dd.shbmId=shbm.id where 1=1
+		 left join ding_dan_zhuang_tai ddzt on dd.qyDdztId=ddzt.id left join wu_zi_lei_xing wzlx on dd.qyWzlxId=wzlx.id left join wu_zi wz on dd.qyWzId=wz.id
+		 left join yun_shu_shang yss on dd.qyYssId=yss.id left join fa_huo_dan_wei fhdw on dd.qyFhdwId=fhdw.id
+		 left join shou_huo_bu_men shbm on dd.qyShbmId=shbm.id where 1=1
 		<if test="ddh!=''&amp;ddh!=null">
 			and dd.ddh like CONCAT('%',#{ddh},'%')
 		</if>
 		<if test="ddztId!=''&amp;ddztId!=null">
-			and dd.ddztId=#{ddztId}
+			and dd.qyDdztId=#{ddztId}
 		</if>
 		<if test="ddztMc!=''&amp;ddztMc!=null">
 			and ddzt.mc=#{ddztMc}
@@ -77,9 +77,9 @@
 		limit #{rowNum},#{rows}
 	</select>
 	<select id="selectById" resultType="com.znczQydCs.entity.DingDan">
-		select dd.*,wzlx.mc wzlxMc,wz.mc wzMc,yss.mc yssMc,fhdw.mc fhdwMc,shbm.mc shbmMc from ding_dan dd left join wu_zi_lei_xing wzlx on dd.wzlxId=wzlx.id left join wu_zi wz on dd.wzId=wz.id
-		 left join yun_shu_shang yss on dd.yssId=yss.id left join fa_huo_dan_wei fhdw on dd.fhdwId=fhdw.id
-		 left join shou_huo_bu_men shbm on dd.shbmId=shbm.id where dd.id=#{id}
+		select dd.*,wzlx.mc wzlxMc,wz.mc wzMc,yss.mc yssMc,fhdw.mc fhdwMc,shbm.mc shbmMc from ding_dan dd left join wu_zi_lei_xing wzlx on dd.qyWzlxId=wzlx.id left join wu_zi wz on dd.qyWzId=wz.id
+		 left join yun_shu_shang yss on dd.qyYssId=yss.id left join fa_huo_dan_wei fhdw on dd.qyFhdwId=fhdw.id
+		 left join shou_huo_bu_men shbm on dd.qyShbmId=shbm.id where dd.id=#{id}
 	</select>
 	<insert id="add" parameterType="com.znczQydCs.entity.DingDan">
 		insert into ding_dan
@@ -355,7 +355,7 @@
 		select * from ding_dan where ddztId=#{ddztId} and cph=#{cph}
 	</select>
 	<select id="getByZt" resultType="com.znczQydCs.entity.DingDan">
-		select dd.* from ding_dan dd,ding_dan_zhuang_tai ddzt where dd.ddztId=ddzt.id and ddzt.mc=#{ddztMc}
+		select dd.* from ding_dan dd,ding_dan_zhuang_tai ddzt where dd.qyDdztId=ddzt.id and ddzt.mc=#{ddztMc}
 		<if test="yjbfh!=0">
 		 and dd.yjbfh=#{yjbfh}
 		</if>
@@ -379,7 +379,7 @@
 		select count(*) from ding_dan where ddh=#{ddh}
 	</select>
 	<select id="getCountByZt" resultType="java.lang.Integer">
-		select count(*) from ding_dan dd,ding_dan_zhuang_tai ddzt where dd.ddztId=ddzt.id and dd.yjbfh=#{yjbfh} and dd.ejbfh=#{ejbfh} and ddzt.mc=#{ddztMc} and dd.yjzt=#{yjzt} and dd.ejzt=#{ejzt}
+		select count(*) from ding_dan dd,ding_dan_zhuang_tai ddzt where dd.qyDdztId=ddzt.id and dd.yjbfh=#{yjbfh} and dd.ejbfh=#{ejbfh} and ddzt.mc=#{ddztMc} and dd.yjzt=#{yjzt} and dd.ejzt=#{ejzt}
 	</select>
 	<select id="getByCphJL" resultType="com.znczQydCs.entity.DingDan">
 		select * from ding_dan where id in (select rcjl.ddId from(select ddId from rglr_cph_ji_lu where cph=#{cph} order by lrsj desc LIMIT 0,1)as rcjl)
