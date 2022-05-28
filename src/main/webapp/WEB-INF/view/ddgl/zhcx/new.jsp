@@ -100,11 +100,11 @@ function initNewDialog(){
 	initXZCPHCBB();
 	initLRSJCCBB();
 	initLXLXCBB();
-	initWZLXCBB();
+	initQYWZLXCBB();
 	initWZCBB();
-	initYSSCBB();
-	initFHDWCBB();
-	initSHBMCBB();
+	initQYYSSCBB();
+	initQYFHDWCBB();
+	initQYSHBMCBB();
 }
 
 function initXZCPHCBB(){
@@ -199,7 +199,7 @@ function initLXLXCBB(){
 	});
 }
 
-function initWZLXCBB(){
+function initQYWZLXCBB(){
 	var data=[];
 	data.push({"value":"","text":"请选择物资类型"});
 	$.post(wzglPath+"queryWuZiLeiXingCBBList",
@@ -208,7 +208,7 @@ function initWZLXCBB(){
 			for(var i=0;i<rows.length;i++){
 				data.push({"value":rows[i].id,"text":rows[i].mc});
 			}
-			wzlxCBB=$("#new_div #wzlx_cbb").combobox({
+			qyWzlxCBB=$("#new_div #qyWzlx_cbb").combobox({
 				valueField:"value",
 				textField:"text",
 				data:data,
@@ -223,7 +223,7 @@ function initWZLXCBB(){
 function initWZCBB(){
 	var data=[];
 	data.push({"value":"","text":"请选择物资名称"});
-	wzCBB=$("#new_div #wz_cbb").combobox({
+	wzCBB=$("#new_div #qyWz_cbb").combobox({
 		valueField:"value",
 		textField:"text",
 		data:data
@@ -233,20 +233,20 @@ function initWZCBB(){
 function loadWZCBBData(){
 	var data=[];
 	data.push({"value":"","text":"请选择物资名称"});
-	var wzlxId=wzlxCBB.combobox("getValue");
+	var qyWzlxId=qyWzlxCBB.combobox("getValue");
 	$.post(wzglPath+"queryWuZiCBBList",
-		{wzlxId:wzlxId},
+		{wzlxId:qyWzlxId},
 		function(result){
 			var rows=result.rows;
 			for(var i=0;i<rows.length;i++){
 				data.push({"value":rows[i].id,"text":rows[i].mc});
 			}
-			wzCBB.combobox("loadData",data);
+			qyWzCBB.combobox("loadData",data);
 		}
 	,"json");
 }
 
-function initYSSCBB(){
+function initQYYSSCBB(){
 	var data=[];
 	data.push({"value":"","text":"请选择运输商"});
 	$.post(dwglPath+"queryYunShuShangCBBList",
@@ -255,7 +255,7 @@ function initYSSCBB(){
 			for(var i=0;i<rows.length;i++){
 				data.push({"value":rows[i].id,"text":rows[i].mc});
 			}
-			yssCBB=$("#new_div #yss_cbb").combobox({
+			qyYssCBB=$("#new_div #qyYss_cbb").combobox({
 				valueField:"value",
 				textField:"text",
 				data:data
@@ -264,7 +264,7 @@ function initYSSCBB(){
 	,"json");
 }
 
-function initFHDWCBB(){
+function initQYFHDWCBB(){
 	var data=[];
 	data.push({"value":"","text":"请选择发货单位"});
 	$.post(dwglPath+"queryFaHuoDanWeiCBBList",
@@ -273,7 +273,7 @@ function initFHDWCBB(){
 			for(var i=0;i<rows.length;i++){
 				data.push({"value":rows[i].id,"text":rows[i].mc});
 			}
-			fhdwCBB=$("#new_div #fhdw_cbb").combobox({
+			qyFhdwCBB=$("#new_div #qyFhdw_cbb").combobox({
 				valueField:"value",
 				textField:"text",
 				data:data
@@ -282,7 +282,7 @@ function initFHDWCBB(){
 	,"json");
 }
 
-function initSHBMCBB(){
+function initQYSHBMCBB(){
 	var data=[];
 	data.push({"value":"","text":"请选择收货部门"});
 	$.post(dwglPath+"queryShouHuoBuMenCBBList",
@@ -291,7 +291,7 @@ function initSHBMCBB(){
 			for(var i=0;i<rows.length;i++){
 				data.push({"value":rows[i].id,"text":rows[i].mc});
 			}
-			shbmCBB=$("#new_div #shbm_cbb").combobox({
+			qyShbmCBB=$("#new_div #qyShbm_cbb").combobox({
 				valueField:"value",
 				textField:"text",
 				data:data
@@ -303,11 +303,11 @@ function initSHBMCBB(){
 function checkNew(){
 	if(checkDdh()){
 		if(checkLXLXId()){
-			if(checkWZLXId()){
-				if(checkWZId()){
-					if(checkYSSId()){
-						if(checkFHDWId()){
-							if(checkSHBMId()){
+			if(checkQYWZLXId()){
+				if(checkQYWZId()){
+					if(checkQYYSSId()){
+						if(checkQYFHDWId()){
+							if(checkQYSHBMId()){
 								newDingDanZongHeChaXun();
 							}
 						}
@@ -326,14 +326,14 @@ function newDingDanZongHeChaXun(){
 	$("#new_div #lxlx").val(lxlx);
 	var wzlxId=wzlxCBB.combobox("getValue");
 	$("#new_div #wzlxId").val(wzlxId);
-	var wzId=wzCBB.combobox("getValue");
-	$("#new_div #wzId").val(wzId);
-	var yssId=yssCBB.combobox("getValue");
-	$("#new_div #yssId").val(yssId);
-	var fhdwId=fhdwCBB.combobox("getValue");
-	$("#new_div #fhdwId").val(fhdwId);
-	var shbmId=shbmCBB.combobox("getValue");
-	$("#new_div #shbmId").val(shbmId);
+	var qyWzId=qyWzCBB.combobox("getValue");
+	$("#new_div #qyWzId").val(qyWzId);
+	var qyYssId=qyYssCBB.combobox("getValue");
+	$("#new_div #qyYssId").val(qyYssId);
+	var qyFhdwId=qyFhdwCBB.combobox("getValue");
+	$("#new_div #qyFhdwId").val(qyFhdwId);
+	var qyShbmId=qyShbmCBB.combobox("getValue");
+	$("#new_div #qyShbmId").val(qyShbmId);
 	
 	var formData = new FormData($("#form1")[0]);
 	$.ajax({
@@ -408,7 +408,7 @@ function checkLXLXId(){
 }
 
 //验证物资类型
-function checkWZLXId(){
+function checkQYWZLXId(){
 	var wzlxId=wzlxCBB.combobox("getValue");
 	if(wzlxId==null||wzlxId==""){
 	  	alert("请选择物资类型");
@@ -419,9 +419,9 @@ function checkWZLXId(){
 }
 
 //验证物资
-function checkWZId(){
-	var wzId=wzCBB.combobox("getValue");
-	if(wzId==null||wzId==""){
+function checkQYWZId(){
+	var qyWzId=qyWzCBB.combobox("getValue");
+	if(qyWzId==null||qyWzId==""){
 	  	alert("请选择物资");
 	  	return false;
 	}
@@ -430,9 +430,9 @@ function checkWZId(){
 }
 
 //验证运输商
-function checkYSSId(){
-	var yssId=yssCBB.combobox("getValue");
-	if(yssId==null||yssId==""){
+function checkQYYSSId(){
+	var qyYssId=qyYssCBB.combobox("getValue");
+	if(qyYssId==null||qyYssId==""){
 	  	alert("请选择运输商");
 	  	return false;
 	}
@@ -441,9 +441,9 @@ function checkYSSId(){
 }
 
 //验证发货单位
-function checkFHDWId(){
-	var fhdwId=fhdwCBB.combobox("getValue");
-	if(fhdwId==null||fhdwId==""){
+function checkQYFHDWId(){
+	var qyFhdwId=qyFhdwCBB.combobox("getValue");
+	if(qyFhdwId==null||qyFhdwId==""){
 	  	alert("请选择发货单位");
 	  	return false;
 	}
@@ -452,9 +452,9 @@ function checkFHDWId(){
 }
 
 //验证收货部门
-function checkSHBMId(){
-	var shbmId=shbmCBB.combobox("getValue");
-	if(shbmId==null||shbmId==""){
+function checkQYSHBMId(){
+	var qyShbmId=qyShbmCBB.combobox("getValue");
+	if(qyShbmId==null||qyShbmId==""){
 	  	alert("请选择收货部门");
 	  	return false;
 	}
@@ -470,15 +470,15 @@ function getDingDanByCphJL(cph){
 			if(result.status==1){
 				var dd=result.data;
 				lxlxCBB.combobox("setValue",dd.lxlx);
-				yssCBB.combobox("setValue",dd.yssId);
-				fhdwCBB.combobox("setValue",dd.fhdwId);
-				shbmCBB.combobox("setValue",dd.shbmId);
+				qyYssCBB.combobox("setValue",dd.qyYssId);
+				qyFhdwCBB.combobox("setValue",dd.qyFhdwId);
+				qyShbmCBB.combobox("setValue",dd.qyShbmId);
 			}
 			else{
 				lxlxCBB.combobox("setValue","");
-				yssCBB.combobox("setValue","");
-				fhdwCBB.combobox("setValue","");
-				shbmCBB.combobox("setValue","");
+				qyYssCBB.combobox("setValue","");
+				qyFhdwCBB.combobox("setValue","");
+				qyShbmCBB.combobox("setValue","");
 			}
 		}
 	,"json");
@@ -562,15 +562,15 @@ function setFitWidthInParent(parent,self){
 					物资类型
 				</td>
 				<td class="td2">
-					<input id="wzlx_cbb"/>
-					<input type="hidden" id="wzlxId" name="wzlxId"/>
+					<input id="qyWzlx_cbb"/>
+					<input type="hidden" id="qyWzlxId" name="qyWzlxId"/>
 				</td>
 				<td class="td1" align="right">
 					物资名称
 				</td>
 				<td class="td2">
-					<input id="wz_cbb"/>
-					<input type="hidden" id="wzId" name="wzId"/>
+					<input id="qyWz_cbb"/>
+					<input type="hidden" id="qyWzId" name="qyWzId"/>
 				</td>
 			  </tr>
 			  <tr>
@@ -578,15 +578,15 @@ function setFitWidthInParent(parent,self){
 					运输商
 				</td>
 				<td class="td2">
-					<input id="yss_cbb"/>
-					<input type="hidden" id="yssId" name="yssId"/>
+					<input id="qyYss_cbb"/>
+					<input type="hidden" id="qyYssId" name="qyYssId"/>
 				</td>
 				<td class="td1" align="right">
 					发货单位
 				</td>
 				<td class="td2">
-					<input id="fhdw_cbb"/>
-					<input type="hidden" id="fhdwId" name="fhdwId"/>
+					<input id="qyFhdw_cbb"/>
+					<input type="hidden" id="qyFhdwId" name="qyFhdwId"/>
 				</td>
 			  </tr>
 			  <tr>
@@ -594,8 +594,8 @@ function setFitWidthInParent(parent,self){
 					收货部门
 				</td>
 				<td class="td2">
-					<input id="shbm_cbb"/>
-					<input type="hidden" id="shbmId" name="shbmId"/>
+					<input id="qyShbm_cbb"/>
+					<input type="hidden" id="qyShbmId" name="qyShbmId"/>
 				</td>
 				<td class="td1" align="right">
 				</td>
