@@ -54,7 +54,7 @@ public class DingDanServiceImpl implements DingDanService {
 	public int add(DingDan dd) {
 		// TODO Auto-generated method stub
 		int ddztId=dingDanZhuangTaiDao.getIdByMc(DingDanZhuangTai.DAI_SHEN_HE_TEXT);
-		dd.setDdztId(ddztId);
+		dd.setQyDdztId(ddztId);
 
 		String ddh = dd.getDdh();
 		String fileName = ddh + ".jpg";
@@ -87,7 +87,7 @@ public class DingDanServiceImpl implements DingDanService {
 		String ddztMc = dd.getDdztMc();
 		if(!StringUtils.isEmpty(ddztMc)) {
 			int ddztId=dingDanZhuangTaiDao.getIdByMc(ddztMc);
-			dd.setDdztId(ddztId);
+			dd.setQyDdztId(ddztId);
 		}
 		return dingDanDao.edit(dd);
 	}
@@ -96,7 +96,7 @@ public class DingDanServiceImpl implements DingDanService {
 	public int editByZt(DingDan dd) {
 		// TODO Auto-generated method stub
 		int ddztId=dingDanZhuangTaiDao.getIdByMc(dd.getDdztMc());
-		dd.setDdztId(ddztId);
+		dd.setQyDdztId(ddztId);
 		String xddztMc = dd.getXddztMc();
 		if(!StringUtils.isEmpty(xddztMc)&&!"null".equals(xddztMc)) {
 			int xddztId=dingDanZhuangTaiDao.getIdByMc(dd.getXddztMc());

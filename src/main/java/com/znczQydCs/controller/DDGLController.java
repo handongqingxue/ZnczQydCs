@@ -139,7 +139,7 @@ public class DDGLController {
 		request.setAttribute("dd", dd);
 		
 		YongHu yongHu = (YongHu)request.getSession().getAttribute("yongHu");
-		if(dd.getDdztId()==9) {
+		if(dd.getQyDdztId()==9) {
 			if((yongHu.getQxIds()+",").contains("1,"))
 				request.setAttribute("ddztMc", DingDanZhuangTai.YI_JIAN_PAI_DUI_ZHONG_TEXT);
 		}
