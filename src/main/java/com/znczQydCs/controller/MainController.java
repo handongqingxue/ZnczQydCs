@@ -122,7 +122,7 @@ public class MainController {
 			if(bool) {
 				List<DingDanZhuangTai> ddztList=dingDanZhuangTaiService.selectListByYfwtb(Main.WEI_TONG_BU);
 				dingDanZhuangTaiService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
-				JSONObject resultJO = CloudAPIUtil.addDDZTToYf(qyh,ddztList);
+				JSONObject resultJO = CloudAPIUtil.syncDDZTToYf(qyh,ddztList);
 				if("ok".equals(resultJO.getString("status"))) {
 					dingDanZhuangTaiService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
 				}
@@ -140,7 +140,7 @@ public class MainController {
 			if(bool) {
 				List<WuZiLeiXing> wzlxList=wuZiLeiXingService.selectListByYfwtb(Main.WEI_TONG_BU);
 				wuZiLeiXingService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
-				JSONObject resultJO = CloudAPIUtil.addWZLXToYf(qyh,wzlxList);
+				JSONObject resultJO = CloudAPIUtil.syncWZLXToYf(qyh,wzlxList);
 				if("ok".equals(resultJO.getString("status"))) {
 					wuZiLeiXingService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
 				}
@@ -158,7 +158,7 @@ public class MainController {
 			if(bool) {
 				List<WuZi> wzList=wuZiService.selectListByYfwtb(Main.WEI_TONG_BU);
 				wuZiService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
-				JSONObject resultJO = CloudAPIUtil.addWZToYf(qyh,wzList);
+				JSONObject resultJO = CloudAPIUtil.syncWZToYf(qyh,wzList);
 				if("ok".equals(resultJO.getString("status"))) {
 					wuZiService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
 				}
@@ -176,7 +176,7 @@ public class MainController {
 			if(bool) {
 				List<YunShuShang> yssList=yunShuShangService.selectListByYfwtb(Main.WEI_TONG_BU);
 				yunShuShangService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
-				JSONObject resultJO = CloudAPIUtil.addYSSToYf(qyh,yssList);
+				JSONObject resultJO = CloudAPIUtil.syncYSSToYf(qyh,yssList);
 				if("ok".equals(resultJO.getString("status"))) {
 					yunShuShangService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
 				}
@@ -194,7 +194,7 @@ public class MainController {
 			if(bool) {
 				List<FaHuoDanWei> fhdwList=faHuoDanWeiService.selectListByYfwtb(Main.WEI_TONG_BU);
 				faHuoDanWeiService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
-				JSONObject resultJO = CloudAPIUtil.addFHDWToYf(qyh,fhdwList);
+				JSONObject resultJO = CloudAPIUtil.syncFHDWToYf(qyh,fhdwList);
 				if("ok".equals(resultJO.getString("status"))) {
 					faHuoDanWeiService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
 				}
@@ -212,7 +212,7 @@ public class MainController {
 			if(bool) {
 				List<ShouHuoBuMen> shbmList=shouHuoBuMenService.selectListByYfwtb(Main.WEI_TONG_BU);
 				shouHuoBuMenService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
-				JSONObject resultJO = CloudAPIUtil.addSHBMToYf(qyh,shbmList);
+				JSONObject resultJO = CloudAPIUtil.syncSHBMToYf(qyh,shbmList);
 				if("ok".equals(resultJO.getString("status"))) {
 					shouHuoBuMenService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
 				}
@@ -230,7 +230,7 @@ public class MainController {
 			if(bool) {
 				List<DingDan> ddList=dingDanService.selectListByYfwtb(Main.WEI_TONG_BU);
 				dingDanService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
-				JSONObject resultJO = CloudAPIUtil.addDDToYf(qyh,ddList);
+				JSONObject resultJO = CloudAPIUtil.syncDDToYf(qyh,ddList);
 				if("ok".equals(resultJO.getString("status"))) {
 					dingDanService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
 				}
@@ -248,7 +248,7 @@ public class MainController {
 			if(bool) {
 				List<BangDanJiLu> bdjlList=bangDanJiLuService.selectListByYfwtb(Main.WEI_TONG_BU);
 				bangDanJiLuService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
-				JSONObject resultJO = CloudAPIUtil.addBDJLToYf(qyh,bdjlList);
+				JSONObject resultJO = CloudAPIUtil.syncBDJLToYf(qyh,bdjlList);
 				if("ok".equals(resultJO.getString("status"))) {
 					bangDanJiLuService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
 				}
@@ -266,7 +266,7 @@ public class MainController {
 			if(bool) {
 				List<GuoBangJiLu> gbjlList=guoBangJiLuService.selectListByYfwtb(Main.WEI_TONG_BU);
 				guoBangJiLuService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
-				JSONObject resultJO = CloudAPIUtil.addGBJLToYf(qyh,gbjlList);
+				JSONObject resultJO = CloudAPIUtil.syncGBJLToYf(qyh,gbjlList);
 				if("ok".equals(resultJO.getString("status"))) {
 					guoBangJiLuService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
 				}

@@ -28,7 +28,7 @@ import net.sf.json.JSONArray;
 
 public class CloudAPIUtil {
 
-	public static final String CLOUD_SERVICE_URL="http://192.168.1.3:8080/ZnczXcx/main/";
+	public static final String CLOUD_SERVICE_URL="http://192.168.1.7:8080/ZnczXcx/main/";
 
 	//https://www.cnblogs.com/aeolian/p/7746158.html
 	//https://www.cnblogs.com/bobc/p/8809761.html
@@ -141,14 +141,14 @@ public class CloudAPIUtil {
 		}
 	}
 
-	public static JSONObject addDDZTToYf(String qyh, List<DingDanZhuangTai> ddztList) {
+	public static JSONObject syncDDZTToYf(String qyh, List<DingDanZhuangTai> ddztList) {
 		// TODO Auto-generated method stub
 		JSONObject resultJO = null;
 		try {
 			Map parames = new HashMap<String, String>();
 	        parames.put("qyh", qyh);
 	        parames.put("ddztJAStr", JSONArray.fromObject(ddztList).toString());
-	        resultJO = doHttp("addDDZTToYf",parames);
+	        resultJO = doHttp("syncDDZTToYf",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -158,14 +158,14 @@ public class CloudAPIUtil {
 		}
 	}
 
-	public static JSONObject addDDToYf(String qyh, List<DingDan> ddList) {
+	public static JSONObject syncDDToYf(String qyh, List<DingDan> ddList) {
 		// TODO Auto-generated method stub
 		JSONObject resultJO = null;
 		try {
 			Map parames = new HashMap<String, String>();
 	        parames.put("qyh", qyh);
 	        parames.put("ddJAStr", JSONArray.fromObject(ddList).toString());
-	        resultJO = doHttp("addDDToYf",parames);
+	        resultJO = doHttp("syncDDToYf",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -175,14 +175,14 @@ public class CloudAPIUtil {
 		}
 	}
 
-	public static JSONObject addBDJLToYf(String qyh, List<BangDanJiLu> bdjlList) {
+	public static JSONObject syncBDJLToYf(String qyh, List<BangDanJiLu> bdjlList) {
 		// TODO Auto-generated method stub
 		JSONObject resultJO = null;
 		try {
 			Map parames = new HashMap<String, String>();
 	        parames.put("qyh", qyh);
 	        parames.put("bdjlJAStr", JSONArray.fromObject(bdjlList).toString());
-	        resultJO = doHttp("addBDJLToYf",parames);
+	        resultJO = doHttp("syncBDJLToYf",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -192,14 +192,14 @@ public class CloudAPIUtil {
 		}
 	}
 
-	public static JSONObject addGBJLToYf(String qyh, List<GuoBangJiLu> gbjlList) {
+	public static JSONObject syncGBJLToYf(String qyh, List<GuoBangJiLu> gbjlList) {
 		// TODO Auto-generated method stub
 		JSONObject resultJO = null;
 		try {
 			Map parames = new HashMap<String, String>();
 	        parames.put("qyh", qyh);
 	        parames.put("gbjlJAStr", JSONArray.fromObject(gbjlList).toString());
-	        resultJO = doHttp("addGBJLToYf",parames);
+	        resultJO = doHttp("syncGBJLToYf",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -209,14 +209,14 @@ public class CloudAPIUtil {
 		}
 	}
 
-	public static JSONObject addWZLXToYf(String qyh, List<WuZiLeiXing> wzlxList) {
+	public static JSONObject syncWZLXToYf(String qyh, List<WuZiLeiXing> wzlxList) {
 		// TODO Auto-generated method stub
 		JSONObject resultJO = null;
 		try {
 			Map parames = new HashMap<String, String>();
 	        parames.put("qyh", qyh);
 	        parames.put("wzlxJAStr", JSONArray.fromObject(wzlxList).toString());
-	        resultJO = doHttp("addWZLXToYf",parames);
+	        resultJO = doHttp("syncWZLXToYf",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -226,14 +226,14 @@ public class CloudAPIUtil {
 		}
 	}
 
-	public static JSONObject addWZToYf(String qyh, List<WuZi> wzList) {
+	public static JSONObject syncWZToYf(String qyh, List<WuZi> wzList) {
 		// TODO Auto-generated method stub
 		JSONObject resultJO = null;
 		try {
 			Map parames = new HashMap<String, String>();
 	        parames.put("qyh", qyh);
 	        parames.put("wzJAStr", JSONArray.fromObject(wzList).toString());
-	        resultJO = doHttp("addWZToYf",parames);
+	        resultJO = doHttp("syncWZToYf",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -243,14 +243,14 @@ public class CloudAPIUtil {
 		}
 	}
 
-	public static JSONObject addYSSToYf(String qyh, List<YunShuShang> yssList) {
+	public static JSONObject syncYSSToYf(String qyh, List<YunShuShang> yssList) {
 		// TODO Auto-generated method stub
 		JSONObject resultJO = null;
 		try {
 			Map parames = new HashMap<String, String>();
 	        parames.put("qyh", qyh);
 	        parames.put("yssJAStr", JSONArray.fromObject(yssList).toString());
-	        resultJO = doHttp("addYSSToYf",parames);
+	        resultJO = doHttp("syncYSSToYf",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -260,14 +260,14 @@ public class CloudAPIUtil {
 		}
 	}
 
-	public static JSONObject addFHDWToYf(String qyh, List<FaHuoDanWei> fhdwList) {
+	public static JSONObject syncFHDWToYf(String qyh, List<FaHuoDanWei> fhdwList) {
 		// TODO Auto-generated method stub
 		JSONObject resultJO = null;
 		try {
 			Map parames = new HashMap<String, String>();
 	        parames.put("qyh", qyh);
 	        parames.put("fhdwJAStr", JSONArray.fromObject(fhdwList).toString());
-	        resultJO = doHttp("addFHDWToYf",parames);
+	        resultJO = doHttp("syncFHDWToYf",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -277,14 +277,14 @@ public class CloudAPIUtil {
 		}
 	}
 
-	public static JSONObject addSHBMToYf(String qyh, List<ShouHuoBuMen> shbmList) {
+	public static JSONObject syncSHBMToYf(String qyh, List<ShouHuoBuMen> shbmList) {
 		// TODO Auto-generated method stub
 		JSONObject resultJO = null;
 		try {
 			Map parames = new HashMap<String, String>();
 	        parames.put("qyh", qyh);
 	        parames.put("shbmJAStr", JSONArray.fromObject(shbmList).toString());
-	        resultJO = doHttp("addSHBMToYf",parames);
+	        resultJO = doHttp("syncSHBMToYf",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
