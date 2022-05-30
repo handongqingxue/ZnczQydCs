@@ -6,4 +6,10 @@
 	<select id="getQyColValByYfwColVal" resultType="java.lang.Object">
 		select ${qyColName} from ${tabName} where ${yfwColName}=${yfwColVal}
 	</select>
+	<update id="updateYfwtbByIdList">
+		update ${tabName} set yfwtb=#{yfwtb} where 1=1
+		<foreach collection="idList" item="id" open=" and cast(id as char) in (" separator="," close=")">
+		#{id}
+		</foreach>
+	</update>
 </mapper>

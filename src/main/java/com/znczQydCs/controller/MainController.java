@@ -87,22 +87,37 @@ public class MainController {
 
 	@RequestMapping(value="/syncWithYf")
 	@ResponseBody
-	public Map<String, Object> syncWithYf() {
+	public Map<String, Object> syncWithYf(String tabArrStr) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		try {
 			String qyh = LoadProperties.getQyh();
-			syncDDZT(qyh);
-			syncWZLX(qyh);
-			syncWZ(qyh);
-			syncYSS(qyh);
-			syncFHDW(qyh);
-			syncSHBM(qyh);
-			syncDd(qyh);
-			syncPDJL(qyh);
-			syncZJJL(qyh);
-			syncBDJL(qyh);
-			syncGBJL(qyh);
+			String[] tabArr = tabArrStr.split(",");
+			for (int i = 0; i < tabArr.length; i++) {
+				String tab = tabArr[i];
+				if(Main.DING_DAN_ZHUANG_TAI.equals(tab))
+					syncDDZT(qyh);
+				else if(Main.WU_ZI_LEI_XING.equals(tab))
+					syncWZLX(qyh);
+				else if(Main.WU_ZI.equals(tab))
+					syncWZ(qyh);
+				else if(Main.YUN_SHU_SHANG.equals(tab))
+					syncYSS(qyh);
+				else if(Main.FA_HUO_DAN_WEI.equals(tab))
+					syncFHDW(qyh);
+				else if(Main.SHOU_HUO_BU_MEN.equals(tab))
+					syncSHBM(qyh);
+				else if(Main.DING_DAN.equals(tab))
+					syncDd(qyh);
+				else if(Main.PAI_DUI_JI_LU.equals(tab))
+					syncPDJL(qyh);
+				else if(Main.ZHI_JIAN_JI_LU.equals(tab))
+					syncZJJL(qyh);
+				else if(Main.BANG_DAN_JI_LU.equals(tab))
+					syncBDJL(qyh);
+				else if(Main.GUO_BANG_JI_LU.equals(tab))
+					syncGBJL(qyh);
+			}
 			
 			jsonMap.put("status", "ok");
 		} catch (JSONException e) {

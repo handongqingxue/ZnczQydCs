@@ -66,8 +66,8 @@ function showCompontByQx(){
 				$("#edit_div #ddh").removeAttr("disabled");
 				lxlxCBB.combobox({disabled:false});
 				setTimeout(function(){
-					wzlxCBB.combobox({disabled:false});
-					yssCBB.combobox({disabled:false});
+					qyWzlxCBB.combobox({disabled:false});
+					qyYssCBB.combobox({disabled:false});
 					qyFhdwCBB.combobox({disabled:false});
 					qyShbmCBB.combobox({disabled:false});
 				},"2000");
@@ -309,7 +309,7 @@ function initQYYSSCBB(){
 			for(var i=0;i<rows.length;i++){
 				data.push({"value":rows[i].id,"text":rows[i].mc});
 			}
-			yssCBB=$("#edit_div #qyYss_cbb").combobox({
+			qyYssCBB=$("#edit_div #qyYss_cbb").combobox({
 				valueField:"value",
 				textField:"text",
 				data:data,

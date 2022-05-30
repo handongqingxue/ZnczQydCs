@@ -152,6 +152,12 @@ public class DingDan {
 	public void setZlceb(Float zlceb) {
 		this.zlceb = zlceb;
 	}
+	public Integer getYfwWzlxId() {
+		return yfwWzlxId;
+	}
+	public void setYfwWzlxId(Integer yfwWzlxId) {
+		this.yfwWzlxId = yfwWzlxId;
+	}
 	public Integer getQyWzlxId() {
 		return qyWzlxId;
 	}
@@ -163,6 +169,12 @@ public class DingDan {
 	}
 	public void setWzlxMc(String wzlxMc) {
 		this.wzlxMc = wzlxMc;
+	}
+	public Integer getYfwWzId() {
+		return yfwWzId;
+	}
+	public void setYfwWzId(Integer yfwWzId) {
+		this.yfwWzId = yfwWzId;
 	}
 	public Integer getQyWzId() {
 		return qyWzId;
@@ -176,6 +188,12 @@ public class DingDan {
 	public void setWzMc(String wzMc) {
 		this.wzMc = wzMc;
 	}
+	public Integer getYfwYssId() {
+		return yfwYssId;
+	}
+	public void setYfwYssId(Integer yfwYssId) {
+		this.yfwYssId = yfwYssId;
+	}
 	public Integer getQyYssId() {
 		return qyYssId;
 	}
@@ -188,6 +206,12 @@ public class DingDan {
 	public void setYssMc(String yssMc) {
 		this.yssMc = yssMc;
 	}
+	public Integer getYfwFhdwId() {
+		return yfwFhdwId;
+	}
+	public void setYfwFhdwId(Integer yfwFhdwId) {
+		this.yfwFhdwId = yfwFhdwId;
+	}
 	public Integer getQyFhdwId() {
 		return qyFhdwId;
 	}
@@ -199,6 +223,12 @@ public class DingDan {
 	}
 	public void setFhdwMc(String fhdwMc) {
 		this.fhdwMc = fhdwMc;
+	}
+	public Integer getYfwShbmId() {
+		return yfwShbmId;
+	}
+	public void setYfwShbmId(Integer yfwShbmId) {
+		this.yfwShbmId = yfwShbmId;
 	}
 	public Integer getQyShbmId() {
 		return qyShbmId;
@@ -249,14 +279,19 @@ public class DingDan {
 	private Float yzxzl;//预装卸重量
 	private Float sjzl;//实际重量
 	private Float zlceb;//重量差额比
+	private Integer yfwWzlxId;
 	private Integer qyWzlxId;
 	private String wzlxMc;
+	private Integer yfwWzId;
 	private Integer qyWzId;
 	private String wzMc;
+	private Integer yfwYssId;
 	private Integer qyYssId;
 	private String yssMc;
+	private Integer yfwFhdwId;
 	private Integer qyFhdwId;
 	private String fhdwMc;
+	private Integer yfwShbmId;
 	private Integer qyShbmId;
 	private String shbmMc;
 	private String bjsj;//编辑时间

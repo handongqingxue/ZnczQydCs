@@ -43,6 +43,8 @@ public class DDGLController {
 	private BangDanJiLuService bangDanJiLuService;
 	@Autowired
 	private GuoBangJiLuService guoBangJiLuService;
+	@Autowired
+	private MainService mainService;
 	public static final String MODULE_NAME="ddgl";
 	
 	@RequestMapping(value="/ddzt/new")
@@ -126,6 +128,7 @@ public class DDGLController {
 		//publicService.selectNav(request);
 		String ddh=dingDanService.createDdhByDateYMD();
 		request.setAttribute("ddh", ddh);
+		request.setAttribute("ddTab", Main.DING_DAN);
 		
 		return MODULE_NAME+"/zhcx/new";
 	}
@@ -375,6 +378,8 @@ public class DDGLController {
 					rglrCphJiLu.setDdId(ddId);
 					rglrCphJiLuService.add(rglrCphJiLu);
 				}
+
+				mainService.updateYfwtbByIds(Main.WEI_TONG_BU,ddId+"",Main.DING_DAN);
 				
 				jsonMap.put("message", "ok");
 				jsonMap.put("info", "±à¼­¶©µ¥³É¹¦£¡");

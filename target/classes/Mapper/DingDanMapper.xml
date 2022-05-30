@@ -87,8 +87,8 @@
 			<if test="ddh!=null">
 				ddh,
 			</if>
-			<if test="ddztId!=null">
-				ddztId,
+			<if test="qyDdztId!=null">
+				qyDdztId,
 			</if>
 				yjzt,
 				ejzt,
@@ -154,8 +154,8 @@
 			<if test="ddh!=null">
 				#{ddh},
 			</if>
-			<if test="ddztId!=null">
-				#{ddztId},
+			<if test="qyDdztId!=null">
+				#{qyDdztId},
 			</if>
 				1,
 				1,
@@ -229,8 +229,8 @@
 			<if test="ddh!=null">
 				ddh=#{ddh},
 			</if>
-			<if test="ddztId!=null">
-				ddztId=#{ddztId},
+			<if test="qyDdztId!=null">
+				qyDdztId=#{qyDdztId},
 			</if>
 			<if test="yjzt!=null">
 				yjzt=#{yjzt},
@@ -265,22 +265,38 @@
 			<if test="zlceb!=null">
 				zlceb=#{zlceb},
 			</if>
-			<if test="wzlxId!=null">
-				wzlxId=#{wzlxId},
+			<if test="yfwWzlxId!=null">
+				yfwWzlxId=#{yfwWzlxId},
 			</if>
-			<if test="wzId!=null">
-				wzId=#{wzId},
+			<if test="qyWzlxId!=null">
+				qyWzlxId=#{qyWzlxId},
 			</if>
-			<if test="yssId!=null">
-				yssId=#{yssId},
+			<if test="yfwWzId!=null">
+				yfwWzId=#{yfwWzId},
 			</if>
-			<if test="fhdwId!=null">
-				fhdwId=#{fhdwId},
+			<if test="qyWzId!=null">
+				qyWzId=#{qyWzId},
 			</if>
-			<if test="shbmId!=null">
-				shbmId=#{shbmId},
+			<if test="yfwYssId!=null">
+				yfwYssId=#{yfwYssId},
 			</if>
-				bjsj=now()
+			<if test="qyYssId!=null">
+				qyYssId=#{qyYssId},
+			</if>
+			<if test="yfwFhdwId!=null">
+				yfwFhdwId=#{yfwFhdwId},
+			</if>
+			<if test="qyFhdwId!=null">
+				qyFhdwId=#{qyFhdwId},
+			</if>
+			<if test="yfwShbmId!=null">
+				yfwShbmId=#{yfwShbmId},
+			</if>
+			<if test="qyShbmId!=null">
+				qyShbmId=#{qyShbmId},
+			</if>
+				bjsj=now(),
+				yfwtb=${@com.znczQydCs.entity.Main@WEI_TONG_BU}
 		</trim>
 		where id=#{id}
 	</update>

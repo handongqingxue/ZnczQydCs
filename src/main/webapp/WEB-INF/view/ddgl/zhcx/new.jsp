@@ -30,12 +30,14 @@
 </style>
 <script type="text/javascript">
 var path='<%=basePath %>';
+var mainPath=path+'main/';
 var ddglPath=path+'ddgl/';
 var wzglPath=path+'wzgl/';
 var dwglPath=path+'dwgl/';
 var dialogTop=70;
 var dialogLeft=20;
 var ndNum=0;
+var ddTab='${requestScope.ddTab}';
 $(function(){
 	initNewDialog();//0
 
@@ -223,7 +225,7 @@ function initQYWZLXCBB(){
 function initWZCBB(){
 	var data=[];
 	data.push({"value":"","text":"请选择物资名称"});
-	wzCBB=$("#new_div #qyWz_cbb").combobox({
+	qyWzCBB=$("#new_div #qyWz_cbb").combobox({
 		valueField:"value",
 		textField:"text",
 		data:data
@@ -324,8 +326,8 @@ function newDingDanZongHeChaXun(){
 	$("#new_div #cph").val(sjc+wscph);
 	var lxlx=lxlxCBB.combobox("getValue");
 	$("#new_div #lxlx").val(lxlx);
-	var wzlxId=wzlxCBB.combobox("getValue");
-	$("#new_div #wzlxId").val(wzlxId);
+	var qyWzlxId=qyWzlxCBB.combobox("getValue");
+	$("#new_div #qyWzlxId").val(qyWzlxId);
 	var qyWzId=qyWzCBB.combobox("getValue");
 	$("#new_div #qyWzId").val(qyWzId);
 	var qyYssId=qyYssCBB.combobox("getValue");
@@ -346,14 +348,25 @@ function newDingDanZongHeChaXun(){
 		contentType: false,
 		success: function (data){
 			if(data.message=="ok"){
-				alert(data.info);
-				history.go(-1);
+				syncWithYf(data.info);
 			}
 			else{
 				alert(data.info);
 			}
 		}
 	});
+}
+
+function syncWithYf(ddglri){
+	$.post(mainPath+"syncWithYf",
+		{tabArrStr:ddTab},
+		function(data){
+			if(data.status=="ok"){
+				alert(ddglri);
+				history.go(-1);
+			}
+		}
+	,"json");
 }
 
 function focusDdh(){
@@ -409,8 +422,8 @@ function checkLXLXId(){
 
 //验证物资类型
 function checkQYWZLXId(){
-	var wzlxId=wzlxCBB.combobox("getValue");
-	if(wzlxId==null||wzlxId==""){
+	var qyWzlxId=qyWzlxCBB.combobox("getValue");
+	if(qyWzlxId==null||qyWzlxId==""){
 	  	alert("请选择物资类型");
 	  	return false;
 	}
