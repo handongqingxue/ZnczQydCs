@@ -12,6 +12,9 @@
 			<if test="px!=null">
 				px,
 			</if>
+			<if test="yfwtb!=null">
+				yfwtb,
+			</if>
 		</trim>
 		values
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -21,10 +24,13 @@
 			<if test="px!=null">
 				#{px},
 			</if>
+			<if test="yfwtb!=null">
+				yfwtb,
+			</if>
 		</trim>
 	</insert>
 	<update id="edit" parameterType="com.znczQydCs.entity.DingDanZhuangTai">
-		update ding_dan_zhuang_tai set mc=#{mc},px=#{px} where id=#{id}
+		update ding_dan_zhuang_tai set mc=#{mc},px=#{px},yfwtb=#{yfwtb} where id=#{id}
 	</update>
 	<select id="queryForInt" resultType="java.lang.Integer">
 		select count(*) from ding_dan_zhuang_tai where 1=1

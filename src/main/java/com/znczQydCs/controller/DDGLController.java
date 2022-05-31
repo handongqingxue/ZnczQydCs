@@ -49,7 +49,9 @@ public class DDGLController {
 	
 	@RequestMapping(value="/ddzt/new")
 	public String goDdztNew(HttpServletRequest request) {
-		
+
+		request.setAttribute("wtb", Main.WEI_TONG_BU);
+		request.setAttribute("ddztTab", Main.DING_DAN_ZHUANG_TAI);
 		//publicService.selectNav(request);
 		
 		return MODULE_NAME+"/ddzt/new";
@@ -62,6 +64,8 @@ public class DDGLController {
 		String id = request.getParameter("id");
 		DingDanZhuangTai ddzt=dingDanZhuangTaiService.selectById(id);
 		request.setAttribute("ddzt", ddzt);
+		request.setAttribute("yfwtb", Main.WEI_TONG_BU);
+		request.setAttribute("ddztTab", Main.DING_DAN_ZHUANG_TAI);
 		
 		return MODULE_NAME+"/ddzt/edit";
 	}
@@ -161,11 +165,13 @@ public class DDGLController {
 		//publicService.selectNav(request);
 		request.setAttribute("dshDdztMc", DingDanZhuangTai.DAI_SHEN_HE_TEXT);
 		request.setAttribute("yshDdztMc", DingDanZhuangTai.YI_SHEN_HE_TEXT);
+		request.setAttribute("dzjDdztMc", DingDanZhuangTai.DAI_ZHI_JIAN_TEXT);
 		request.setAttribute("yjpdzDdztMc", DingDanZhuangTai.YI_JIAN_PAI_DUI_ZHONG_TEXT);
 		request.setAttribute("yjsbDdztMc", DingDanZhuangTai.YI_JIAN_SHANG_BANG_TEXT);
 		request.setAttribute("ejpdzDdztMc", DingDanZhuangTai.ER_JIAN_PAI_DUI_ZHONG_TEXT);
 		request.setAttribute("ejsbDdztMc", DingDanZhuangTai.ER_JIAN_SHANG_BANG_TEXT);
 		request.setAttribute("shlx", ShenHeJiLu.XIA_DAN_SHEN_HE);
+		request.setAttribute("ddTab", Main.DING_DAN);
 		
 		return MODULE_NAME+"/zhcx/list";
 	}
@@ -318,6 +324,8 @@ public class DDGLController {
 					dingDanService.edit(dd);
 				}
 			}
+			
+			mainService.updateYfwtbByIds(Main.WEI_TONG_BU,ids+"",Main.DING_DAN);
 		}
 		return json;
 	}

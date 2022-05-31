@@ -77,6 +77,7 @@
 <%@include file="../../inc/js.jsp"%>
 <script type="text/javascript">
 var path='<%=basePath %>';
+var mainPath=path+'main/';
 var ddglPath=path+'ddgl/';
 var gkjPath=path+'gkj/';
 var dialogTop=10;
@@ -84,6 +85,7 @@ var dialogLeft=20;
 var cddxxdNum=0;
 var icphdNum=1;
 var dshDdztMc='${requestScope.dshDdztMc}';
+var ddTab='${requestScope.ddTab}';
 $(function(){
 	initDDZTCBB();
 	initSearchLB();
@@ -666,19 +668,30 @@ function checkById(){
 	if(sjsfzh==""||sjxm==""||cph=="")
 		ddztMc=$("#check_ddxx_div #yshDdztMc").val();
 	else
-		ddztMc='${requestScope.yjpdzDdztMc}';
+		ddztMc='${requestScope.dzjDdztMc}';
 	var shlx='${requestScope.shlx}';
 	var shrId='${sessionScope.yongHu.id}';
 	$.post(ddglPath + "checkDingDanByIds",
 		{ids:id,ddztMc:ddztMc,shlx:shlx,shjg:true,shrId:shrId},
 		function(result){
 			if(result.status==1){
-				alert(result.msg);
-				openCheckDDXXDialog(false,null);
-				tab1.datagrid("load");
+				syncWithYf(result.msg);
 			}
 			else{
 				alert(result.msg);
+			}
+		}
+	,"json");
+}
+
+function syncWithYf(cddri){
+	$.post(mainPath+"syncWithYf",
+		{tabArrStr:ddTab},
+		function(data){
+			if(data.status=="ok"){
+				alert(cddri);
+				openCheckDDXXDialog(false,null);
+				tab1.datagrid("load");
 			}
 		}
 	,"json");

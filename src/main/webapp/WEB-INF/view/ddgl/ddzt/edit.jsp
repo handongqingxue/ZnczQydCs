@@ -26,10 +26,12 @@
 </style>
 <script type="text/javascript">
 var path='<%=basePath %>';
+var mainPath=path+'main/';
 var ddglPath=path+'ddgl/';
 var dialogTop=70;
 var dialogLeft=20;
 var edNum=0;
+var ddztTab='${requestScope.ddztTab}';
 $(function(){
 	initEditDialog();//0
 
@@ -108,14 +110,25 @@ function editDingDanZhuangTai(){
 		contentType: false,
 		success: function (data){
 			if(data.message=="ok"){
-				alert(data.info);
-				history.go(-1);
+				syncWithYf(data.info);
 			}
 			else{
 				alert(data.info);
 			}
 		}
 	});
+}
+
+function syncWithYf(ddztri){
+	$.post(mainPath+"syncWithYf",
+		{tabArrStr:ddztTab},
+		function(data){
+			if(data.status=="ok"){
+				alert(ddztri);
+				history.go(-1);
+			}
+		}
+	,"json");
 }
 
 function focusMC(){
@@ -166,6 +179,7 @@ function setFitWidthInParent(parent,self){
 		<div id="edit_div">
 			<form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
 			<input type="hidden" id="id" name="id" value="${requestScope.ddzt.id }"/>
+			<input type="hidden" id="yfwtb" name="yfwtb" value="${requestScope.yfwtb }"/>
 			<table>
 			  <tr>
 				<td class="td1" align="right">

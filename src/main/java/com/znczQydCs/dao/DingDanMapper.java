@@ -29,7 +29,7 @@ public interface DingDanMapper {
 
 	DingDan getByZt(@Param("yjbfh")Integer yjbfh,@Param("ejbfh") Integer ejbfh, @Param("ddztMc") String ddztMc, @Param("yjzt") Integer yjzt, @Param("ejzt") Integer ejzt);
 
-	int checkByIds(@Param("idList") List<String> idList, @Param("ddztId") int ddztId);
+	int checkByIds(@Param("idList") List<String> idList, @Param("qyDdztId") int ddztId);
 
 	int getCountByDdh(@Param("ddh") String ddh);
 
