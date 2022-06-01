@@ -22,13 +22,14 @@ import com.znczQydCs.entity.GuoBangJiLu;
 import com.znczQydCs.entity.ShouHuoBuMen;
 import com.znczQydCs.entity.WuZi;
 import com.znczQydCs.entity.WuZiLeiXing;
+import com.znczQydCs.entity.YongHu;
 import com.znczQydCs.entity.YunShuShang;
 
 import net.sf.json.JSONArray;
 
 public class CloudAPIUtil {
 
-	public static final String CLOUD_SERVICE_URL="http://192.168.1.7:8080/ZnczXcx/main/";
+	public static final String CLOUD_SERVICE_URL="http://192.168.1.5:8080/ZnczXcx/main/";
 
 	//https://www.cnblogs.com/aeolian/p/7746158.html
 	//https://www.cnblogs.com/bobc/p/8809761.html
@@ -132,6 +133,23 @@ public class CloudAPIUtil {
 			Map parames = new HashMap<String, String>();
 	        parames.put("qyh", qyh);  
 	        resultJO = doHttp("updateZJJLToYtb",parames);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return resultJO;
+		}
+	}
+
+	public static JSONObject syncYHToYf(String qyh, List<YongHu> yhList) {
+		// TODO Auto-generated method stub
+		JSONObject resultJO = null;
+		try {
+			Map parames = new HashMap<String, String>();
+	        parames.put("qyh", qyh);
+	        parames.put("yhJAStr", JSONArray.fromObject(yhList).toString());
+	        resultJO = doHttp("syncYHToYf",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

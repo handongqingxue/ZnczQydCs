@@ -17,4 +17,10 @@ public interface YongHuService {
 	YongHu selectById(String id);
 
 	int checkByIds(Boolean check, String ids);
+
+	boolean checkIfWtbToYf();
+
+	List<YongHu> selectListByYfwtb(Integer yfwtb);
+
+	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
 }

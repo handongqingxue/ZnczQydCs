@@ -95,7 +95,9 @@ public class MainController {
 			String[] tabArr = tabArrStr.split(",");
 			for (int i = 0; i < tabArr.length; i++) {
 				String tab = tabArr[i];
-				if(Main.DING_DAN_ZHUANG_TAI.equals(tab))
+				if(Main.YONG_HU.equals(tab))
+					syncYH(qyh);
+				else if(Main.DING_DAN_ZHUANG_TAI.equals(tab))
 					syncDDZT(qyh);
 				else if(Main.WU_ZI_LEI_XING.equals(tab))
 					syncWZLX(qyh);
@@ -128,6 +130,24 @@ public class MainController {
 			return jsonMap;
 		}
 		
+	}
+
+	public void syncYH(String qyh) {
+		// TODO Auto-generated method stub
+		try {
+			boolean bool=yongHuService.checkIfWtbToYf();
+			if(bool) {
+				List<YongHu> yhList=yongHuService.selectListByYfwtb(Main.WEI_TONG_BU);
+				yongHuService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
+				JSONObject resultJO = CloudAPIUtil.syncYHToYf(qyh,yhList);
+				if("ok".equals(resultJO.getString("status"))) {
+					yongHuService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void syncDDZT(String qyh) {

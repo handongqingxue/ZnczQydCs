@@ -10,7 +10,7 @@
 var path='<%=basePath %>';
 $(function(){
 	$.post(path+"main/syncWithYf",
-		{tabArrStr:"ding_dan"},
+		{tabArrStr:"yong_hu"},
 		function(data){
 		
 		}

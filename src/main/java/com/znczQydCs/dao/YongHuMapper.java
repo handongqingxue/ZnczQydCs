@@ -22,4 +22,10 @@ public interface YongHuMapper {
 	YongHu selectById(@Param("id") String id);
 
 	int checkByIds(@Param("check") Boolean check, @Param("idList") List<String> idList);
+
+	int getWtbToYfCount();
+
+	public List<YongHu> selectListByYfwtb(@Param("yfwtb") Integer yfwtb);
+
+	int updateTbZtByYfwtb(@Param("yfwtb") int yfwtb, @Param("xtbzt") int xtbzt);
 }

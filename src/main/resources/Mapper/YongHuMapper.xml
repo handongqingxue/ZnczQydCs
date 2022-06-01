@@ -92,4 +92,13 @@
 		#{id}
 		</foreach>
 	</update>
+	<select id="getWtbToYfCount" resultType="java.lang.Integer">
+		select count(*) from yong_hu where yfwtb=${@com.znczQydCs.entity.Main@WEI_TONG_BU}
+	</select>
+	<select id="selectListByYfwtb" resultType="com.znczQydCs.entity.YongHu">
+		select * from yong_hu where yfwtb=#{yfwtb}
+	</select>
+	<update id="updateTbZtByYfwtb">
+		update yong_hu set yfwtb=#{xtbzt} where yfwtb=#{yfwtb}
+	</update>
 </mapper>
