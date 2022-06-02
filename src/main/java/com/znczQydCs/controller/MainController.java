@@ -23,9 +23,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.znczQydCs.entity.*;
 import com.znczQydCs.util.*;
-import com.znczQydCs.service.*;
+
+import com.alibaba.fastjson.*;
 
 import com.znczQydCs.service.*;
+
 import com.znczQydCs.socket.*;
 
 @Controller
@@ -209,7 +211,10 @@ public class MainController {
 				String status=resultJO.getString("status");
 				if("ok".equals(status)) {
 					CloudAPIUtil.updateTbZtByQytb(Main.YONG_HU,Main.WEI_TONG_BU,Main.TONG_BU_ZHONG,qyh);
-					List<YongHu> yhList=net.sf.json.JSONArray.toList(net.sf.json.JSONArray.fromObject(resultJO.get("yhList")),YongHu.class);
+					
+					String yhListStr = resultJO.get("yhList").toString();
+					System.out.println("yhListStr==="+yhListStr);
+					List<YongHu> yhList=com.alibaba.fastjson.JSONObject.parseArray(yhListStr, YongHu.class);
 					int syncCount=yongHuService.syncYHToQy(yhList);
 					if(syncCount==yhList.size()) {
 						CloudAPIUtil.updateTbZtByQytb(Main.YONG_HU,Main.TONG_BU_ZHONG,Main.YI_TONG_BU,qyh);

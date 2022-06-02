@@ -12,7 +12,7 @@ public interface YongHuMapper {
 
 	int edit(YongHu yh);
 
-	int editByYfwjlId(YongHu yongHu);
+	int editByQyjlId(YongHu yongHu);
 	
 	//通过用户信息查询用户
 	YongHu getYongHu(YongHu yh);
@@ -31,5 +31,5 @@ public interface YongHuMapper {
 
 	int updateTbZtByYfwtb(@Param("yfwtb") int yfwtb, @Param("xtbzt") int xtbzt);
 
-	int getCountByYfwjlId(@Param("yfwjlId") Integer yfwjlId);
+	int getCountByQyjlId(@Param("qyjlId") Integer qyjlId);
 }

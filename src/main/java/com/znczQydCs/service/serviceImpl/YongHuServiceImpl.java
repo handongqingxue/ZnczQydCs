@@ -90,10 +90,10 @@ public class YongHuServiceImpl implements YongHuService {
 			yongHu.setQxIds(yh.getQxIds());
 			yongHu.setYfwtb(Main.YI_TONG_BU);
 			
-		    if(yongHuDao.getCountByYfwjlId(yongHu.getYfwjlId())==0)
+		    if(yongHuDao.getCountByQyjlId(yongHu.getQyjlId())==0)
 		    	count+=yongHuDao.add(yongHu);
 		    else
-		    	count+=yongHuDao.editByYfwjlId(yongHu);
+		    	count+=yongHuDao.editByQyjlId(yongHu);
 		}
 		return count;
 	}

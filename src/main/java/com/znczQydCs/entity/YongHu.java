@@ -18,6 +18,12 @@ public class YongHu {
 	public void setYfwjlId(Integer yfwjlId) {
 		this.yfwjlId = yfwjlId;
 	}
+	public Integer getQyjlId() {
+		return qyjlId;
+	}
+	public void setQyjlId(Integer qyjlId) {
+		this.qyjlId = qyjlId;
+	}
 	public String getYhm() {
 		return yhm;
 	}
@@ -82,6 +88,7 @@ public class YongHu {
 		this.mm=mm;
 	}
 	private Integer yfwjlId;
+	private Integer qyjlId;
 	private String yhm;
 	private String mm;
 	private String zsxm;
