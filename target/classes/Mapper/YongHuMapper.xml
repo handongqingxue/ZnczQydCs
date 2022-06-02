@@ -60,6 +60,27 @@
 		</trim>
 		where id=#{id}
 	</update>
+	<update id="editByYfwjlId" parameterType="com.znczQydCs.entity.YongHu">
+		update yong_hu set 
+		<trim suffixOverrides=",">
+			<if test="yhm!=null">
+				yhm=#{yhm},
+			</if>
+			<if test="mm!=null">
+				mm=#{mm},
+			</if>
+			<if test="zsxm!=null">
+				zsxm=#{zsxm},
+			</if>
+			<if test="qxIds!=null">
+				qxIds=#{qxIds},
+			</if>
+			<if test="js!=null">
+				js=#{js},
+			</if>
+		</trim>
+		where yfwjlId=#{yfwjlId}
+	</update>
 	<select id="getYongHu" resultType="com.znczQydCs.entity.YongHu">
 		select * from yong_hu where yhm=#{yhm} and mm=#{mm}
 	</select>
@@ -101,4 +122,7 @@
 	<update id="updateTbZtByYfwtb">
 		update yong_hu set yfwtb=#{xtbzt} where yfwtb=#{yfwtb}
 	</update>
+	<select id="getCountByYfwjlId" resultType="java.lang.Integer">
+		select count(*) from yong_hu where yfwjlId=#{yfwjlId}
+	</select>
 </mapper>

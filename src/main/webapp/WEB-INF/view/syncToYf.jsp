@@ -9,13 +9,26 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 $(function(){
-	$.post(path+"main/syncWithYf",
+	syncToQy();
+});
+
+function syncToYf(){
+	$.post(path+"main/syncToYf",
 		{tabArrStr:"yong_hu"},
 		function(data){
 		
 		}
 	,"json");
-});
+}
+
+function syncToQy(){
+	$.post(path+"main/syncToQy",
+		{tabArrStr:"yong_hu"},
+		function(data){
+		
+		}
+	,"json");
+}
 </script>
 </head>
 <body>

@@ -1,5 +1,6 @@
 package com.znczQydCs.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +24,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.znczQydCs.entity.*;
 import com.znczQydCs.util.*;
 import com.znczQydCs.service.*;
-
-import net.sf.json.JSONArray;
 
 import com.znczQydCs.service.*;
 import com.znczQydCs.socket.*;
@@ -63,10 +63,10 @@ public class MainController {
 		ss.start();
 	}
 	
-	@RequestMapping(value="/goSyncWithYf")
-	public String goSyncWithYf() {
+	@RequestMapping(value="/goSyncToYf")
+	public String goSyncToYf() {
 		
-		return "syncWithYf";
+		return "syncToYf";
 	}
 
 	/**
@@ -85,9 +85,9 @@ public class MainController {
 		return "regist";
 	}
 
-	@RequestMapping(value="/syncWithYf")
+	@RequestMapping(value="/syncToYf")
 	@ResponseBody
-	public Map<String, Object> syncWithYf(String tabArrStr) {
+	public Map<String, Object> syncToYf(String tabArrStr) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		try {
@@ -96,29 +96,29 @@ public class MainController {
 			for (int i = 0; i < tabArr.length; i++) {
 				String tab = tabArr[i];
 				if(Main.YONG_HU.equals(tab))
-					syncYH(qyh);
+					syncYHToYf(qyh);
 				else if(Main.DING_DAN_ZHUANG_TAI.equals(tab))
-					syncDDZT(qyh);
+					syncDDZTToYf(qyh);
 				else if(Main.WU_ZI_LEI_XING.equals(tab))
-					syncWZLX(qyh);
+					syncWZLXToYf(qyh);
 				else if(Main.WU_ZI.equals(tab))
-					syncWZ(qyh);
+					syncWZToYf(qyh);
 				else if(Main.YUN_SHU_SHANG.equals(tab))
-					syncYSS(qyh);
+					syncYSSToYf(qyh);
 				else if(Main.FA_HUO_DAN_WEI.equals(tab))
-					syncFHDW(qyh);
+					syncFHDWToYf(qyh);
 				else if(Main.SHOU_HUO_BU_MEN.equals(tab))
-					syncSHBM(qyh);
+					syncSHBMToYf(qyh);
 				else if(Main.DING_DAN.equals(tab))
-					syncDd(qyh);
+					syncDdToYf(qyh);
 				else if(Main.PAI_DUI_JI_LU.equals(tab))
-					syncPDJL(qyh);
+					syncPDJLToYf(qyh);
 				else if(Main.ZHI_JIAN_JI_LU.equals(tab))
-					syncZJJL(qyh);
+					syncZJJLToYf(qyh);
 				else if(Main.BANG_DAN_JI_LU.equals(tab))
-					syncBDJL(qyh);
+					syncBDJLToYf(qyh);
 				else if(Main.GUO_BANG_JI_LU.equals(tab))
-					syncGBJL(qyh);
+					syncGBJLToYf(qyh);
 			}
 			
 			jsonMap.put("status", "ok");
@@ -132,7 +132,56 @@ public class MainController {
 		
 	}
 
-	public void syncYH(String qyh) {
+	@RequestMapping(value="/syncToQy")
+	@ResponseBody
+	public Map<String, Object> syncToQy(String tabArrStr) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		try {
+			String qyh = LoadProperties.getQyh();
+			String[] tabArr = tabArrStr.split(",");
+			for (int i = 0; i < tabArr.length; i++) {
+				String tab = tabArr[i];
+				if(Main.YONG_HU.equals(tab))
+					syncYHToQy(qyh);
+				/*
+				else if(Main.DING_DAN_ZHUANG_TAI.equals(tab))
+					syncDDZTFromYf(qyh);
+				else if(Main.WU_ZI_LEI_XING.equals(tab))
+					syncWZLXFromYf(qyh);
+				else if(Main.WU_ZI.equals(tab))
+					syncWZFromYf(qyh);
+				else if(Main.YUN_SHU_SHANG.equals(tab))
+					syncYSSFromYf(qyh);
+				else if(Main.FA_HUO_DAN_WEI.equals(tab))
+					syncFHDWFromYf(qyh);
+				else if(Main.SHOU_HUO_BU_MEN.equals(tab))
+					syncSHBMFromYf(qyh);
+				else if(Main.DING_DAN.equals(tab))
+					syncDdFromYf(qyh);
+				else if(Main.PAI_DUI_JI_LU.equals(tab))
+					syncPDJLFromYf(qyh);
+				else if(Main.ZHI_JIAN_JI_LU.equals(tab))
+					syncZJJLFromYf(qyh);
+				else if(Main.BANG_DAN_JI_LU.equals(tab))
+					syncBDJLFromYf(qyh);
+				else if(Main.GUO_BANG_JI_LU.equals(tab))
+					syncGBJLFromYf(qyh);
+					*/
+			}
+			
+			jsonMap.put("status", "ok");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return jsonMap;
+		}
+		
+	}
+
+	public void syncYHToYf(String qyh) {
 		// TODO Auto-generated method stub
 		try {
 			boolean bool=yongHuService.checkIfWtbToYf();
@@ -150,7 +199,30 @@ public class MainController {
 		}
 	}
 
-	public void syncDDZT(String qyh) {
+	public void syncYHToQy(String qyh) {
+		// TODO Auto-generated method stub
+		try {
+			JSONObject wtbResultJO=CloudAPIUtil.checkIfWtbToQy(Main.YONG_HU,qyh);
+			String wtbStatus = wtbResultJO.getString("status");
+			if("ok".equals(wtbStatus)) {
+				JSONObject resultJO=CloudAPIUtil.selectListByQytb(Main.YONG_HU,Main.WEI_TONG_BU,qyh);
+				String status=resultJO.getString("status");
+				if("ok".equals(status)) {
+					CloudAPIUtil.updateTbZtByQytb(Main.YONG_HU,Main.WEI_TONG_BU,Main.TONG_BU_ZHONG,qyh);
+					List<YongHu> yhList=net.sf.json.JSONArray.toList(net.sf.json.JSONArray.fromObject(resultJO.get("yhList")),YongHu.class);
+					int syncCount=yongHuService.syncYHToQy(yhList);
+					if(syncCount==yhList.size()) {
+						CloudAPIUtil.updateTbZtByQytb(Main.YONG_HU,Main.TONG_BU_ZHONG,Main.YI_TONG_BU,qyh);
+					}
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void syncDDZTToYf(String qyh) {
 		// TODO Auto-generated method stub
 		try {
 			boolean bool=dingDanZhuangTaiService.checkIfWtbToYf();
@@ -168,7 +240,7 @@ public class MainController {
 		}
 	}
 
-	public void syncWZLX(String qyh) {
+	public void syncWZLXToYf(String qyh) {
 		// TODO Auto-generated method stub
 		try {
 			boolean bool=wuZiLeiXingService.checkIfWtbToYf();
@@ -186,7 +258,7 @@ public class MainController {
 		}
 	}
 
-	public void syncWZ(String qyh) {
+	public void syncWZToYf(String qyh) {
 		// TODO Auto-generated method stub
 		try {
 			boolean bool=wuZiService.checkIfWtbToYf();
@@ -204,7 +276,7 @@ public class MainController {
 		}
 	}
 
-	public void syncYSS(String qyh) {
+	public void syncYSSToYf(String qyh) {
 		// TODO Auto-generated method stub
 		try {
 			boolean bool=yunShuShangService.checkIfWtbToYf();
@@ -222,7 +294,7 @@ public class MainController {
 		}
 	}
 
-	public void syncFHDW(String qyh) {
+	public void syncFHDWToYf(String qyh) {
 		// TODO Auto-generated method stub
 		try {
 			boolean bool=faHuoDanWeiService.checkIfWtbToYf();
@@ -240,7 +312,7 @@ public class MainController {
 		}
 	}
 
-	public void syncSHBM(String qyh) {
+	public void syncSHBMToYf(String qyh) {
 		// TODO Auto-generated method stub
 		try {
 			boolean bool=shouHuoBuMenService.checkIfWtbToYf();
@@ -258,7 +330,7 @@ public class MainController {
 		}
 	}
 
-	public void syncDd(String qyh) {
+	public void syncDdToYf(String qyh) {
 		// TODO Auto-generated method stub
 		try {
 			boolean bool=dingDanService.checkIfWtbToYf();
@@ -276,7 +348,7 @@ public class MainController {
 		}
 	}
 
-	public void syncBDJL(String qyh) {
+	public void syncBDJLToYf(String qyh) {
 		// TODO Auto-generated method stub
 		try {
 			boolean bool=bangDanJiLuService.checkIfWtbToYf();
@@ -294,7 +366,7 @@ public class MainController {
 		}
 	}
 
-	public void syncGBJL(String qyh) {
+	public void syncGBJLToYf(String qyh) {
 		// TODO Auto-generated method stub
 		try {
 			boolean bool=guoBangJiLuService.checkIfWtbToYf();
@@ -312,7 +384,7 @@ public class MainController {
 		}
 	}
 	
-	public void syncPDJL(String qyh) {
+	public void syncPDJLToYf(String qyh) {
 		// TODO Auto-generated method stub
 		try {
 			JSONObject resultJO = CloudAPIUtil.selectPDJLListByQytb(qyh, Main.WEI_TONG_BU);
@@ -350,7 +422,7 @@ public class MainController {
 		}
 	}
 
-	public void syncZJJL(String qyh) {
+	public void syncZJJLToYf(String qyh) {
 		JSONObject resultJO = CloudAPIUtil.selectZJJLListByQytb(qyh, Main.WEI_TONG_BU);
 		if("ok".equals(resultJO.getString("status"))) {
 			int count=0;

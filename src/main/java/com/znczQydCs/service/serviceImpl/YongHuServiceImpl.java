@@ -73,4 +73,28 @@ public class YongHuServiceImpl implements YongHuService {
 		// TODO Auto-generated method stub
 		return yongHuDao.updateTbZtByYfwtb(yfwtb, xtbzt);
 	}
+
+	@Override
+	public int syncYHToQy(List<YongHu> yhList) {
+		// TODO Auto-generated method stub
+		int count=0;
+		for (YongHu yh : yhList) {
+			YongHu yongHu=yh;
+			yongHu.setYfwjlId(yh.getId());
+			yongHu.setYhm(yh.getYhm());
+			yongHu.setMm(yh.getMm());
+			yongHu.setZsxm(yh.getZsxm());
+			yongHu.setCjsj(yh.getCjsj());
+			yongHu.setCheck(yh.getCheck());
+			yongHu.setJs(yh.getJs());
+			yongHu.setQxIds(yh.getQxIds());
+			yongHu.setYfwtb(Main.YI_TONG_BU);
+			
+		    if(yongHuDao.getCountByYfwjlId(yongHu.getYfwjlId())==0)
+		    	count+=yongHuDao.add(yongHu);
+		    else
+		    	count+=yongHuDao.editByYfwjlId(yongHu);
+		}
+		return count;
+	}
 }

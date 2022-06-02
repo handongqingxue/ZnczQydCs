@@ -311,4 +311,58 @@ public class CloudAPIUtil {
 			return resultJO;
 		}
 	}
+
+	public static JSONObject checkIfWtbToQy(String tab, String qyh) {
+		// TODO Auto-generated method stub
+		JSONObject resultJO = null;
+		try {
+			Map parames = new HashMap<String, String>();
+	        parames.put("tab", tab);
+	        parames.put("qyh", qyh);
+	        resultJO = doHttp("checkIfWtbToQy",parames);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return resultJO;
+		}
+	}
+
+	public static JSONObject selectListByQytb(String tab, Integer qytb, String qyh) {
+		// TODO Auto-generated method stub
+		JSONObject resultJO = null;
+		try {
+			Map parames = new HashMap<String, String>();
+	        parames.put("tab", tab);
+	        parames.put("qytb", qytb);
+	        parames.put("qyh", qyh);
+	        resultJO = doHttp("selectListByQytb",parames);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return resultJO;
+		}
+	}
+
+	public static JSONObject updateTbZtByQytb(String tab, int qytb, int xtbzt, String qyh) {
+		// TODO Auto-generated method stub
+		JSONObject resultJO = null;
+		try {
+			Map parames = new HashMap<String, String>();
+	        parames.put("tab", tab);
+	        parames.put("qytb", qytb);
+	        parames.put("xtbzt", xtbzt);
+	        parames.put("qyh", qyh);
+	        resultJO = doHttp("updateTbZtByQytb",parames);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return resultJO;
+		}
+	}
 }
