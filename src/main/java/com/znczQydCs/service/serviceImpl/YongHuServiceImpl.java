@@ -75,7 +75,7 @@ public class YongHuServiceImpl implements YongHuService {
 	}
 
 	@Override
-	public int syncYHToQy(List<YongHu> yhList) {
+	public int syncToQy(List<YongHu> yhList) {
 		// TODO Auto-generated method stub
 		int count=0;
 		for (YongHu yh : yhList) {

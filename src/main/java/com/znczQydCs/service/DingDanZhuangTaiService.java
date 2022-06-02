@@ -23,4 +23,6 @@ public interface DingDanZhuangTaiService {
 	List<DingDanZhuangTai> selectListByYfwtb(Integer yfwtb);
 
 	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
+
+	int syncToQy(List<DingDanZhuangTai> ddztList);
 }

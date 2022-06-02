@@ -27,4 +27,8 @@ public interface DingDanZhuangTaiMapper {
 	List<DingDanZhuangTai> selectListByYfwtb(@Param("yfwtb") Integer yfwtb);
 
 	int updateTbZtByYfwtb(@Param("yfwtb") int yfwtb, @Param("xtbzt") int xtbzt);
+
+	int getCountByQyjlId(@Param("qyjlId") Integer qyjlId);
+
+	int editByQyjlId(DingDanZhuangTai dingDanZhuangTai);
 }

@@ -69,4 +69,23 @@ public class DingDanZhuangTaiServiceImpl implements DingDanZhuangTaiService {
 		// TODO Auto-generated method stub
 		return dingDanZhuangTaiDao.updateTbZtByYfwtb(yfwtb, xtbzt);
 	}
+
+	@Override
+	public int syncToQy(List<DingDanZhuangTai> ddztList) {
+		// TODO Auto-generated method stub
+		int count=0;
+		for (DingDanZhuangTai ddzt : ddztList) {
+			DingDanZhuangTai dingDanZhuangTai=ddzt;
+			dingDanZhuangTai.setYfwjlId(ddzt.getId());
+			dingDanZhuangTai.setMc(ddzt.getMc());
+			dingDanZhuangTai.setPx(ddzt.getPx());
+			dingDanZhuangTai.setYfwtb(Main.YI_TONG_BU);
+			
+		    if(dingDanZhuangTaiDao.getCountByQyjlId(dingDanZhuangTai.getQyjlId())==0)
+		    	count+=dingDanZhuangTaiDao.add(dingDanZhuangTai);
+		    else
+		    	count+=dingDanZhuangTaiDao.editByQyjlId(dingDanZhuangTai);
+		}
+		return count;
+	}
 }

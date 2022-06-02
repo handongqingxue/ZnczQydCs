@@ -146,9 +146,9 @@ public class MainController {
 				String tab = tabArr[i];
 				if(Main.YONG_HU.equals(tab))
 					syncYHToQy(qyh);
-				/*
 				else if(Main.DING_DAN_ZHUANG_TAI.equals(tab))
-					syncDDZTFromYf(qyh);
+					syncDDZTToQy(qyh);
+				/*
 				else if(Main.WU_ZI_LEI_XING.equals(tab))
 					syncWZLXFromYf(qyh);
 				else if(Main.WU_ZI.equals(tab))
@@ -215,7 +215,7 @@ public class MainController {
 					String yhListStr = resultJO.get("yhList").toString();
 					System.out.println("yhListStr==="+yhListStr);
 					List<YongHu> yhList=com.alibaba.fastjson.JSONObject.parseArray(yhListStr, YongHu.class);
-					int syncCount=yongHuService.syncYHToQy(yhList);
+					int syncCount=yongHuService.syncToQy(yhList);
 					if(syncCount==yhList.size()) {
 						CloudAPIUtil.updateTbZtByQytb(Main.YONG_HU,Main.TONG_BU_ZHONG,Main.YI_TONG_BU,qyh);
 					}
@@ -237,6 +237,32 @@ public class MainController {
 				JSONObject resultJO = CloudAPIUtil.syncDDZTToYf(qyh,ddztList);
 				if("ok".equals(resultJO.getString("status"))) {
 					dingDanZhuangTaiService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void syncDDZTToQy(String qyh) {
+		// TODO Auto-generated method stub
+		try {
+			JSONObject wtbResultJO=CloudAPIUtil.checkIfWtbToQy(Main.DING_DAN_ZHUANG_TAI,qyh);
+			String wtbStatus = wtbResultJO.getString("status");
+			if("ok".equals(wtbStatus)) {
+				JSONObject resultJO=CloudAPIUtil.selectListByQytb(Main.DING_DAN_ZHUANG_TAI,Main.WEI_TONG_BU,qyh);
+				String status=resultJO.getString("status");
+				if("ok".equals(status)) {
+					CloudAPIUtil.updateTbZtByQytb(Main.DING_DAN_ZHUANG_TAI,Main.WEI_TONG_BU,Main.TONG_BU_ZHONG,qyh);
+					
+					String ddztListStr = resultJO.get("ddztList").toString();
+					System.out.println("ddztListStr==="+ddztListStr);
+					List<DingDanZhuangTai> ddztList=com.alibaba.fastjson.JSONObject.parseArray(ddztListStr, DingDanZhuangTai.class);
+					int syncCount=dingDanZhuangTaiService.syncToQy(ddztList);
+					if(syncCount==ddztList.size()) {
+						CloudAPIUtil.updateTbZtByQytb(Main.DING_DAN_ZHUANG_TAI,Main.TONG_BU_ZHONG,Main.YI_TONG_BU,qyh);
+					}
 				}
 			}
 		} catch (Exception e) {

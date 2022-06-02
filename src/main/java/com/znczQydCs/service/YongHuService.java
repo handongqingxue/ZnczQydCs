@@ -24,5 +24,5 @@ public interface YongHuService {
 
 	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
 
-	int syncYHToQy(List<YongHu> yhList);
+	int syncToQy(List<YongHu> yhList);
 }
