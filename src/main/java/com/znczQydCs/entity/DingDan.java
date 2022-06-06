@@ -38,6 +38,18 @@ public class DingDan {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	public Integer getYfwjlId() {
+		return yfwjlId;
+	}
+	public void setYfwjlId(Integer yfwjlId) {
+		this.yfwjlId = yfwjlId;
+	}
+	public Integer getQyjlId() {
+		return qyjlId;
+	}
+	public void setQyjlId(Integer qyjlId) {
+		this.qyjlId = qyjlId;
+	}
 	public String getDdh() {
 		return ddh;
 	}
@@ -254,12 +266,14 @@ public class DingDan {
 	public void setEwmlj(String ewmlj) {
 		this.ewmlj = ewmlj;
 	}
-	public String getYfwtb() {
+	public Integer getYfwtb() {
 		return yfwtb;
 	}
-	public void setYfwtb(String yfwtb) {
+	public void setYfwtb(Integer yfwtb) {
 		this.yfwtb = yfwtb;
 	}
+	private Integer yfwjlId;
+	private Integer qyjlId;
 	private String ddh;//¶©µ¥ºÅ
 	private Integer yfwDdztId;
 	private Integer qyDdztId;
@@ -296,5 +310,5 @@ public class DingDan {
 	private String shbmMc;
 	private String bjsj;//±à¼­Ê±¼ä
 	private String ewmlj;
-	private String yfwtb;
+	private Integer yfwtb;
 }

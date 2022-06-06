@@ -23,6 +23,8 @@ public interface DingDanMapper {
 
 	int edit(DingDan dd);
 
+	int editByQyjlId(DingDan dingDan);
+
 	int editByZt(DingDan dd);
 
 	DingDan getByZtCph(@Param("ddztId") int ddztId, @Param("cph") String cph);
@@ -48,5 +50,7 @@ public interface DingDanMapper {
 	List<DingDan> selectListByYfwtb(@Param("yfwtb") Integer yfwtb);
 
 	int updateTbZtByYfwtb(@Param("yfwtb") int yfwtb, @Param("xtbzt") int xtbzt);
+
+	int getCountByQyjlId(@Param("qyjlId") Integer qyjlId);
 
 }

@@ -23,7 +23,7 @@ function syncToYf(){
 
 function syncToQy(){
 	$.post(path+"main/syncToQy",
-		{tabArrStr:"shou_huo_bu_men"},
+		{tabArrStr:"ding_dan"},
 		function(data){
 		
 		}

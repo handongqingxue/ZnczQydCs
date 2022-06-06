@@ -205,4 +205,21 @@ public class DingDanServiceImpl implements DingDanService {
 		// TODO Auto-generated method stub
 		return dingDanDao.updateTbZtByYfwtb(yfwtb, xtbzt);
 	}
+
+	@Override
+	public int syncToQy(List<DingDan> ddList) {
+		// TODO Auto-generated method stub
+		int count=0;
+		for (DingDan dd : ddList) {
+			DingDan dingDan=dd;
+			dingDan.setYfwjlId(dd.getId());
+			dingDan.setYfwtb(Main.YI_TONG_BU);
+			
+		    if(dingDanDao.getCountByQyjlId(dingDan.getQyjlId())==0)
+		    	count+=dingDanDao.add(dingDan);
+		    else
+		    	count+=dingDanDao.editByQyjlId(dingDan);
+		}
+		return count;
+	}
 }

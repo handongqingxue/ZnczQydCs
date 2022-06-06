@@ -46,4 +46,6 @@ public interface DingDanService {
 
 	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
 
+	int syncToQy(List<DingDan> ddList);
+
 }
