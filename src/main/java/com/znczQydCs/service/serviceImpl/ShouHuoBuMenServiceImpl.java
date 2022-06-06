@@ -79,4 +79,23 @@ public class ShouHuoBuMenServiceImpl implements ShouHuoBuMenService {
 		// TODO Auto-generated method stub
 		return shouHuoBuMenDao.updateTbZtByYfwtb(yfwtb, xtbzt);
 	}
+
+	@Override
+	public int syncToQy(List<ShouHuoBuMen> shbmList) {
+		// TODO Auto-generated method stub
+		int count=0;
+		for (ShouHuoBuMen shbm : shbmList) {
+			ShouHuoBuMen shouHuoBuMen=shbm;
+			shouHuoBuMen.setYfwjlId(shbm.getId());
+			shouHuoBuMen.setMc(shbm.getMc());
+			shouHuoBuMen.setBjsj(shbm.getBjsj());
+			shouHuoBuMen.setYfwtb(Main.YI_TONG_BU);
+			
+		    if(shouHuoBuMenDao.getCountByQyjlId(shouHuoBuMen.getQyjlId())==0)
+		    	count+=shouHuoBuMenDao.add(shouHuoBuMen);
+		    else
+		    	count+=shouHuoBuMenDao.editByQyjlId(shouHuoBuMen);
+		}
+		return count;
+	}
 }

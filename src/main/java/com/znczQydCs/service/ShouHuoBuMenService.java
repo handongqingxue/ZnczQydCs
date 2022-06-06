@@ -26,4 +26,6 @@ public interface ShouHuoBuMenService {
 
 	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
 
+	int syncToQy(List<ShouHuoBuMen> shbmList);
+
 }
