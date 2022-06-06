@@ -30,4 +30,8 @@ public interface WuZiMapper {
 	public List<WuZi> selectListByYfwtb(@Param("yfwtb") Integer yfwtb);
 
 	public int updateTbZtByYfwtb(@Param("yfwtb") int yfwtb, @Param("xtbzt") int xtbzt);
+
+	int getCountByQyjlId(@Param("qyjlId") Integer qyjlId);
+
+	int editByQyjlId(WuZi wuZi);
 }

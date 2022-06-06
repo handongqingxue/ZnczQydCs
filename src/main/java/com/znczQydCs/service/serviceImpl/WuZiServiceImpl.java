@@ -98,4 +98,24 @@ public class WuZiServiceImpl implements WuZiService {
 		// TODO Auto-generated method stub
 		return wuZiDao.updateTbZtByYfwtb(yfwtb, xtbzt);
 	}
+
+	@Override
+	public int syncToQy(List<WuZi> wzList) {
+		// TODO Auto-generated method stub
+		int count=0;
+		for (WuZi wz : wzList) {
+			WuZi wuZi=wz;
+			wuZi.setYfwjlId(wz.getId());
+			wuZi.setMc(wz.getMc());
+			wuZi.setBjsj(wz.getBjsj());
+			wuZi.setWzlxId(wz.getWzlxId());
+			wuZi.setYfwtb(Main.YI_TONG_BU);
+			
+		    if(wuZiDao.getCountByQyjlId(wuZi.getQyjlId())==0)
+		    	count+=wuZiDao.add(wuZi);
+		    else
+		    	count+=wuZiDao.editByQyjlId(wuZi);
+		}
+		return count;
+	}
 }

@@ -23,7 +23,7 @@ function syncToYf(){
 
 function syncToQy(){
 	$.post(path+"main/syncToQy",
-		{tabArrStr:"wu_zi_lei_xing"},
+		{tabArrStr:"wu_zi"},
 		function(data){
 		
 		}

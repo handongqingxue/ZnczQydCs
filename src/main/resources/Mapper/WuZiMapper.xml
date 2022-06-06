@@ -34,6 +34,27 @@
 	<update id="edit" parameterType="com.znczQydCs.entity.WuZi">
 		update wu_zi set mc=#{mc},bjsj=now(),wzlxId=#{wzlxId} where id=#{id}
 	</update>
+	<update id="editByQyjlId" parameterType="com.znczQydCs.entity.WuZi">
+		update wu_zi set 
+		<trim suffixOverrides=",">
+			<if test="yfwjlId!=null">
+				yfwjlId=#{yfwjlId},
+			</if>
+			<if test="mc!=null">
+				mc=#{mc},
+			</if>
+			<if test="bjsj!=null">
+				bjsj=#{bjsj},
+			</if>
+			<if test="wzlxId!=null">
+				wzlxId=#{wzlxId},
+			</if>
+			<if test="yfwtb!=null">
+				yfwtb=#{yfwtb},
+			</if>
+		</trim>
+		 where id=#{qyjlId}
+	</update>
 	<select id="queryForInt" resultType="java.lang.Integer">
 		select count(*) from wu_zi_lei_xing wzlx,wu_zi wz where wzlx.id=wz.wzlxId
 		<if test="mc!=''&amp;mc!=null">
@@ -71,4 +92,7 @@
 	<update id="updateTbZtByYfwtb">
 		update wu_zi set yfwtb=#{xtbzt} where yfwtb=#{yfwtb}
 	</update>
+	<select id="getCountByQyjlId" resultType="java.lang.Integer">
+		select count(*) from wu_zi where id=#{qyjlId}
+	</select>
 </mapper>

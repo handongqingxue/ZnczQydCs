@@ -33,8 +33,29 @@ public class WuZi {
 	public void setWzlxmc(String wzlxmc) {
 		this.wzlxmc = wzlxmc;
 	}
+	public Integer getYfwjlId() {
+		return yfwjlId;
+	}
+	public void setYfwjlId(Integer yfwjlId) {
+		this.yfwjlId = yfwjlId;
+	}
+	public Integer getQyjlId() {
+		return qyjlId;
+	}
+	public void setQyjlId(Integer qyjlId) {
+		this.qyjlId = qyjlId;
+	}
+	public Integer getYfwtb() {
+		return yfwtb;
+	}
+	public void setYfwtb(Integer yfwtb) {
+		this.yfwtb = yfwtb;
+	}
+	private Integer yfwjlId;
+	private Integer qyjlId;
 	private String mc;
 	private String bjsj;
 	private Integer wzlxId;
 	private String wzlxmc;
+	private Integer yfwtb;//云服务同步 1.未同步 2.同步中 3.已同步
 }

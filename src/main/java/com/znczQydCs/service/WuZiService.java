@@ -28,4 +28,6 @@ public interface WuZiService {
 	public List<WuZi> selectListByYfwtb(Integer yfwtb);
 
 	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
+
+	int syncToQy(List<WuZi> wzList);
 }
