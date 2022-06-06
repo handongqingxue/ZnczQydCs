@@ -26,4 +26,6 @@ public interface WuZiLeiXingService {
 
 	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
 
+	int syncToQy(List<WuZiLeiXing> wzlxList);
+
 }

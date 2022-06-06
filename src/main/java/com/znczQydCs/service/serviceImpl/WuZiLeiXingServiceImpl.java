@@ -79,4 +79,26 @@ public class WuZiLeiXingServiceImpl implements WuZiLeiXingService {
 		// TODO Auto-generated method stub
 		return wuZiLeiXingDao.updateTbZtByYfwtb(yfwtb, xtbzt);
 	}
+
+	@Override
+	public int syncToQy(List<WuZiLeiXing> wzlxList) {
+		// TODO Auto-generated method stub
+		int count=0;
+		for (WuZiLeiXing wzlx : wzlxList) {
+			WuZiLeiXing wuZiLeiXing=wzlx;
+			wuZiLeiXing.setYfwjlId(wzlx.getId());
+			wuZiLeiXing.setMc(wzlx.getMc());
+			wuZiLeiXing.setCjsj(wzlx.getCjsj());
+			wuZiLeiXing.setBjsj(wzlx.getBjsj());
+			wuZiLeiXing.setPx(wzlx.getPx());
+			wuZiLeiXing.setBz(wzlx.getBz());
+			wuZiLeiXing.setYfwtb(Main.YI_TONG_BU);
+			
+		    if(wuZiLeiXingDao.getCountByQyjlId(wuZiLeiXing.getQyjlId())==0)
+		    	count+=wuZiLeiXingDao.add(wuZiLeiXing);
+		    else
+		    	count+=wuZiLeiXingDao.editByQyjlId(wuZiLeiXing);
+		}
+		return count;
+	}
 }

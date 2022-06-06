@@ -28,4 +28,8 @@ public interface WuZiLeiXingMapper {
 
 	public int updateTbZtByYfwtb(@Param("yfwtb") int yfwtb, @Param("xtbzt") int xtbzt);
 
+	int getCountByQyjlId(@Param("qyjlId") Integer qyjlId);
+
+	int editByQyjlId(WuZiLeiXing wuZiLeiXing);
+
 }
