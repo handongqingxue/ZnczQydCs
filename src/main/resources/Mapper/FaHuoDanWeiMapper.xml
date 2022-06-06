@@ -35,6 +35,24 @@
 		</trim>
 		 where id=#{id}
 	</update>
+	<update id="editByQyjlId" parameterType="com.znczQydCs.entity.FaHuoDanWei">
+		update fa_huo_dan_wei set 
+		<trim suffixOverrides=",">
+			<if test="yfwjlId!=null">
+				yfwjlId=#{yfwjlId},
+			</if>
+			<if test="mc!=null">
+				mc=#{mc},
+			</if>
+			<if test="bjsj!=null">
+				bjsj=#{bjsj},
+			</if>
+			<if test="yfwtb!=null">
+				yfwtb=#{yfwtb},
+			</if>
+		</trim>
+		 where id=#{qyjlId}
+	</update>
 	<select id="queryForInt" resultType="java.lang.Integer">
 		select count(*) from fa_huo_dan_wei where 1=1
 		<if test="mc!=''&amp;mc!=null">
@@ -62,4 +80,7 @@
 	<update id="updateTbZtByYfwtb">
 		update fa_huo_dan_wei set yfwtb=#{xtbzt} where yfwtb=#{yfwtb}
 	</update>
+	<select id="getCountByQyjlId" resultType="java.lang.Integer">
+		select count(*) from fa_huo_dan_wei where id=#{qyjlId}
+	</select>
 </mapper>

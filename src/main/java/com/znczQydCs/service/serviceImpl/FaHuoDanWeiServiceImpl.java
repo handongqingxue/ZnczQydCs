@@ -79,4 +79,23 @@ public class FaHuoDanWeiServiceImpl implements FaHuoDanWeiService {
 		// TODO Auto-generated method stub
 		return faHuoDanWeiDao.updateTbZtByYfwtb(yfwtb, xtbzt);
 	}
+
+	@Override
+	public int syncToQy(List<FaHuoDanWei> fhdwList) {
+		// TODO Auto-generated method stub
+		int count=0;
+		for (FaHuoDanWei fhdw : fhdwList) {
+			FaHuoDanWei faHuoDanWei=fhdw;
+			faHuoDanWei.setYfwjlId(fhdw.getId());
+			faHuoDanWei.setMc(fhdw.getMc());
+			faHuoDanWei.setBjsj(fhdw.getBjsj());
+			faHuoDanWei.setYfwtb(Main.YI_TONG_BU);
+			
+		    if(faHuoDanWeiDao.getCountByQyjlId(faHuoDanWei.getQyjlId())==0)
+		    	count+=faHuoDanWeiDao.add(faHuoDanWei);
+		    else
+		    	count+=faHuoDanWeiDao.editByQyjlId(faHuoDanWei);
+		}
+		return count;
+	}
 }

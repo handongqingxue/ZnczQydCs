@@ -154,9 +154,9 @@ public class MainController {
 					syncWZToQy(qyh);
 				else if(Main.YUN_SHU_SHANG.equals(tab))
 					syncYSSToQy(qyh);
-				/*
 				else if(Main.FA_HUO_DAN_WEI.equals(tab))
-					syncFHDWFromYf(qyh);
+					syncFHDWToQy(qyh);
+				/*
 				else if(Main.SHOU_HUO_BU_MEN.equals(tab))
 					syncSHBMFromYf(qyh);
 				else if(Main.DING_DAN.equals(tab))
@@ -413,6 +413,32 @@ public class MainController {
 				JSONObject resultJO = CloudAPIUtil.syncFHDWToYf(qyh,fhdwList);
 				if("ok".equals(resultJO.getString("status"))) {
 					faHuoDanWeiService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void syncFHDWToQy(String qyh) {
+		// TODO Auto-generated method stub
+		try {
+			JSONObject wtbResultJO=CloudAPIUtil.checkIfWtbToQy(Main.FA_HUO_DAN_WEI,qyh);
+			String wtbStatus = wtbResultJO.getString("status");
+			if("ok".equals(wtbStatus)) {
+				JSONObject resultJO=CloudAPIUtil.selectListByQytb(Main.FA_HUO_DAN_WEI,Main.WEI_TONG_BU,qyh);
+				String status=resultJO.getString("status");
+				if("ok".equals(status)) {
+					CloudAPIUtil.updateTbZtByQytb(Main.FA_HUO_DAN_WEI,Main.WEI_TONG_BU,Main.TONG_BU_ZHONG,qyh);
+					
+					String fhdwListStr = resultJO.get("fhdwList").toString();
+					System.out.println("fhdwListStr==="+fhdwListStr);
+					List<FaHuoDanWei> fhdwList=com.alibaba.fastjson.JSONObject.parseArray(fhdwListStr, FaHuoDanWei.class);
+					int syncCount=faHuoDanWeiService.syncToQy(fhdwList);
+					if(syncCount==fhdwList.size()) {
+						CloudAPIUtil.updateTbZtByQytb(Main.FA_HUO_DAN_WEI,Main.TONG_BU_ZHONG,Main.YI_TONG_BU,qyh);
+					}
 				}
 			}
 		} catch (Exception e) {
