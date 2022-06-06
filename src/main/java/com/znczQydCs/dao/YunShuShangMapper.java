@@ -27,4 +27,8 @@ public interface YunShuShangMapper {
 	public List<YunShuShang> selectListByYfwtb(@Param("yfwtb") Integer yfwtb);
 
 	public int updateTbZtByYfwtb(@Param("yfwtb") int yfwtb, @Param("xtbzt") int xtbzt);
+
+	int getCountByQyjlId(@Param("qyjlId") Integer qyjlId);
+
+	int editByQyjlId(YunShuShang yunShuShang);
 }

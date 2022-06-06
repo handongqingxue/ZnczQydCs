@@ -79,4 +79,23 @@ public class YunShuShangServiceImpl implements YunShuShangService {
 		// TODO Auto-generated method stub
 		return yunShuShangDao.updateTbZtByYfwtb(yfwtb, xtbzt);
 	}
+
+	@Override
+	public int syncToQy(List<YunShuShang> yssList) {
+		// TODO Auto-generated method stub
+		int count=0;
+		for (YunShuShang yss : yssList) {
+			YunShuShang yunShuShang=yss;
+			yunShuShang.setYfwjlId(yss.getId());
+			yunShuShang.setMc(yss.getMc());
+			yunShuShang.setBjsj(yss.getBjsj());
+			yunShuShang.setYfwtb(Main.YI_TONG_BU);
+			
+		    if(yunShuShangDao.getCountByQyjlId(yunShuShang.getQyjlId())==0)
+		    	count+=yunShuShangDao.add(yunShuShang);
+		    else
+		    	count+=yunShuShangDao.editByQyjlId(yunShuShang);
+		}
+		return count;
+	}
 }

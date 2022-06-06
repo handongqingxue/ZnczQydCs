@@ -25,4 +25,6 @@ public interface YunShuShangService {
 	public List<YunShuShang> selectListByYfwtb(Integer yfwtb);
 
 	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
+
+	int syncToQy(List<YunShuShang> yssList);
 }
