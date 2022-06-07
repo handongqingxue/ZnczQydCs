@@ -108,6 +108,9 @@
 	<update id="editByQyjlId" parameterType="com.znczQydCs.entity.BangDanJiLu">
 		update bang_dan_ji_lu set 
 		<trim suffixOverrides=",">
+			<if test="yfwjlId!=null">
+				yfwjlId=#{yfwjlId},
+			</if>
 			<if test="mz!=null">
 				mz=#{mz},
 			</if>
@@ -117,8 +120,17 @@
 			<if test="jz!=null">
 				jz=#{jz},
 			</if>
+			<if test="rq!=null">
+				rq=#{rq},
+			</if>
+			<if test="qyDdId!=null">
+				qyDdId=#{qyDdId},
+			</if>
 			<if test="bz!=null">
 				bz=#{bz},
+			</if>
+			<if test="yfwtb!=null">
+				yfwtb=#{yfwtb},
 			</if>
 		</trim>
 		where id=#{qyjlId}

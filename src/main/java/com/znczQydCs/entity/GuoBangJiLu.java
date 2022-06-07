@@ -21,6 +21,12 @@ public class GuoBangJiLu {
 	public void setYfwjlId(Integer yfwjlId) {
 		this.yfwjlId = yfwjlId;
 	}
+	public Integer getQyjlId() {
+		return qyjlId;
+	}
+	public void setQyjlId(Integer qyjlId) {
+		this.qyjlId = qyjlId;
+	}
 	public Float getGbzl() {
 		return gbzl;
 	}
@@ -129,7 +135,14 @@ public class GuoBangJiLu {
 	public void setShbmMc(String shbmMc) {
 		this.shbmMc = shbmMc;
 	}
+	public Integer getYfwtb() {
+		return yfwtb;
+	}
+	public void setYfwtb(Integer yfwtb) {
+		this.yfwtb = yfwtb;
+	}
 	private Integer yfwjlId;
+	private Integer qyjlId;
 	private Float gbzl;
 	private String zp1;
 	private String zp2;
@@ -148,4 +161,5 @@ public class GuoBangJiLu {
 	private String yssMc;
 	private String fhdwMc;
 	private String shbmMc;
+	private Integer yfwtb;//云服务同步 1.未同步 2.同步中 3.已同步
 }

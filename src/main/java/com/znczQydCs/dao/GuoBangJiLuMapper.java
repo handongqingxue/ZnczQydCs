@@ -11,7 +11,11 @@ public interface GuoBangJiLuMapper {
 
 	int add(GuoBangJiLu gbjl);
 
+	int addFromYfw(GuoBangJiLu guoBangJiLu);
+
 	int edit(GuoBangJiLu gbjl);
+
+	int editByQyjlId(GuoBangJiLu gbjl);
 
 	int queryForInt(@Param("ddh") String ddh, @Param("cph") String cph, @Param("gbsjks") String gbsjks, @Param("gbsjjs") String gbsjjs);
 
@@ -36,4 +40,6 @@ public interface GuoBangJiLuMapper {
 	List<GuoBangJiLu> selectListByYfwtb(@Param("yfwtb") Integer yfwtb);
 
 	int updateTbZtByYfwtb(@Param("yfwtb") int yfwtb, @Param("xtbzt") int xtbzt);
+
+	int getCountByQyjlId(@Param("qyjlId") Integer qyjlId);
 }

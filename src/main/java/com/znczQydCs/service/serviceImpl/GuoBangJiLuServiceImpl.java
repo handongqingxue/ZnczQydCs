@@ -101,4 +101,21 @@ public class GuoBangJiLuServiceImpl implements GuoBangJiLuService {
 		// TODO Auto-generated method stub
 		return guoBangJiLuDao.updateTbZtByYfwtb(yfwtb, xtbzt);
 	}
+
+	@Override
+	public int syncToQy(List<GuoBangJiLu> gbjlList) {
+		// TODO Auto-generated method stub
+		int count=0;
+		for (GuoBangJiLu gbjl : gbjlList) {
+			GuoBangJiLu guoBangJiLu=gbjl;
+			guoBangJiLu.setYfwjlId(gbjl.getId());
+			guoBangJiLu.setYfwtb(Main.YI_TONG_BU);
+			
+		    if(guoBangJiLuDao.getCountByQyjlId(guoBangJiLu.getQyjlId())==0)
+		    	count+=guoBangJiLuDao.addFromYfw(guoBangJiLu);
+		    else
+		    	count+=guoBangJiLuDao.editByQyjlId(guoBangJiLu);
+		}
+		return count;
+	}
 }

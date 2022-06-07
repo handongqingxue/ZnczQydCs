@@ -33,4 +33,6 @@ public interface GuoBangJiLuService {
 
 	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
 
+	int syncToQy(List<GuoBangJiLu> gbjlList);
+
 }
