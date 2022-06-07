@@ -15,6 +15,12 @@ public interface ZhiJianJiLuMapper {
 
 	int add(ZhiJianJiLu zjjl);
 
+	int addFromYfw(ZhiJianJiLu zhiJianJiLu);
+
+	int editByQyjlId(ZhiJianJiLu zhiJianJiLu);
+
 	ZhiJianJiLu selectById(String id);
+
+	int getCountByQyjlId(@Param("qyjlId") Integer qyjlId);
 
 }

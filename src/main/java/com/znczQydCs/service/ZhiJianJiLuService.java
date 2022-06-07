@@ -15,4 +15,6 @@ public interface ZhiJianJiLuService {
 
 	ZhiJianJiLu selectById(String id);
 
+	int syncToQy(List<ZhiJianJiLu> zjjlList);
+
 }

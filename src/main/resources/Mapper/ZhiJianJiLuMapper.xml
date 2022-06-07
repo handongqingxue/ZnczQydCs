@@ -79,7 +79,90 @@
 			</if>
 		</trim>
 	</insert>
+	<insert id="addFromYfw" parameterType="com.znczQydCs.entity.ZhiJianJiLu">
+		insert into zhi_jian_ji_lu
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="yfwjlId!=null">
+				yfwjlId,
+			</if>
+			<if test="yfwDdId!=null">
+				yfwDdId,
+			</if>
+			<if test="qyDdId!=null">
+				qyDdId,
+			</if>
+			<if test="zjyId!=null">
+				zjyId,
+			</if>
+			<if test="zjsj!=null">
+				zjsj,
+			</if>
+			<if test="jg!=null">
+				jg,
+			</if>
+			<if test="bz!=null">
+				bz,
+			</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="yfwjlId!=null">
+				#{yfwjlId},
+			</if>
+			<if test="yfwDdId!=null">
+				#{yfwDdId},
+			</if>
+			<if test="qyDdId!=null">
+				#{qyDdId},
+			</if>
+			<if test="zjyId!=null">
+				#{zjyId},
+			</if>
+			<if test="zjsj!=null">
+				#{zjsj},
+			</if>
+			<if test="jg!=null">
+				#{jg},
+			</if>
+			<if test="bz!=null">
+				#{bz},
+			</if>
+		</trim>
+	</insert>
+	<update id="editByQyjlId" parameterType="com.znczQydCs.entity.ZhiJianJiLu">
+		update zhi_jian_ji_lu set 
+		<trim suffixOverrides=",">
+			<if test="yfwjlId!=null">
+				yfwjlId=#{yfwjlId},
+			</if>
+			<if test="yfwDdId!=null">
+				yfwDdId=#{yfwDdId},
+			</if>
+			<if test="qyDdId!=null">
+				qyDdId=#{qyDdId},
+			</if>
+			<if test="zjyId!=null">
+				zjyId=#{zjyId},
+			</if>
+			<if test="zjsj!=null">
+				zjsj=#{zjsj},
+			</if>
+			<if test="jg!=null">
+				jg=#{jg},
+			</if>
+			<if test="bz!=null">
+				bz=#{bz},
+			</if>
+			<if test="yfwtb!=null">
+				yfwtb=#{yfwtb},
+			</if>
+		</trim>
+		where id=#{qyjlId}
+	</update>
 	<select id="selectById" resultType="com.znczQydCs.entity.ZhiJianJiLu">
 		select zjjl.*,dd.ddh,ddzt.mc ddztMc,zjy.zsxm zjyZsxm from zhi_jian_ji_lu zjjl,yong_hu zjy,ding_dan dd,ding_dan_zhuang_tai ddzt where zjjl.zjyId=zjy.id and zjjl.qyDdId=dd.id and dd.qyDdztId=ddzt.id and zjjl.id=#{0}
+	</select>
+	<select id="getCountByQyjlId" resultType="java.lang.Integer">
+		select count(*) from pai_dui_ji_lu where id=#{qyjlId}
 	</select>
 </mapper>

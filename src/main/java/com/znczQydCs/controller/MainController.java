@@ -162,9 +162,9 @@ public class MainController {
 					syncDdToQy(qyh);
 				else if(Main.PAI_DUI_JI_LU.equals(tab))
 					syncPDJLToQy(qyh);
-				/*
 				else if(Main.ZHI_JIAN_JI_LU.equals(tab))
-					syncZJJLFromYf(qyh);
+					syncZJJLToQy(qyh);
+				/*
 				else if(Main.BANG_DAN_JI_LU.equals(tab))
 					syncBDJLFromYf(qyh);
 				else if(Main.GUO_BANG_JI_LU.equals(tab))
@@ -690,6 +690,32 @@ public class MainController {
 			if(count==zjjlJA.length()) {
 				CloudAPIUtil.updateZJJLToYtb(qyh);
 			}
+		}
+	}
+	
+	public void syncZJJLToQy(String qyh) {
+		// TODO Auto-generated method stub
+		try {
+			JSONObject wtbResultJO=CloudAPIUtil.checkIfWtbToQy(Main.ZHI_JIAN_JI_LU,qyh);
+			String wtbStatus = wtbResultJO.getString("status");
+			if("ok".equals(wtbStatus)) {
+				JSONObject resultJO=CloudAPIUtil.selectListByQytb(Main.ZHI_JIAN_JI_LU,Main.WEI_TONG_BU,qyh);
+				String status=resultJO.getString("status");
+				if("ok".equals(status)) {
+					CloudAPIUtil.updateTbZtByQytb(Main.ZHI_JIAN_JI_LU,Main.WEI_TONG_BU,Main.TONG_BU_ZHONG,qyh);
+					
+					String zjjlListStr = resultJO.get("zjjlList").toString();
+					System.out.println("zjjlListStr==="+zjjlListStr);
+					List<ZhiJianJiLu> zjjlList=com.alibaba.fastjson.JSONObject.parseArray(zjjlListStr, ZhiJianJiLu.class);
+					int syncCount=zhiJianJiLuService.syncToQy(zjjlList);
+					if(syncCount==zjjlList.size()) {
+						CloudAPIUtil.updateTbZtByQytb(Main.ZHI_JIAN_JI_LU,Main.TONG_BU_ZHONG,Main.YI_TONG_BU,qyh);
+					}
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	

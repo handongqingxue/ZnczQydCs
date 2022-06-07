@@ -23,7 +23,7 @@ function syncToYf(){
 
 function syncToQy(){
 	$.post(path+"main/syncToQy",
-		{tabArrStr:"pai_dui_ji_lu"},
+		{tabArrStr:"zhi_jian_ji_lu"},
 		function(data){
 		
 		}

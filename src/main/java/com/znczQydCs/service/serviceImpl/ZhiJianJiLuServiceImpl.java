@@ -39,4 +39,21 @@ public class ZhiJianJiLuServiceImpl implements ZhiJianJiLuService {
 		// TODO Auto-generated method stub
 		return zhiJianJiLuDao.selectById(id);
 	}
+
+	@Override
+	public int syncToQy(List<ZhiJianJiLu> zjjlList) {
+		// TODO Auto-generated method stub
+		int count=0;
+		for (ZhiJianJiLu zjjl : zjjlList) {
+			ZhiJianJiLu zhiJianJiLu=zjjl;
+			zhiJianJiLu.setYfwjlId(zjjl.getId());
+			zhiJianJiLu.setYfwtb(Main.YI_TONG_BU);
+			
+		    if(zhiJianJiLuDao.getCountByQyjlId(zhiJianJiLu.getQyjlId())==0)
+		    	count+=zhiJianJiLuDao.addFromYfw(zhiJianJiLu);
+		    else
+		    	count+=zhiJianJiLuDao.editByQyjlId(zhiJianJiLu);
+		}
+		return count;
+	}
 }
