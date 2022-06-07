@@ -27,4 +27,6 @@ public interface BangDanJiLuService {
 	List<BangDanJiLu> selectListByYfwtb(Integer yfwtb);
 
 	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
+
+	int syncToQy(List<BangDanJiLu> bdjlList);
 }

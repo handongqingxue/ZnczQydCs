@@ -10,6 +10,8 @@ public interface BangDanJiLuMapper {
 
 	int add(BangDanJiLu bdjl);
 
+	int addFromYfw(BangDanJiLu bangDanJiLu);
+
 	int edit(BangDanJiLu bdjl);
 
 	int queryForInt(@Param("ddh") String ddh);
@@ -29,4 +31,8 @@ public interface BangDanJiLuMapper {
 	List<BangDanJiLu> selectListByYfwtb(@Param("yfwtb") Integer yfwtb);
 
 	int updateTbZtByYfwtb(@Param("yfwtb") int yfwtb, @Param("xtbzt") int xtbzt);
+
+	int getCountByQyjlId(@Param("qyjlId") Integer qyjlId);
+
+	int editByQyjlId(BangDanJiLu bangDanJiLu);
 }

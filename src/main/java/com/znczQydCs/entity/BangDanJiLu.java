@@ -15,6 +15,12 @@ public class BangDanJiLu {
 	public void setYfwjlId(Integer yfwjlId) {
 		this.yfwjlId = yfwjlId;
 	}
+	public Integer getQyjlId() {
+		return qyjlId;
+	}
+	public void setQyjlId(Integer qyjlId) {
+		this.qyjlId = qyjlId;
+	}
 	public Float getMz() {
 		return mz;
 	}
@@ -111,7 +117,14 @@ public class BangDanJiLu {
 	public void setQygbsj(String qygbsj) {
 		this.qygbsj = qygbsj;
 	}
+	public Integer getYfwtb() {
+		return yfwtb;
+	}
+	public void setYfwtb(Integer yfwtb) {
+		this.yfwtb = yfwtb;
+	}
 	private Integer yfwjlId;
+	private Integer qyjlId;
 	private Float mz;
 	private Float pz;
 	private Float jz;
@@ -128,4 +141,5 @@ public class BangDanJiLu {
 	private String fhdwMc;
 	private String sygbsj;
 	private String qygbsj;
+	private Integer yfwtb;//云服务同步 1.未同步 2.同步中 3.已同步
 }

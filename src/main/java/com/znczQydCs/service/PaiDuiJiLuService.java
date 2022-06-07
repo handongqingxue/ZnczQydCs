@@ -14,4 +14,6 @@ public interface PaiDuiJiLuService {
 
 	PaiDuiJiLu selectById(String id);
 
+	int syncToQy(List<PaiDuiJiLu> pdjlList);
+
 }

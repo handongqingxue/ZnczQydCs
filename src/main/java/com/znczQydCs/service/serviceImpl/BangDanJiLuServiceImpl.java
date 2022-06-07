@@ -82,4 +82,21 @@ public class BangDanJiLuServiceImpl implements BangDanJiLuService {
 		// TODO Auto-generated method stub
 		return bangDanJiLuDao.updateTbZtByYfwtb(yfwtb, xtbzt);
 	}
+
+	@Override
+	public int syncToQy(List<BangDanJiLu> bdjlList) {
+		// TODO Auto-generated method stub
+		int count=0;
+		for (BangDanJiLu bdjl : bdjlList) {
+			BangDanJiLu bangDanJiLu=bdjl;
+			bangDanJiLu.setYfwjlId(bdjl.getId());
+			bangDanJiLu.setYfwtb(Main.YI_TONG_BU);
+			
+		    if(bangDanJiLuDao.getCountByQyjlId(bangDanJiLu.getQyjlId())==0)
+		    	count+=bangDanJiLuDao.addFromYfw(bangDanJiLu);
+		    else
+		    	count+=bangDanJiLuDao.editByQyjlId(bangDanJiLu);
+		}
+		return count;
+	}
 }

@@ -160,9 +160,9 @@ public class MainController {
 					syncSHBMToQy(qyh);
 				else if(Main.DING_DAN.equals(tab))
 					syncDdToQy(qyh);
-				/*
 				else if(Main.PAI_DUI_JI_LU.equals(tab))
-					syncPDJLFromYf(qyh);
+					syncPDJLToQy(qyh);
+				/*
 				else if(Main.ZHI_JIAN_JI_LU.equals(tab))
 					syncZJJLFromYf(qyh);
 				else if(Main.BANG_DAN_JI_LU.equals(tab))
@@ -552,6 +552,32 @@ public class MainController {
 			e.printStackTrace();
 		}
 	}
+	
+	public void syncBDJLToQy(String qyh) {
+		// TODO Auto-generated method stub
+		try {
+			JSONObject wtbResultJO=CloudAPIUtil.checkIfWtbToQy(Main.BANG_DAN_JI_LU,qyh);
+			String wtbStatus = wtbResultJO.getString("status");
+			if("ok".equals(wtbStatus)) {
+				JSONObject resultJO=CloudAPIUtil.selectListByQytb(Main.BANG_DAN_JI_LU,Main.WEI_TONG_BU,qyh);
+				String status=resultJO.getString("status");
+				if("ok".equals(status)) {
+					CloudAPIUtil.updateTbZtByQytb(Main.BANG_DAN_JI_LU,Main.WEI_TONG_BU,Main.TONG_BU_ZHONG,qyh);
+					
+					String bdjlListStr = resultJO.get("bdjlList").toString();
+					System.out.println("bdjlListStr==="+bdjlListStr);
+					List<BangDanJiLu> bdjlList=com.alibaba.fastjson.JSONObject.parseArray(bdjlListStr, BangDanJiLu.class);
+					int syncCount=bangDanJiLuService.syncToQy(bdjlList);
+					if(syncCount==bdjlList.size()) {
+						CloudAPIUtil.updateTbZtByQytb(Main.BANG_DAN_JI_LU,Main.TONG_BU_ZHONG,Main.YI_TONG_BU,qyh);
+					}
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public void syncGBJLToYf(String qyh) {
 		// TODO Auto-generated method stub
@@ -604,6 +630,32 @@ public class MainController {
 				}
 			}
 		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void syncPDJLToQy(String qyh) {
+		// TODO Auto-generated method stub
+		try {
+			JSONObject wtbResultJO=CloudAPIUtil.checkIfWtbToQy(Main.PAI_DUI_JI_LU,qyh);
+			String wtbStatus = wtbResultJO.getString("status");
+			if("ok".equals(wtbStatus)) {
+				JSONObject resultJO=CloudAPIUtil.selectListByQytb(Main.PAI_DUI_JI_LU,Main.WEI_TONG_BU,qyh);
+				String status=resultJO.getString("status");
+				if("ok".equals(status)) {
+					CloudAPIUtil.updateTbZtByQytb(Main.PAI_DUI_JI_LU,Main.WEI_TONG_BU,Main.TONG_BU_ZHONG,qyh);
+					
+					String pdjlListStr = resultJO.get("pdjlList").toString();
+					System.out.println("pdjlListStr==="+pdjlListStr);
+					List<PaiDuiJiLu> pdjlList=com.alibaba.fastjson.JSONObject.parseArray(pdjlListStr, PaiDuiJiLu.class);
+					int syncCount=paiDuiJiLuService.syncToQy(pdjlList);
+					if(syncCount==pdjlList.size()) {
+						CloudAPIUtil.updateTbZtByQytb(Main.PAI_DUI_JI_LU,Main.TONG_BU_ZHONG,Main.YI_TONG_BU,qyh);
+					}
+				}
+			}
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

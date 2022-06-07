@@ -43,6 +43,50 @@
 			</if>
 		</trim>
 	</insert>
+	<insert id="addFromYfw" parameterType="com.znczQydCs.entity.BangDanJiLu">
+		insert into bang_dan_ji_lu
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="mz!=null">
+				mz,
+			</if>
+			<if test="pz!=null">
+				pz,
+			</if>
+			<if test="jz!=null">
+				jz,
+			</if>
+			<if test="rq!=null">
+				rq,
+			</if>
+			<if test="ddId!=null">
+				ddId,
+			</if>
+			<if test="bz!=null">
+				bz,
+			</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="mz!=null">
+				#{mz},
+			</if>
+			<if test="pz!=null">
+				#{pz},
+			</if>
+			<if test="jz!=null">
+				#{jz},
+			</if>
+			<if test="rq!=null">
+				#{rq},
+			</if>
+			<if test="ddId!=null">
+				#{ddId},
+			</if>
+			<if test="bz!=null">
+				#{bz},
+			</if>
+		</trim>
+	</insert>
 	<update id="edit" parameterType="com.znczQydCs.entity.BangDanJiLu">
 		update bang_dan_ji_lu set 
 		<trim suffixOverrides=",">
@@ -60,6 +104,24 @@
 			</if>
 		</trim>
 		where id=#{id}
+	</update>
+	<update id="editByQyjlId" parameterType="com.znczQydCs.entity.BangDanJiLu">
+		update bang_dan_ji_lu set 
+		<trim suffixOverrides=",">
+			<if test="mz!=null">
+				mz=#{mz},
+			</if>
+			<if test="pz!=null">
+				pz=#{pz},
+			</if>
+			<if test="jz!=null">
+				jz=#{jz},
+			</if>
+			<if test="bz!=null">
+				bz=#{bz},
+			</if>
+		</trim>
+		where id=#{qyjlId}
 	</update>
 	<select id="queryForInt" resultType="java.lang.Integer">
 		select count(*) from bang_dan_ji_lu bdjl left join ding_dan dd on bdjl.qyDdId=dd.id left join wu_zi wz on dd.qyWzId=wz.id 
@@ -102,4 +164,7 @@
 	<update id="updateTbZtByYfwtb">
 		update bang_dan_ji_lu set yfwtb=#{xtbzt} where yfwtb=#{yfwtb}
 	</update>
+	<select id="getCountByQyjlId" resultType="java.lang.Integer">
+		select count(*) from bang_dan_ji_lu where id=#{qyjlId}
+	</select>
 </mapper>

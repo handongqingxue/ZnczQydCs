@@ -44,4 +44,21 @@ public class PaiDuiJiLuServiceImpl implements PaiDuiJiLuService {
 		// TODO Auto-generated method stub
 		return paiDuiJiLuDao.selectById(id);
 	}
+
+	@Override
+	public int syncToQy(List<PaiDuiJiLu> pdjlList) {
+		// TODO Auto-generated method stub
+		int count=0;
+		for (PaiDuiJiLu pdjl : pdjlList) {
+			PaiDuiJiLu paiDuiJiLu=pdjl;
+			paiDuiJiLu.setYfwjlId(pdjl.getId());
+			paiDuiJiLu.setYfwtb(Main.YI_TONG_BU);
+			
+		    if(paiDuiJiLuDao.getCountByQyjlId(paiDuiJiLu.getQyjlId())==0)
+		    	count+=paiDuiJiLuDao.addFromYfw(paiDuiJiLu);
+		    else
+		    	count+=paiDuiJiLuDao.editByQyjlId(paiDuiJiLu);
+		}
+		return count;
+	}
 }

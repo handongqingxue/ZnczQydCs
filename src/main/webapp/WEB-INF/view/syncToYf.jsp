@@ -23,7 +23,7 @@ function syncToYf(){
 
 function syncToQy(){
 	$.post(path+"main/syncToQy",
-		{tabArrStr:"ding_dan"},
+		{tabArrStr:"pai_dui_ji_lu"},
 		function(data){
 		
 		}

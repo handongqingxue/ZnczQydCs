@@ -19,6 +19,12 @@ public class PaiDuiJiLu {
 	public void setYfwjlId(Integer yfwjlId) {
 		this.yfwjlId = yfwjlId;
 	}
+	public Integer getQyjlId() {
+		return qyjlId;
+	}
+	public void setQyjlId(Integer qyjlId) {
+		this.qyjlId = qyjlId;
+	}
 	public Integer getYfwDdId() {
 		return yfwDdId;
 	}
@@ -80,6 +86,7 @@ public class PaiDuiJiLu {
 		this.qyh = qyh;
 	}
 	private Integer yfwjlId;
+	private Integer qyjlId;
 	private Integer yfwDdId;
 	private Integer qyDdId;
 	private String ddh;

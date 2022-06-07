@@ -47,6 +47,58 @@
 				${@com.znczQydCs.entity.Main@WEI_TONG_BU}
 		</trim>
 	</insert>
+	<insert id="addFromYfw" parameterType="com.znczQydCs.entity.PaiDuiJiLu">
+		insert into pai_dui_ji_lu
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="yfwjlId!=null">
+				yfwjlId,
+			</if>
+			<if test="yfwDdId!=null">
+				yfwDdId,
+			</if>
+			<if test="qyDdId!=null">
+				qyDdId,
+			</if>
+				pdsj,
+			<if test="dlh!=null">
+				dlh,
+			</if>
+			<if test="pdh!=null">
+				pdh,
+			</if>
+			<if test="zt!=null">
+				zt,
+			</if>
+			<if test="yfwtb!=null">
+				yfwtb,
+			</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="yfwjlId!=null">
+				#{yfwjlId},
+			</if>
+			<if test="yfwDdId!=null">
+				#{yfwDdId},
+			</if>
+			<if test="qyDdId!=null">
+				#{qyDdId},
+			</if>
+				now(),
+			<if test="dlh!=null">
+				#{dlh},
+			</if>
+			<if test="pdh!=null">
+				#{pdh},
+			</if>
+			<if test="zt!=null">
+				#{zt},
+			</if>
+			<if test="yfwtb!=null">
+				#{yfwtb},
+			</if>
+		</trim>
+	</insert>
 	<select id="queryForInt" resultType="java.lang.Integer">
 		select count(*) from pai_dui_ji_lu pdjl,ding_dan dd where pdjl.qyDdId=dd.id
 		<if test="ddh!=''&amp;ddh!=null">
@@ -69,4 +121,37 @@
 	<select id="selectById" resultType="com.znczQydCs.entity.PaiDuiJiLu">
 		select pdjl.*,dd.ddh,dd.cph from pai_dui_ji_lu pdjl,ding_dan dd where pdjl.qyDdId=dd.id and pdjl.id=#{id}
 	</select>
+	<select id="getCountByQyjlId" resultType="java.lang.Integer">
+		select count(*) from pai_dui_ji_lu where id=#{qyjlId}
+	</select>
+	<update id="editByQyjlId" parameterType="com.znczQydCs.entity.PaiDuiJiLu">
+		update pai_dui_ji_lu set 
+		<trim suffixOverrides=",">
+			<if test="yfwjlId!=null">
+				yfwjlId=#{yfwjlId},
+			</if>
+			<if test="yfwDdId!=null">
+				yfwDdId=#{yfwDdId},
+			</if>
+			<if test="qyDdId!=null">
+				qyDdId=#{qyDdId},
+			</if>
+			<if test="pdsj!=null">
+				pdsj=#{pdsj},
+			</if>
+			<if test="dlh!=null">
+				dlh=#{dlh},
+			</if>
+			<if test="pdh!=null">
+				pdh=#{pdh},
+			</if>
+			<if test="zt!=null">
+				zt=#{zt},
+			</if>
+			<if test="yfwtb!=null">
+				yfwtb=#{yfwtb},
+			</if>
+		</trim>
+		where id=#{qyjlId}
+	</update>
 </mapper>
