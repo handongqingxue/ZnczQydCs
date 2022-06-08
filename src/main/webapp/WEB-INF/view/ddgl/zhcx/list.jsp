@@ -675,7 +675,7 @@ function checkById(){
 		{ids:id,ddztMc:ddztMc,shlx:shlx,shjg:true,shrId:shrId},
 		function(result){
 			if(result.status==1){
-				syncWithYf(result.msg);
+				syncToYf(result.msg);
 			}
 			else{
 				alert(result.msg);
@@ -684,8 +684,8 @@ function checkById(){
 	,"json");
 }
 
-function syncWithYf(cddri){
-	$.post(mainPath+"syncWithYf",
+function syncToYf(cddri){
+	$.post(mainPath+"syncToYf",
 		{tabArrStr:ddTab},
 		function(data){
 			if(data.status=="ok"){

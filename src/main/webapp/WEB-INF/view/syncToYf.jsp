@@ -9,12 +9,12 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 $(function(){
-	syncToQy();
+	syncToYf();
 });
 
 function syncToYf(){
 	$.post(path+"main/syncToYf",
-		{tabArrStr:"yong_hu"},
+		{tabArrStr:"pai_dui_ji_lu"},
 		function(data){
 		
 		}

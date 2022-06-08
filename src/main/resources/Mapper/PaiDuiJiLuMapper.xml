@@ -154,4 +154,13 @@
 		</trim>
 		where id=#{qyjlId}
 	</update>
+	<select id="getWtbToYfCount" resultType="java.lang.Integer">
+		select count(*) from pai_dui_ji_lu where yfwtb=${@com.znczQydCs.entity.Main@WEI_TONG_BU}
+	</select>
+	<select id="selectListByYfwtb" resultType="com.znczQydCs.entity.PaiDuiJiLu">
+		select * from pai_dui_ji_lu where yfwtb=#{yfwtb}
+	</select>
+	<update id="updateTbZtByYfwtb">
+		update pai_dui_ji_lu set yfwtb=#{xtbzt} where yfwtb=#{yfwtb}
+	</update>
 </mapper>

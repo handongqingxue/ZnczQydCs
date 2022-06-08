@@ -16,4 +16,10 @@ public interface PaiDuiJiLuService {
 
 	int syncToQy(List<PaiDuiJiLu> pdjlList);
 
+	boolean checkIfWtbToYf();
+
+	List<PaiDuiJiLu> selectListByYfwtb(Integer yfwtb);
+
+	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
+
 }

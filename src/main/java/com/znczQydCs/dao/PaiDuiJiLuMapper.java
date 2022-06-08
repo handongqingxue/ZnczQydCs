@@ -22,4 +22,10 @@ public interface PaiDuiJiLuMapper {
 
 	int editByQyjlId(PaiDuiJiLu paiDuiJiLu);
 
+	int getWtbToYfCount();
+
+	List<PaiDuiJiLu> selectListByYfwtb(@Param("yfwtb") Integer yfwtb);
+
+	int updateTbZtByYfwtb(@Param("yfwtb") int yfwtb, @Param("xtbzt") int xtbzt);
+
 }

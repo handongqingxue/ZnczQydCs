@@ -61,4 +61,23 @@ public class PaiDuiJiLuServiceImpl implements PaiDuiJiLuService {
 		}
 		return count;
 	}
+
+	@Override
+	public boolean checkIfWtbToYf() {
+		// TODO Auto-generated method stub
+		int count=paiDuiJiLuDao.getWtbToYfCount();
+		return count>0?true:false;
+	}
+
+	@Override
+	public List<PaiDuiJiLu> selectListByYfwtb(Integer yfwtb) {
+		// TODO Auto-generated method stub
+		return paiDuiJiLuDao.selectListByYfwtb(yfwtb);
+	}
+
+	@Override
+	public int updateTbZtByYfwtb(int yfwtb, int xtbzt) {
+		// TODO Auto-generated method stub
+		return paiDuiJiLuDao.updateTbZtByYfwtb(yfwtb, xtbzt);
+	}
 }

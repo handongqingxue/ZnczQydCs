@@ -19,6 +19,7 @@ import com.znczQydCs.entity.DingDan;
 import com.znczQydCs.entity.DingDanZhuangTai;
 import com.znczQydCs.entity.FaHuoDanWei;
 import com.znczQydCs.entity.GuoBangJiLu;
+import com.znczQydCs.entity.PaiDuiJiLu;
 import com.znczQydCs.entity.ShouHuoBuMen;
 import com.znczQydCs.entity.WuZi;
 import com.znczQydCs.entity.WuZiLeiXing;
@@ -101,22 +102,6 @@ public class CloudAPIUtil {
 	        parames.put("qyh", qyh);  
 	        parames.put("qytb", qytb);
 	        resultJO = doHttp("selectZJJLListByQytb",parames);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		finally {
-			return resultJO;
-		}
-	}
-
-	public static JSONObject updatePDJLToYtb(String qyh) {
-		// TODO Auto-generated method stub
-		JSONObject resultJO = null;
-		try {
-			Map parames = new HashMap<String, String>();
-	        parames.put("qyh", qyh);  
-	        resultJO = doHttp("updatePDJLToYtb",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -303,6 +288,23 @@ public class CloudAPIUtil {
 	        parames.put("qyh", qyh);
 	        parames.put("shbmJAStr", JSONArray.fromObject(shbmList).toString());
 	        resultJO = doHttp("syncSHBMToYf",parames);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return resultJO;
+		}
+	}
+
+	public static JSONObject syncPDJLToYf(String qyh, List<PaiDuiJiLu> pdjlList) {
+		// TODO Auto-generated method stub
+		JSONObject resultJO = null;
+		try {
+			Map parames = new HashMap<String, String>();
+	        parames.put("qyh", qyh);
+	        parames.put("pdjlJAStr", JSONArray.fromObject(pdjlList).toString());
+	        resultJO = doHttp("syncPDJLToYf",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

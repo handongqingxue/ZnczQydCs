@@ -348,7 +348,7 @@ function newDingDanZongHeChaXun(){
 		contentType: false,
 		success: function (data){
 			if(data.message=="ok"){
-				syncWithYf(data.info);
+				syncToYf(data.info);
 			}
 			else{
 				alert(data.info);
@@ -357,8 +357,8 @@ function newDingDanZongHeChaXun(){
 	});
 }
 
-function syncWithYf(ddglri){
-	$.post(mainPath+"syncWithYf",
+function syncToYf(ddglri){
+	$.post(mainPath+"syncToYf",
 		{tabArrStr:ddTab},
 		function(data){
 			if(data.status=="ok"){

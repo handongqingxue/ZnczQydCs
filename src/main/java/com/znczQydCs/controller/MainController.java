@@ -624,33 +624,13 @@ public class MainController {
 	public void syncPDJLToYf(String qyh) {
 		// TODO Auto-generated method stub
 		try {
-			JSONObject resultJO = CloudAPIUtil.selectPDJLListByQytb(qyh, Main.WEI_TONG_BU);
-			if("ok".equals(resultJO.getString("status"))) {
-				int count=0;
-				org.json.JSONArray pdjlJA = (org.json.JSONArray)resultJO.get("pdjlList");
-				for (int i = 0; i < pdjlJA.length(); i++) {
-					org.json.JSONObject zjjlJO = (org.json.JSONObject)pdjlJA.get(i);
-					int id = zjjlJO.getInt("id");
-					int yfwDdId = zjjlJO.getInt("ddId");
-					String pdsj = zjjlJO.getString("pdsj");
-					int dlh = zjjlJO.getInt("dlh");
-					int pdh = zjjlJO.getInt("pdh");
-					int zt = zjjlJO.getInt("zt");
-					
-					Object colValObj=mainService.getQyColValByYfwColVal("id",String.valueOf(yfwDdId),"yfwjlId","ding_dan");
-					
-					PaiDuiJiLu pdjl=new PaiDuiJiLu();
-					pdjl.setYfwjlId(id);
-					pdjl.setYfwDdId(yfwDdId);
-					pdjl.setQyDdId(Integer.valueOf(colValObj.toString()));
-					pdjl.setPdsj(pdsj);
-					pdjl.setDlh(dlh);
-					pdjl.setPdh(pdh);
-					pdjl.setZt(zt);
-					count+=paiDuiJiLuService.add(pdjl);
-				}
-				if(count==pdjlJA.length()) {
-					CloudAPIUtil.updatePDJLToYtb(qyh);
+			boolean bool=paiDuiJiLuService.checkIfWtbToYf();
+			if(bool) {
+				List<PaiDuiJiLu> pdjlList=paiDuiJiLuService.selectListByYfwtb(Main.WEI_TONG_BU);
+				paiDuiJiLuService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
+				JSONObject resultJO = CloudAPIUtil.syncPDJLToYf(qyh,pdjlList);
+				if("ok".equals(resultJO.getString("status"))) {
+					paiDuiJiLuService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
 				}
 			}
 		} catch (JSONException e) {
