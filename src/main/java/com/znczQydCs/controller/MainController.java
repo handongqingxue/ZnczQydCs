@@ -666,34 +666,19 @@ public class MainController {
 	}
 
 	public void syncZJJLToYf(String qyh) {
-		JSONObject resultJO = CloudAPIUtil.selectZJJLListByQytb(qyh, Main.WEI_TONG_BU);
-		if("ok".equals(resultJO.getString("status"))) {
-			int count=0;
-			org.json.JSONArray zjjlJA = (org.json.JSONArray)resultJO.get("zjjlList");
-			for (int i = 0; i < zjjlJA.length(); i++) {
-				org.json.JSONObject zjjlJO = (org.json.JSONObject)zjjlJA.get(i);
-				int id = zjjlJO.getInt("id");
-				int yfwDdId = zjjlJO.getInt("ddId");
-				int zjyId = zjjlJO.getInt("zjyId");
-				String zjsj = zjjlJO.getString("zjsj");
-				int jg = zjjlJO.getInt("jg");
-				String bz = zjjlJO.getString("bz");
-				
-				Object colValObj=mainService.getQyColValByYfwColVal("id",String.valueOf(yfwDdId),"yfwjlId","ding_dan");
-				
-				ZhiJianJiLu zjjl=new ZhiJianJiLu();
-				zjjl.setYfwjlId(id);
-				zjjl.setYfwDdId(yfwDdId);
-				zjjl.setQyDdId(Integer.valueOf(colValObj.toString()));
-				zjjl.setZjyId(zjyId);
-				zjjl.setZjsj(zjsj);
-				zjjl.setJg(jg);
-				zjjl.setBz(bz);
-				count+=zhiJianJiLuService.add(zjjl);
+		try {
+			boolean bool=zhiJianJiLuService.checkIfWtbToYf();
+			if(bool) {
+				List<ZhiJianJiLu> zjjlList=zhiJianJiLuService.selectListByYfwtb(Main.WEI_TONG_BU);
+				zhiJianJiLuService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
+				JSONObject resultJO = CloudAPIUtil.syncZJJLToYf(qyh,zjjlList);
+				if("ok".equals(resultJO.getString("status"))) {
+					zhiJianJiLuService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
+				}
 			}
-			if(count==zjjlJA.length()) {
-				CloudAPIUtil.updateZJJLToYtb(qyh);
-			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	

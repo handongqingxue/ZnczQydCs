@@ -14,7 +14,7 @@ $(function(){
 
 function syncToYf(){
 	$.post(path+"main/syncToYf",
-		{tabArrStr:"pai_dui_ji_lu"},
+		{tabArrStr:"zhi_jian_ji_lu"},
 		function(data){
 		
 		}

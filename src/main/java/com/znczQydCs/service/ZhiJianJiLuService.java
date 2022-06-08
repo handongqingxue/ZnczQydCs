@@ -17,4 +17,10 @@ public interface ZhiJianJiLuService {
 
 	int syncToQy(List<ZhiJianJiLu> zjjlList);
 
+	boolean checkIfWtbToYf();
+
+	List<ZhiJianJiLu> selectListByYfwtb(Integer yfwtb);
+
+	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
+
 }

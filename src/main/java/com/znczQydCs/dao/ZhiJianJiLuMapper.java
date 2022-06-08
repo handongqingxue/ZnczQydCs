@@ -23,4 +23,10 @@ public interface ZhiJianJiLuMapper {
 
 	int getCountByQyjlId(@Param("qyjlId") Integer qyjlId);
 
+	int getWtbToYfCount();
+
+	List<ZhiJianJiLu> selectListByYfwtb(@Param("yfwtb") Integer yfwtb);
+
+	int updateTbZtByYfwtb(@Param("yfwtb") int yfwtb, @Param("xtbzt") int xtbzt);
+
 }

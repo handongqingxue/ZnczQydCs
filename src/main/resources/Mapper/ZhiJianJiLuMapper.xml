@@ -163,6 +163,15 @@
 		select zjjl.*,dd.ddh,ddzt.mc ddztMc,zjy.zsxm zjyZsxm from zhi_jian_ji_lu zjjl,yong_hu zjy,ding_dan dd,ding_dan_zhuang_tai ddzt where zjjl.zjyId=zjy.id and zjjl.qyDdId=dd.id and dd.qyDdztId=ddzt.id and zjjl.id=#{0}
 	</select>
 	<select id="getCountByQyjlId" resultType="java.lang.Integer">
-		select count(*) from pai_dui_ji_lu where id=#{qyjlId}
+		select count(*) from zhi_jian_ji_lu where id=#{qyjlId}
 	</select>
+	<select id="getWtbToYfCount" resultType="java.lang.Integer">
+		select count(*) from zhi_jian_ji_lu where yfwtb=${@com.znczQydCs.entity.Main@WEI_TONG_BU}
+	</select>
+	<select id="selectListByYfwtb" resultType="com.znczQydCs.entity.ZhiJianJiLu">
+		select * from zhi_jian_ji_lu where yfwtb=#{yfwtb}
+	</select>
+	<update id="updateTbZtByYfwtb">
+		update zhi_jian_ji_lu set yfwtb=#{xtbzt} where yfwtb=#{yfwtb}
+	</update>
 </mapper>
