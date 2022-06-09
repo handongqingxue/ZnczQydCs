@@ -13,7 +13,7 @@ $(function(){
 });
 
 function syncToYf(){
-	$.post(path+"main/syncToYf",
+	$.post(path+"gkj/syncToYf",
 		{tabArrStr:"zhi_jian_ji_lu"},
 		function(data){
 		
