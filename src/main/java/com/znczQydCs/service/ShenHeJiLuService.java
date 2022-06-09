@@ -14,4 +14,10 @@ public interface ShenHeJiLuService {
 
 	int deleteByIds(String ids);
 
+	boolean checkIfWtbToYf();
+
+	List<ShenHeJiLu> selectListByYfwtb(Integer yfwtb);
+
+	int updateTbZtByYfwtb(int yfwtb, int xtbzt);
+
 }

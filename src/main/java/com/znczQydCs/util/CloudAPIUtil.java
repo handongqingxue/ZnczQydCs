@@ -19,7 +19,9 @@ import com.znczQydCs.entity.DingDan;
 import com.znczQydCs.entity.DingDanZhuangTai;
 import com.znczQydCs.entity.FaHuoDanWei;
 import com.znczQydCs.entity.GuoBangJiLu;
+import com.znczQydCs.entity.Main;
 import com.znczQydCs.entity.PaiDuiJiLu;
+import com.znczQydCs.entity.ShenHeJiLu;
 import com.znczQydCs.entity.ShouHuoBuMen;
 import com.znczQydCs.entity.WuZi;
 import com.znczQydCs.entity.WuZiLeiXing;
@@ -151,9 +153,28 @@ public class CloudAPIUtil {
 		JSONObject resultJO = null;
 		try {
 			Map parames = new HashMap<String, String>();
+	        parames.put("tab", Main.DING_DAN);
 	        parames.put("qyh", qyh);
-	        parames.put("ddJAStr", JSONArray.fromObject(ddList).toString());
-	        resultJO = doHttp("syncDDToYf",parames);
+	        parames.put("entityJAStr", JSONArray.fromObject(ddList).toString());
+	        resultJO = doHttp("syncToYf",parames);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return resultJO;
+		}
+	}
+
+	public static JSONObject syncSHJLToYf(String qyh, List<ShenHeJiLu> shjlList) {
+		// TODO Auto-generated method stub
+		JSONObject resultJO = null;
+		try {
+			Map parames = new HashMap<String, String>();
+	        parames.put("tab", Main.SHEN_HE_JI_LU);
+	        parames.put("qyh", qyh);
+	        parames.put("entityJAStr", JSONArray.fromObject(shjlList).toString());
+	        resultJO = doHttp("syncToYf",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -30,7 +30,7 @@
 </style>
 <script type="text/javascript">
 var path='<%=basePath %>';
-var mainPath=path+'main/';
+var gkjPath=path+'gkj/';
 var ddglPath=path+'ddgl/';
 var wzglPath=path+'wzgl/';
 var dwglPath=path+'dwgl/';
@@ -358,7 +358,7 @@ function newDingDanZongHeChaXun(){
 }
 
 function syncToYf(ddglri){
-	$.post(mainPath+"syncToYf",
+	$.post(gkjPath+"syncToYf",
 		{tabArrStr:ddTab},
 		function(data){
 			if(data.status=="ok"){

@@ -171,7 +171,7 @@ public class DDGLController {
 		request.setAttribute("ejpdzDdztMc", DingDanZhuangTai.ER_JIAN_PAI_DUI_ZHONG_TEXT);
 		request.setAttribute("ejsbDdztMc", DingDanZhuangTai.ER_JIAN_SHANG_BANG_TEXT);
 		request.setAttribute("shlx", ShenHeJiLu.XIA_DAN_SHEN_HE);
-		request.setAttribute("ddTab", Main.DING_DAN);
+		request.setAttribute("syncTab", Main.DING_DAN+","+Main.SHEN_HE_JI_LU);
 		
 		return MODULE_NAME+"/zhcx/list";
 	}

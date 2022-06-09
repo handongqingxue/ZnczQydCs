@@ -114,7 +114,7 @@ public class DingDanServiceImpl implements DingDanService {
 		if(dingDanDao.checkByIds(idList,ddztId)>0) {
 			for (String idStr : idList) {
 				Integer ddId = Integer.valueOf(idStr);
-				shjl.setDdId(ddId);
+				shjl.setQyDdId(ddId);
 				count+=shenHeJiLuDao.add(shjl);
 				
 				if(!shjl.getShjg()) {//这块代码是在一检审核或二检审核不通过情况下，把之前的磅单记录、过磅记录删除。与下单审核、入库审核无关

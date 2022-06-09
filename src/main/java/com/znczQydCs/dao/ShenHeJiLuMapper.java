@@ -18,4 +18,10 @@ public interface ShenHeJiLuMapper {
 
 	int deleteByIds(List<String> idList);
 
+	int getWtbToYfCount();
+
+	List<ShenHeJiLu> selectListByYfwtb(@Param("yfwtb") Integer yfwtb);
+
+	int updateTbZtByYfwtb(@Param("yfwtb") int yfwtb, @Param("xtbzt") int xtbzt);
+
 }

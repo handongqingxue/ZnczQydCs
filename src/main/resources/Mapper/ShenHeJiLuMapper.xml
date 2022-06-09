@@ -6,8 +6,8 @@
 	<insert id="add" parameterType="com.znczQydCs.entity.ShenHeJiLu">
 		insert into shen_he_ji_lu
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="ddId!=null">
-				ddId,
+			<if test="qyDdId!=null">
+				qyDdId,
 			</if>
 			<if test="shlx!=null">
 				shlx,
@@ -25,8 +25,8 @@
 		</trim>
 		values
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="ddId!=null">
-				#{ddId},
+			<if test="qyDdId!=null">
+				#{qyDdId},
 			</if>
 			<if test="shlx!=null">
 				#{shlx},
@@ -127,4 +127,13 @@
 		#{id}
 		</foreach>
 	</delete>
+	<select id="getWtbToYfCount" resultType="java.lang.Integer">
+		select count(*) from shen_he_ji_lu where yfwtb=${@com.znczQydCs.entity.Main@WEI_TONG_BU}
+	</select>
+	<select id="selectListByYfwtb" resultType="com.znczQydCs.entity.ShenHeJiLu">
+		select * from shen_he_ji_lu where yfwtb=#{yfwtb}
+	</select>
+	<update id="updateTbZtByYfwtb">
+		update shen_he_ji_lu set yfwtb=#{xtbzt} where yfwtb=#{yfwtb}
+	</update>
 </mapper>

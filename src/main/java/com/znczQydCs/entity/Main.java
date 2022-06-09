@@ -10,6 +10,7 @@ public class Main {
 	public static final String FA_HUO_DAN_WEI="fa_huo_dan_wei";
 	public static final String SHOU_HUO_BU_MEN="shou_huo_bu_men";
 	public static final String DING_DAN="ding_dan";
+	public static final String SHEN_HE_JI_LU="shen_he_ji_lu";
 	public static final String PAI_DUI_JI_LU="pai_dui_ji_lu";
 	public static final String ZHI_JIAN_JI_LU="zhi_jian_ji_lu";
 	public static final String BANG_DAN_JI_LU="bang_dan_ji_lu";

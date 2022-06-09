@@ -77,7 +77,6 @@
 <%@include file="../../inc/js.jsp"%>
 <script type="text/javascript">
 var path='<%=basePath %>';
-var mainPath=path+'main/';
 var ddglPath=path+'ddgl/';
 var gkjPath=path+'gkj/';
 var dialogTop=10;
@@ -85,7 +84,7 @@ var dialogLeft=20;
 var cddxxdNum=0;
 var icphdNum=1;
 var dshDdztMc='${requestScope.dshDdztMc}';
-var ddTab='${requestScope.ddTab}';
+var syncTab='${requestScope.syncTab}';
 $(function(){
 	initDDZTCBB();
 	initSearchLB();
@@ -685,8 +684,8 @@ function checkById(){
 }
 
 function syncToYf(cddri){
-	$.post(mainPath+"syncToYf",
-		{tabArrStr:ddTab},
+	$.post(gkjPath+"syncToYf",
+		{tabArrStr:syncTab},
 		function(data){
 			if(data.status=="ok"){
 				alert(cddri);

@@ -14,7 +14,7 @@ $(function(){
 
 function syncToYf(){
 	$.post(path+"gkj/syncToYf",
-		{tabArrStr:"zhi_jian_ji_lu"},
+		{tabArrStr:"shen_he_ji_lu"},
 		function(data){
 		
 		}

@@ -29,6 +29,8 @@ public class GkjController {
 	@Autowired
 	private DingDanService dingDanService;
 	@Autowired
+	private ShenHeJiLuService shenHeJiLuService;
+	@Autowired
 	private DingDanZhuangTaiService dingDanZhuangTaiService;
 	@Autowired
 	private BangDanJiLuService bangDanJiLuService;
@@ -332,7 +334,9 @@ public class GkjController {
 				else if(Main.SHOU_HUO_BU_MEN.equals(tab))
 					syncSHBMToYf(qyh);
 				else if(Main.DING_DAN.equals(tab))
-					syncDdToYf(qyh);
+					syncDDToYf(qyh);
+				else if(Main.SHEN_HE_JI_LU.equals(tab))
+					syncSHJLToYf(qyh);
 				else if(Main.PAI_DUI_JI_LU.equals(tab))
 					syncPDJLToYf(qyh);
 				else if(Main.ZHI_JIAN_JI_LU.equals(tab))
@@ -709,7 +713,7 @@ public class GkjController {
 		}
 	}
 
-	public void syncDdToYf(String qyh) {
+	public void syncDDToYf(String qyh) {
 		// TODO Auto-generated method stub
 		try {
 			boolean bool=dingDanService.checkIfWtbToYf();
@@ -745,6 +749,24 @@ public class GkjController {
 					if(syncCount==ddList.size()) {
 						CloudAPIUtil.updateTbZtByQytb(Main.DING_DAN,Main.TONG_BU_ZHONG,Main.YI_TONG_BU,qyh);
 					}
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void syncSHJLToYf(String qyh) {
+		// TODO Auto-generated method stub
+		try {
+			boolean bool=shenHeJiLuService.checkIfWtbToYf();
+			if(bool) {
+				List<ShenHeJiLu> shjlList=shenHeJiLuService.selectListByYfwtb(Main.WEI_TONG_BU);
+				shenHeJiLuService.updateTbZtByYfwtb(Main.WEI_TONG_BU,Main.TONG_BU_ZHONG);
+				JSONObject resultJO = CloudAPIUtil.syncSHJLToYf(qyh,shjlList);
+				if("ok".equals(resultJO.getString("status"))) {
+					shenHeJiLuService.updateTbZtByYfwtb(Main.TONG_BU_ZHONG, Main.YI_TONG_BU);
 				}
 			}
 		} catch (Exception e) {

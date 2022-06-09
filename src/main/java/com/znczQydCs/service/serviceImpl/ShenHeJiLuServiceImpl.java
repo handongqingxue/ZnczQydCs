@@ -39,4 +39,23 @@ public class ShenHeJiLuServiceImpl implements ShenHeJiLuService {
 		return count;
 	}
 
+	@Override
+	public boolean checkIfWtbToYf() {
+		// TODO Auto-generated method stub
+		int count=shenHeJiLuDao.getWtbToYfCount();
+		return count>0?true:false;
+	}
+
+	@Override
+	public List<ShenHeJiLu> selectListByYfwtb(Integer yfwtb) {
+		// TODO Auto-generated method stub
+		return shenHeJiLuDao.selectListByYfwtb(yfwtb);
+	}
+
+	@Override
+	public int updateTbZtByYfwtb(int yfwtb, int xtbzt) {
+		// TODO Auto-generated method stub
+		return shenHeJiLuDao.updateTbZtByYfwtb(yfwtb, xtbzt);
+	}
+
 }
