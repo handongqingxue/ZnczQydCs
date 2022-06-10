@@ -184,8 +184,9 @@ public class DDGLController {
 		DingDan dd=dingDanService.selectById(id);
 		request.setAttribute("dd", dd);
 		request.setAttribute("yshDdztMc", DingDanZhuangTai.YI_SHEN_HE_TEXT);
-		request.setAttribute("yjpdzDdztMc", DingDanZhuangTai.YI_JIAN_PAI_DUI_ZHONG_TEXT);
+		request.setAttribute("dzjDdztMc", DingDanZhuangTai.DAI_ZHI_JIAN_TEXT);
 		request.setAttribute("shlx", ShenHeJiLu.XIA_DAN_SHEN_HE);
+		request.setAttribute("syncTab", Main.DING_DAN+","+Main.SHEN_HE_JI_LU);
 		
 		return MODULE_NAME+"/zhcx/detail";
 	}

@@ -14,6 +14,8 @@ public class ZhiJianJiLuServiceImpl implements ZhiJianJiLuService {
 
 	@Autowired
 	private ZhiJianJiLuMapper zhiJianJiLuDao;
+	@Autowired
+	private MainMapper mainDao;
 
 	@Override
 	public int queryForInt(Integer jg, String ddh, Integer ddztId, String zjyZsxm) {
@@ -47,6 +49,11 @@ public class ZhiJianJiLuServiceImpl implements ZhiJianJiLuService {
 		for (ZhiJianJiLu zjjl : zjjlList) {
 			ZhiJianJiLu zhiJianJiLu=zjjl;
 			zhiJianJiLu.setYfwjlId(zjjl.getId());
+			Object qyDdIdObj = mainDao.getQyColValByYfwColVal("id", zjjl.getYfwDdId()+"", "yfwjlId", "ding_dan");
+			if(qyDdIdObj!=null) {
+				Integer qyDdId=Integer.valueOf(qyDdIdObj.toString());
+				zhiJianJiLu.setQyDdId(qyDdId);
+			}
 			zhiJianJiLu.setYfwtb(Main.YI_TONG_BU);
 			
 		    if(zhiJianJiLuDao.getCountByQyjlId(zhiJianJiLu.getQyjlId())==0)

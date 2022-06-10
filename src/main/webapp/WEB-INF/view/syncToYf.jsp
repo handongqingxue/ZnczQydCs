@@ -9,12 +9,12 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 $(function(){
-	syncToYf();
+	syncToQy();
 });
 
 function syncToYf(){
 	$.post(path+"gkj/syncToYf",
-		{tabArrStr:"fa_huo_dan_wei"},
+		{tabArrStr:"zhi_jian_ji_lu"},
 		function(data){
 		
 		}
@@ -22,8 +22,8 @@ function syncToYf(){
 }
 
 function syncToQy(){
-	$.post(path+"main/syncToQy",
-		{tabArrStr:"guo_bang_ji_lu"},
+	$.post(path+"gkj/syncToQy",
+		{tabArrStr:"ding_dan,zhi_jian_ji_lu"},
 		function(data){
 		
 		}

@@ -27,9 +27,11 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var ddglPath=path+'ddgl/';
+var gkjPath=path+'gkj/';
 var dialogTop=70;
 var dialogLeft=20;
 var ddNum=0;
+var syncTab='${requestScope.syncTab}';
 $(function(){
 	initDetailDialog();//0
 
@@ -107,18 +109,29 @@ function checkById(){
 	if(sjsfzh==""||sjxm==""||cph=="")//在司机身份证号、司机姓名、车牌号的一者为空情况下，就算审核通过，订单状态也是已审核
 		ddztMc=$("#detail_div #yshDdztMc").val();
 	else//在司机身份证号、司机姓名、车牌号三者都不为空情况下，审核通过，订单状态直接跳到一检排队中
-		ddztMc=$("#detail_div #yjpdzDdztMc").val();
+		ddztMc=$("#detail_div #dzjDdztMc").val();
 	var shlx='${requestScope.shlx}';
 	var shrId='${sessionScope.yongHu.id}';
 	$.post(ddglPath + "checkDingDanByIds",
 		{ids:id,ddztMc:ddztMc,shlx:shlx,shjg:true,shrId:shrId},
 		function(result){
 			if(result.status==1){
-				alert(result.msg);
-				history.go(-1);
+				syncToYf(result.msg);
 			}
 			else{
 				alert(result.msg);
+			}
+		}
+	,"json");
+}
+
+function syncToYf(cddri){
+	$.post(gkjPath+"syncToYf",
+		{tabArrStr:syncTab},
+		function(data){
+			if(data.status=="ok"){
+				alert(cddri);
+				history.go(-1);
 			}
 		}
 	,"json");
@@ -153,7 +166,7 @@ function setFitWidthInParent(parent,self){
 			<form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
 			<input type="hidden" id="id" value="${requestScope.dd.id }"/>
 			<input type="hidden" id="yshDdztMc" value="${requestScope.yshDdztMc}"/>
-			<input type="hidden" id="yjpdzDdztMc" value="${requestScope.yjpdzDdztMc}"/>
+			<input type="hidden" id="dzjDdztMc" value="${requestScope.dzjDdztMc}"/>
 			<table>
 			  <tr>
 				<td class="td1" align="right">

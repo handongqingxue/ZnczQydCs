@@ -297,9 +297,10 @@ public class CloudAPIUtil {
 		JSONObject resultJO = null;
 		try {
 			Map parames = new HashMap<String, String>();
+	        parames.put("tab", Main.SHOU_HUO_BU_MEN);
 	        parames.put("qyh", qyh);
-	        parames.put("shbmJAStr", JSONArray.fromObject(shbmList).toString());
-	        resultJO = doHttp("syncSHBMToYf",parames);
+	        parames.put("entityJAStr", JSONArray.fromObject(shbmList).toString());
+	        resultJO = doHttp("syncToYf",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -314,9 +315,10 @@ public class CloudAPIUtil {
 		JSONObject resultJO = null;
 		try {
 			Map parames = new HashMap<String, String>();
+	        parames.put("tab", Main.PAI_DUI_JI_LU);
 	        parames.put("qyh", qyh);
-	        parames.put("pdjlJAStr", JSONArray.fromObject(pdjlList).toString());
-	        resultJO = doHttp("syncPDJLToYf",parames);
+	        parames.put("entityJAStr", JSONArray.fromObject(pdjlList).toString());
+	        resultJO = doHttp("syncToYf",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -331,9 +333,10 @@ public class CloudAPIUtil {
 		JSONObject resultJO = null;
 		try {
 			Map parames = new HashMap<String, String>();
+	        parames.put("tab", Main.ZHI_JIAN_JI_LU);
 	        parames.put("qyh", qyh);
-	        parames.put("zjjlJAStr", JSONArray.fromObject(zjjlList).toString());
-	        resultJO = doHttp("syncZJJLToYf",parames);
+	        parames.put("entityJAStr", JSONArray.fromObject(zjjlList).toString());
+	        resultJO = doHttp("syncToYf",parames);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

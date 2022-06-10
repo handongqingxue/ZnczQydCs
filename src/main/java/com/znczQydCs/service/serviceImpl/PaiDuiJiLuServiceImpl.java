@@ -14,6 +14,8 @@ public class PaiDuiJiLuServiceImpl implements PaiDuiJiLuService {
 
 	@Autowired
 	private PaiDuiJiLuMapper paiDuiJiLuDao;
+	@Autowired
+	private MainMapper mainDao;
 
 	@Override
 	public int add(PaiDuiJiLu pdjl) {
@@ -52,6 +54,11 @@ public class PaiDuiJiLuServiceImpl implements PaiDuiJiLuService {
 		for (PaiDuiJiLu pdjl : pdjlList) {
 			PaiDuiJiLu paiDuiJiLu=pdjl;
 			paiDuiJiLu.setYfwjlId(pdjl.getId());
+			Object qyDdIdObj = mainDao.getQyColValByYfwColVal("id", pdjl.getYfwDdId()+"", "yfwjlId", "ding_dan");
+			if(qyDdIdObj!=null) {
+				Integer qyDdId=Integer.valueOf(qyDdIdObj.toString());
+				paiDuiJiLu.setQyDdId(qyDdId);
+			}
 			paiDuiJiLu.setYfwtb(Main.YI_TONG_BU);
 			
 		    if(paiDuiJiLuDao.getCountByQyjlId(paiDuiJiLu.getQyjlId())==0)
