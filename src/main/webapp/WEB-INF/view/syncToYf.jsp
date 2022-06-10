@@ -9,21 +9,21 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 $(function(){
-	syncToQy();
+	//syncToQy();
 });
 
-function syncToYf(){
+function syncToYf(tabArrStr){
 	$.post(path+"gkj/syncToYf",
-		{tabArrStr:"zhi_jian_ji_lu"},
+		{tabArrStr:tabArrStr},
 		function(data){
 		
 		}
 	,"json");
 }
 
-function syncToQy(){
+function syncToQy(tabArrStr){
 	$.post(path+"gkj/syncToQy",
-		{tabArrStr:"ding_dan,zhi_jian_ji_lu"},
+		{tabArrStr:tabArrStr},
 		function(data){
 		
 		}
@@ -32,6 +32,16 @@ function syncToQy(){
 </script>
 </head>
 <body>
-
+<div>从本地同步到云服务</div>
+<div>
+	<input type="button" value="订单" onclick="syncToYf('ding_dan')"/>
+	<input type="button" value="质检记录" onclick="syncToYf('zhi_jian_ji_lu')"/>
+</div>
+<div>从云服务同步到本地</div>
+<div>
+	<input type="button" value="订单" onclick="syncToQy('ding_dan')"/>
+	<input type="button" value="质检记录" onclick="syncToQy('zhi_jian_ji_lu')"/>
+	<input type="button" value="排队记录" onclick="syncToQy('pai_dui_ji_lu')"/>
+</div>
 </body>
 </html>

@@ -306,6 +306,9 @@
 			<if test="yfwjlId!=null">
 				yfwjlId=#{yfwjlId},
 			</if>
+			<if test="yfwDdztId!=null">
+				yfwDdztId=#{yfwDdztId},
+			</if>
 			<if test="qyDdztId!=null">
 				qyDdztId=#{qyDdztId},
 			</if>

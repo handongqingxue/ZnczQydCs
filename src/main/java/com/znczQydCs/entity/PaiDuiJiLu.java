@@ -94,7 +94,7 @@ public class PaiDuiJiLu {
 	private String pdsj;
 	private Integer dlh;
 	private Integer pdh;
-	private Integer zt;
+	private Integer zt;//状态 1.排队中 2.已完成 3.已过号
 	private Integer yfwtb;//云服务同步 1.未同步 2.同步中 3.已同步
 	private String qyh;
 }
