@@ -222,7 +222,7 @@
 		delete from guo_bang_ji_lu where gblx=#{gblx} and ddId=#{ddId}
 	</delete>
 	<select id="getCountByDdId" resultType="java.lang.Integer">
-		select count(*) from guo_bang_ji_lu where gblx=#{gblx} and ddId=#{ddId}
+		select count(*) from guo_bang_ji_lu where gblx=#{gblx} and qyDdId=#{ddId}
 	</select>
 	<select id="getWtbToYfCount" resultType="java.lang.Integer">
 		select count(*) from guo_bang_ji_lu where yfwtb=${@com.znczQydCs.entity.Main@WEI_TONG_BU}

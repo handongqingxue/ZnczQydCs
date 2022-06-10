@@ -16,8 +16,8 @@
 				jz,
 			</if>
 				rq,
-			<if test="ddId!=null">
-				ddId,
+			<if test="qyDdId!=null">
+				qyDdId,
 			</if>
 			<if test="bz!=null">
 				bz,
@@ -35,8 +35,8 @@
 				#{jz},
 			</if>
 				now(),
-			<if test="ddId!=null">
-				#{ddId},
+			<if test="qyDdId!=null">
+				#{qyDdId},
 			</if>
 			<if test="bz!=null">
 				#{bz},
@@ -58,8 +58,8 @@
 			<if test="rq!=null">
 				rq,
 			</if>
-			<if test="ddId!=null">
-				ddId,
+			<if test="qyDdId!=null">
+				qyDdId,
 			</if>
 			<if test="bz!=null">
 				bz,
@@ -79,8 +79,8 @@
 			<if test="rq!=null">
 				#{rq},
 			</if>
-			<if test="ddId!=null">
-				#{ddId},
+			<if test="qyDdId!=null">
+				#{qyDdId},
 			</if>
 			<if test="bz!=null">
 				#{bz},
@@ -165,7 +165,7 @@
 		delete from bang_dan_ji_lu where ddId=#{ddId}
 	</delete>
 	<select id="getCountByDdId" resultType="java.lang.Integer">
-		select count(*) from bang_dan_ji_lu where ddId=#{ddId}
+		select count(*) from bang_dan_ji_lu where qyDdId=#{ddId}
 	</select>
 	<select id="getWtbToYfCount" resultType="java.lang.Integer">
 		select count(*) from bang_dan_ji_lu where yfwtb=${@com.znczQydCs.entity.Main@WEI_TONG_BU}

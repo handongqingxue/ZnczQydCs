@@ -27,7 +27,7 @@ public interface DingDanMapper {
 
 	int editByZt(DingDan dd);
 
-	DingDan getByZtCph(@Param("ddztId") int ddztId, @Param("cph") String cph);
+	DingDan getByZtCph(@Param("qyDdztId") int qyDdztId, @Param("cph") String cph);
 
 	DingDan getByZt(@Param("yjbfh")Integer yjbfh,@Param("ejbfh") Integer ejbfh, @Param("ddztMc") String ddztMc, @Param("yjzt") Integer yjzt, @Param("ejzt") Integer ejzt);
 
