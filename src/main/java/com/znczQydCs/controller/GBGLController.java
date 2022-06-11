@@ -183,6 +183,7 @@ public class GBGLController {
 		request.setAttribute("drkDdztMc", DingDanZhuangTai.DAI_RU_KU_TEXT);
 		request.setAttribute("shlx", ShenHeJiLu.YI_JIAN_SHEN_HE);
 		request.setAttribute("gblx", GuoBangJiLu.RU_CHANG_GUO_BANG);
+		request.setAttribute("syncTab", Main.DING_DAN+","+Main.SHEN_HE_JI_LU);
 		
 		return MODULE_NAME+"/yjdsh/list";
 	}
@@ -201,6 +202,7 @@ public class GBGLController {
 		request.setAttribute("ywcDdztMc", DingDanZhuangTai.YI_WAN_CHENG_TEXT);
 		request.setAttribute("shlx", ShenHeJiLu.ER_JIAN_SHEN_HE);
 		request.setAttribute("gblx", GuoBangJiLu.CHU_CHANG_GUO_BANG);
+		request.setAttribute("syncTab", Main.DING_DAN+","+Main.SHEN_HE_JI_LU);
 		
 		return MODULE_NAME+"/ejdsh/list";
 	}
