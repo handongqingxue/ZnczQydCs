@@ -153,21 +153,24 @@ function setFitWidthInParent(o){
 <body>
 <div class="layui-layout layui-layout-admin">
 	<%@include file="../../inc/side.jsp"%>
-	<div class="tab1_div" id="tab1_div">
-		<div class="toolbar" id="toolbar">
-			<span class="ddh_span">订单号：</span>
-			<input type="text" class="ddh_inp" id="ddh" placeholder="请输入订单号"/>
-			<span class="cph_span">车牌号：</span>
-			<input type="text" class="cph_inp" id="cph" placeholder="请输入车牌号"/>
-			<span class="gbsj_span">过磅时间：</span>
-			<input id="gbsjks_dtb"/>-
-			<input id="gbsjjs_dtb"/>
-			<a class="search_but" id="search_but">查询</a>
-			<a id="add_but">添加</a>
-         	<a id="output_but">导出</a>
+	<div class="center_con_div" id="center_con_div">
+		<div class="page_location_div">过磅管理-过磅记录</div>
+		<div class="tab1_div" id="tab1_div">
+			<div class="toolbar" id="toolbar">
+				<span class="ddh_span">订单号：</span>
+				<input type="text" class="ddh_inp" id="ddh" placeholder="请输入订单号"/>
+				<span class="cph_span">车牌号：</span>
+				<input type="text" class="cph_inp" id="cph" placeholder="请输入车牌号"/>
+				<span class="gbsj_span">过磅时间：</span>
+				<input id="gbsjks_dtb"/>-
+				<input id="gbsjjs_dtb"/>
+				<a class="search_but" id="search_but">查询</a>
+				<a id="add_but">添加</a>
+	         	<a id="output_but">导出</a>
+			</div>
+			<table id="tab1">
+			</table>
 		</div>
-		<table id="tab1">
-		</table>
 	</div>
 	<%@include file="../../inc/foot.jsp"%>
 </div>
