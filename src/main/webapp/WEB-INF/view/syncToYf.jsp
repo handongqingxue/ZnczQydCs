@@ -36,6 +36,9 @@ function syncToQy(tabArrStr){
 <div>
 	<input type="button" value="订单" onclick="syncToYf('ding_dan')"/>
 	<input type="button" value="质检记录" onclick="syncToYf('zhi_jian_ji_lu')"/>
+	<input type="button" value="磅单记录" onclick="syncToYf('bang_dan_ji_lu')"/>
+	<input type="button" value="过磅记录" onclick="syncToYf('guo_bang_ji_lu')"/>
+	<input type="button" value="审核记录" onclick="syncToYf('shen_he_ji_lu')"/>
 </div>
 <div>从云服务同步到本地</div>
 <div>

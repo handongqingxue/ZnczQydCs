@@ -43,9 +43,11 @@
 var path='<%=basePath %>';
 var gbglPath=path+'gbgl/';
 var ddglPath=path+'ddgl/';
+var gkjPath=path+'gkj/';
 var exportExcelPath=path+'exportExcel/';
 var ddztMc='${requestScope.yjdshDdztMc}';
 var gblx='${requestScope.gblx}';
+var syncTab='${requestScope.syncTab}';
 $(function(){
 	initGBSJKSDTB();
 	initGBSJJSDTB();
@@ -110,24 +112,35 @@ function checkByIds(shjg) {
 		return false;
 	}
 	
-	var ddIds = "";
+	var qyDdIds = "";
 	for (var i = 0; i < rows.length; i++) {
-		ddIds += "," + rows[i].ddId;
+		qyDdIds += "," + rows[i].qyDdId;
 	}
-	ddIds=ddIds.substring(1);
+	qyDdIds=qyDdIds.substring(1);
 	
 	var ddztMc='${requestScope.drkDdztMc}';
 	var shlx='${requestScope.shlx}';
 	var shrId='${sessionScope.yongHu.id}';
 	$.post(ddglPath + "checkDingDanByIds",
-		{ids:ddIds,ddztMc:ddztMc,shlx:shlx,shjg:shjg,shrId:shrId,jyFlag:1},
+		{ids:qyDdIds,ddztMc:ddztMc,shlx:shlx,shjg:shjg,shrId:shrId,jyFlag:1},
 		function(result){
 			if(result.status==1){
-				alert(result.msg);
-				tab1.datagrid("load");
+				syncToYf(result.msg);
 			}
 			else{
 				alert(result.msg);
+			}
+		}
+	,"json");
+}
+
+function syncToYf(cddri){
+	$.post(gkjPath+"syncToYf",
+		{tabArrStr:syncTab},
+		function(data){
+			if(data.status=="ok"){
+				alert(cddri);
+				tab1.datagrid("load");
 			}
 		}
 	,"json");

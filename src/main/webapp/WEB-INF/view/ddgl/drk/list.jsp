@@ -44,7 +44,9 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var ddglPath=path+'ddgl/';
+var gkjPath=path+'gkj/';
 var ddztMc='${requestScope.ddztMc}';
+var syncTab='${requestScope.syncTab}';
 $(function(){
 	initSearchLB();
 	initCheckLB();
@@ -98,11 +100,22 @@ function checkByIds() {
 		{ids:ids,ddztMc:ddztMc,shlx:shlx,shjg:true,shrId:shrId},
 		function(result){
 			if(result.status==1){
-				alert(result.msg);
-				tab1.datagrid("load");
+				syncToYf(result.msg);
 			}
 			else{
 				alert(result.msg);
+			}
+		}
+	,"json");
+}
+
+function syncToYf(cddri){
+	$.post(gkjPath+"syncToYf",
+		{tabArrStr:syncTab},
+		function(data){
+			if(data.status=="ok"){
+				alert(cddri);
+				tab1.datagrid("load");
 			}
 		}
 	,"json");
