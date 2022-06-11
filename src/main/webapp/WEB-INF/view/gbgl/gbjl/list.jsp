@@ -5,9 +5,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
+.center_con_div{
+	height: 90vh;
+	margin-left:205px;
+	position: absolute;
+}
+.page_location_div{
+	height: 50px;
+	line-height: 50px;
+	margin-top: 60px;
+	margin-left: 20px;
+	font-size: 18px;
+}
 .tab1_div{
-	margin-top:80px;
-	margin-left: 220px;
+	margin-left: 15px;
 }
 .tab1_div .toolbar{
 	height:32px;

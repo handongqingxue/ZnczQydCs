@@ -5,9 +5,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
+.center_con_div{
+	height: 90vh;
+	margin-left:205px;
+	position: absolute;
+}
+.page_location_div{
+	height: 50px;
+	line-height: 50px;
+	margin-top: 60px;
+	margin-left: 20px;
+	font-size: 18px;
+}
 .tab1_div{
-	margin-top:80px;
-	margin-left: 220px;
+	margin-left: 15px;
 	position: fixed;
 }
 .tab1_div .toolbar{
@@ -806,151 +817,154 @@ function setFitWidthInParent(parent,self){
 <body>
 <div class="layui-layout layui-layout-admin">
 	<%@include file="../../inc/side.jsp"%>
-	<div class="tab1_div" id="tab1_div">
-		<div class="toolbar" id="toolbar">
-			<div class="row_div">
-				<span class="ddh_span">订单号：</span>
-				<input type="text" class="ddh_inp" id="ddh" placeholder="请输入订单号"/>
-				<span class="ddzt_span">订单状态：</span>
-				<input id="ddzt_cbb"/>
-				<span class="cph_span">车牌号：</span>
-				<input type="text" class="cph_inp" id="cph" placeholder="请输入车牌号"/>
-				<span class="yss_span">运输商：</span>
-				<input type="text" class="yssMc_inp" id="yssMc" placeholder="请输入运输商"/>
-				<span class="wzMc_span">物资名称：</span>
-				<input type="text" class="wzMc_inp" id="wzMc" placeholder="请输入物资名称"/>
+	<div class="center_con_div" id="center_con_div">
+		<div class="page_location_div">订单管理-综合查询</div>
+		<div class="tab1_div" id="tab1_div">
+			<div class="toolbar" id="toolbar">
+				<div class="row_div">
+					<span class="ddh_span">订单号：</span>
+					<input type="text" class="ddh_inp" id="ddh" placeholder="请输入订单号"/>
+					<span class="ddzt_span">订单状态：</span>
+					<input id="ddzt_cbb"/>
+					<span class="cph_span">车牌号：</span>
+					<input type="text" class="cph_inp" id="cph" placeholder="请输入车牌号"/>
+					<span class="yss_span">运输商：</span>
+					<input type="text" class="yssMc_inp" id="yssMc" placeholder="请输入运输商"/>
+					<span class="wzMc_span">物资名称：</span>
+					<input type="text" class="wzMc_inp" id="wzMc" placeholder="请输入物资名称"/>
+				</div>
+				<div class="row_div">
+					<span class="fhdw_span">发货单位：</span>
+					<input type="text" class="fhdwMc_inp" id="fhdwMc" placeholder="请输入发货单位"/>
+					<span class="shbm_span">收货部门：</span>
+					<input type="text" class="shbmMc_inp" id="shbmMc" placeholder="请输入收货部门"/>
+					<span class="sjxm_span">司机姓名：</span>
+					<input type="text" class="sjxm_inp" id="sjxm" placeholder="请输入司机姓名"/>
+					<span class="sjsfzh_span">司机身份证号：</span>
+					<input type="text" class="sjsfzh_inp" id="sjsfzh" placeholder="请输入司机身份证号"/>
+					<a class="search_but" id="search_but">查询</a>
+					<a id="manual_but">人工</a>
+					<a id="ddfw_but">订单复位</a>
+					<a id="add_but">添加</a>
+					<a id="remove_but">删除</a>
+				</div>
 			</div>
-			<div class="row_div">
-				<span class="fhdw_span">发货单位：</span>
-				<input type="text" class="fhdwMc_inp" id="fhdwMc" placeholder="请输入发货单位"/>
-				<span class="shbm_span">收货部门：</span>
-				<input type="text" class="shbmMc_inp" id="shbmMc" placeholder="请输入收货部门"/>
-				<span class="sjxm_span">司机姓名：</span>
-				<input type="text" class="sjxm_inp" id="sjxm" placeholder="请输入司机姓名"/>
-				<span class="sjsfzh_span">司机身份证号：</span>
-				<input type="text" class="sjsfzh_inp" id="sjsfzh" placeholder="请输入司机身份证号"/>
-				<a class="search_but" id="search_but">查询</a>
-				<a id="manual_but">人工</a>
-				<a id="ddfw_but">订单复位</a>
-				<a id="add_but">添加</a>
-				<a id="remove_but">删除</a>
+			<table id="tab1">
+			</table>
+		</div>
+	
+		<div class="check_ddxx_bg_div" id="check_ddxx_bg_div">
+			<div class="check_ddxx_div" id="check_ddxx_div">
+				<div class="check_ddxx_dialog_div" id="check_ddxx_dialog_div">
+					<input type="hidden" id="id"/>
+					<input type="hidden" id="yshDdztMc" value="${requestScope.yshDdztMc}"/>
+					<table>
+					  <tr>
+						<td class="td1" align="right">
+							订单号
+						</td>
+						<td class="td2">
+							<span id="ddh_span"></span>
+						</td>
+						<td class="td1" align="right">
+							司机身份证号
+						</td>
+						<td class="td2">
+							<span id="sjsfzh_span"></span>
+						</td>
+					  </tr>
+					  <tr>
+						<td class="td1" align="right">
+							司机姓名
+						</td>
+						<td class="td2">
+							<span id="sjxm_span"></span>
+						</td>
+						<td class="td1" align="right">
+							车牌号
+						</td>
+						<td class="td2">
+							<span id="cph_span"></span>
+						</td>
+					  </tr>
+					  <tr>
+						<td class="td1" align="right">
+							流向类型
+						</td>
+						<td class="td2">
+							<span id="lxlxMc_span"></span>
+						</td>
+						<td class="td1" align="right">
+							物资类型
+						</td>
+						<td class="td2">
+							<span id="wzlxMc_span"></span>
+						</td>
+					  </tr>
+					  <tr>
+						<td class="td1" align="right">
+							物资名称
+						</td>
+						<td class="td2">
+							<span id="wzMc_span"></span>
+						</td>
+						<td class="td1" align="right">
+							运输商
+						</td>
+						<td class="td2">
+							<span id="yssMc_span"></span>
+						</td>
+					  </tr>
+					  <tr>
+						<td class="td1" align="right">
+							发货单位
+						</td>
+						<td class="td2">
+							<span id="fhdwMc_span"></span>
+						</td>
+						<td class="td1" align="right">
+							收货部门
+						</td>
+						<td class="td2">
+							<span id="shbmMc_span"></span>
+						</td>
+					  </tr>
+					</table>
+				</div>
 			</div>
 		</div>
-		<table id="tab1">
-		</table>
-	</div>
 	
-	<div class="check_ddxx_bg_div" id="check_ddxx_bg_div">
-		<div class="check_ddxx_div" id="check_ddxx_div">
-			<div class="check_ddxx_dialog_div" id="check_ddxx_dialog_div">
-				<input type="hidden" id="id"/>
-				<input type="hidden" id="yshDdztMc" value="${requestScope.yshDdztMc}"/>
-				<table>
-				  <tr>
-					<td class="td1" align="right">
-						订单号
-					</td>
-					<td class="td2">
-						<span id="ddh_span"></span>
-					</td>
-					<td class="td1" align="right">
-						司机身份证号
-					</td>
-					<td class="td2">
-						<span id="sjsfzh_span"></span>
-					</td>
-				  </tr>
-				  <tr>
-					<td class="td1" align="right">
-						司机姓名
-					</td>
-					<td class="td2">
-						<span id="sjxm_span"></span>
-					</td>
-					<td class="td1" align="right">
-						车牌号
-					</td>
-					<td class="td2">
-						<span id="cph_span"></span>
-					</td>
-				  </tr>
-				  <tr>
-					<td class="td1" align="right">
-						流向类型
-					</td>
-					<td class="td2">
-						<span id="lxlxMc_span"></span>
-					</td>
-					<td class="td1" align="right">
-						物资类型
-					</td>
-					<td class="td2">
-						<span id="wzlxMc_span"></span>
-					</td>
-				  </tr>
-				  <tr>
-					<td class="td1" align="right">
-						物资名称
-					</td>
-					<td class="td2">
-						<span id="wzMc_span"></span>
-					</td>
-					<td class="td1" align="right">
-						运输商
-					</td>
-					<td class="td2">
-						<span id="yssMc_span"></span>
-					</td>
-				  </tr>
-				  <tr>
-					<td class="td1" align="right">
-						发货单位
-					</td>
-					<td class="td2">
-						<span id="fhdwMc_span"></span>
-					</td>
-					<td class="td1" align="right">
-						收货部门
-					</td>
-					<td class="td2">
-						<span id="shbmMc_span"></span>
-					</td>
-				  </tr>
-				</table>
-			</div>
-		</div>
-	</div>
-	
-	<div class="input_cph_bg_div" id="input_cph_bg_div">
-		<div class="input_cph_div" id="input_cph_div">
-			<div class="input_cph_dialog_div" id="input_cph_dialog_div">
-				<table>
-				  <tr>
-					<td class="td1" align="right">
-						磅房
-					</td>
-					<td class="td2">
-						<input id="bfh_cbb"/>
-					</td>
-				  </tr>
-				  <tr>
-					<td class="td1" align="right">
-						选择
-					</td>
-					<td class="td2">
-						<input id="xzcph_cbb"/>
-					</td>
-				  </tr>
-				  <tr>
-					<td class="td1" align="right">
-						车牌号
-					</td>
-					<td class="td2">
-						<input id="lrSjc_cbb"/>
-						<input id="lrWscph_cbb"/>
-					</td>
-				  </tr>
-				</table>
+		<div class="input_cph_bg_div" id="input_cph_bg_div">
+			<div class="input_cph_div" id="input_cph_div">
+				<div class="input_cph_dialog_div" id="input_cph_dialog_div">
+					<table>
+					  <tr>
+						<td class="td1" align="right">
+							磅房
+						</td>
+						<td class="td2">
+							<input id="bfh_cbb"/>
+						</td>
+					  </tr>
+					  <tr>
+						<td class="td1" align="right">
+							选择
+						</td>
+						<td class="td2">
+							<input id="xzcph_cbb"/>
+						</td>
+					  </tr>
+					  <tr>
+						<td class="td1" align="right">
+							车牌号
+						</td>
+						<td class="td2">
+							<input id="lrSjc_cbb"/>
+							<input id="lrWscph_cbb"/>
+						</td>
+					  </tr>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>

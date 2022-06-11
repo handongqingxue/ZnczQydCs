@@ -5,9 +5,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
+.center_con_div{
+	height: 90vh;
+	margin-left:205px;
+	position: absolute;
+}
+.page_location_div{
+	height: 50px;
+	line-height: 50px;
+	margin-top: 60px;
+	margin-left: 20px;
+	font-size: 18px;
+}
 .tab1_div{
-	margin-top:80px;
-	margin-left: 220px;
+	margin-left: 15px;
 	position: fixed;
 }
 .tab1_div .toolbar{
@@ -200,33 +211,36 @@ function setFitWidthInParent(parent,self){
 <body>
 <div class="layui-layout layui-layout-admin">
 	<%@include file="../../inc/side.jsp"%>
-	<div class="tab1_div" id="tab1_div">
-		<div class="toolbar" id="toolbar">
-			<div class="row_div">
-				<span class="ddh_span">订单号：</span>
-				<input type="text" class="ddh_inp" id="ddh" placeholder="请输入订单号"/>
-				<span class="cph_span">车牌号：</span>
-				<input type="text" class="cph_inp" id="cph" placeholder="请输入车牌号"/>
-				<span class="yss_span">运输商：</span>
-				<input type="text" class="yssMc_inp" id="yssMc" placeholder="请输入运输商"/>
-				<span class="wzMc_span">物资名称：</span>
-				<input type="text" class="wzMc_inp" id="wzMc" placeholder="请输入物资名称"/>
+	<div class="center_con_div" id="center_con_div">
+		<div class="page_location_div">订单管理-待入库</div>
+		<div class="tab1_div" id="tab1_div">
+			<div class="toolbar" id="toolbar">
+				<div class="row_div">
+					<span class="ddh_span">订单号：</span>
+					<input type="text" class="ddh_inp" id="ddh" placeholder="请输入订单号"/>
+					<span class="cph_span">车牌号：</span>
+					<input type="text" class="cph_inp" id="cph" placeholder="请输入车牌号"/>
+					<span class="yss_span">运输商：</span>
+					<input type="text" class="yssMc_inp" id="yssMc" placeholder="请输入运输商"/>
+					<span class="wzMc_span">物资名称：</span>
+					<input type="text" class="wzMc_inp" id="wzMc" placeholder="请输入物资名称"/>
+				</div>
+				<div class="row_div">
+					<span class="fhdw_span">发货单位：</span>
+					<input type="text" class="fhdwMc_inp" id="fhdwMc" placeholder="请输入发货单位"/>
+					<span class="shbm_span">收货部门：</span>
+					<input type="text" class="shbmMc_inp" id="shbmMc" placeholder="请输入收货部门"/>
+					<span class="sjxm_span">司机姓名：</span>
+					<input type="text" class="sjxm_inp" id="sjxm" placeholder="请输入司机姓名"/>
+					<span class="sjsfzh_span">司机身份证号：</span>
+					<input type="text" class="sjsfzh_inp" id="sjsfzh" placeholder="请输入司机身份证号"/>
+					<a class="search_but" id="search_but">查询</a>
+					<a id="check_but">审核</a>
+				</div>
 			</div>
-			<div class="row_div">
-				<span class="fhdw_span">发货单位：</span>
-				<input type="text" class="fhdwMc_inp" id="fhdwMc" placeholder="请输入发货单位"/>
-				<span class="shbm_span">收货部门：</span>
-				<input type="text" class="shbmMc_inp" id="shbmMc" placeholder="请输入收货部门"/>
-				<span class="sjxm_span">司机姓名：</span>
-				<input type="text" class="sjxm_inp" id="sjxm" placeholder="请输入司机姓名"/>
-				<span class="sjsfzh_span">司机身份证号：</span>
-				<input type="text" class="sjsfzh_inp" id="sjsfzh" placeholder="请输入司机身份证号"/>
-				<a class="search_but" id="search_but">查询</a>
-				<a id="check_but">审核</a>
-			</div>
+			<table id="tab1">
+			</table>
 		</div>
-		<table id="tab1">
-		</table>
 	</div>
 	
 	<%@include file="../../inc/foot.jsp"%>

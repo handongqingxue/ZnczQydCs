@@ -5,9 +5,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
+.center_con_div{
+	height: 90vh;
+	margin-left:205px;
+	position: absolute;
+}
+.page_location_div{
+	height: 50px;
+	line-height: 50px;
+	margin-top: 60px;
+	margin-left: 20px;
+	font-size: 18px;
+}
 .tab1_div{
-	margin-top:80px;
-	margin-left: 220px;
+	margin-left: 15px;
 	position: fixed;
 }
 .tab1_div .toolbar{
@@ -296,15 +307,18 @@ function setFitWidthInParent(parent,self){
 <body>
 <div class="layui-layout layui-layout-admin">
 	<%@include file="../../inc/side.jsp"%>
-	<div class="tab1_div" id="tab1_div">
-		<div class="toolbar" id="toolbar">
-			<span class="ddh_span">订单号：</span>
-			<input type="text" class="ddh_inp" id="ddh" placeholder="请输入订单号"/>
-			<a class="search_but" id="search_but">查询</a>
-			<a id="add_but">添加</a>
+	<div class="center_con_div" id="center_con_div">
+		<div class="page_location_div">过磅管理-磅单记录</div>
+		<div class="tab1_div" id="tab1_div">
+			<div class="toolbar" id="toolbar">
+				<span class="ddh_span">订单号：</span>
+				<input type="text" class="ddh_inp" id="ddh" placeholder="请输入订单号"/>
+				<a class="search_but" id="search_but">查询</a>
+				<a id="add_but">添加</a>
+			</div>
+			<table id="tab1">
+			</table>
 		</div>
-		<table id="tab1">
-		</table>
 	</div>
 	
 	<div class="preview_bdxx_bg_div" id="preview_bdxx_bg_div">

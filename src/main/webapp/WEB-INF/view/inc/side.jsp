@@ -74,6 +74,7 @@
 .bgLogo_img{
 	width: 101px;
 	height: 57px;
+	margin-right: 105px;
 }
 </style>
 <script type="text/javascript">
@@ -179,7 +180,7 @@ function showLeftMenuByQx(){
 <div class="layui-header header_div">
 		<div class="layui-logo">
 			<img class="bgLogo_img" alt="" src="<%=basePath%>resource/image/bgLogo.jpg"/>
-			<a>智能称重平台</a>
+			<a></a>
 		</div>
 		<ul class="layui-nav layui-layout-right">
 			<li class="layui-nav-item">
