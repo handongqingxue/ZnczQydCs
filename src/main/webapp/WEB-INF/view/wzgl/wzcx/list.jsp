@@ -5,9 +5,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
+.center_con_div{
+	height: 90vh;
+	margin-left:205px;
+	position: absolute;
+}
+.page_location_div{
+	height: 50px;
+	line-height: 50px;
+	margin-top: 60px;
+	margin-left: 20px;
+	font-size: 18px;
+}
 .tab1_div{
-	margin-top:80px;
-	margin-left: 220px;
+	margin-left: 15px;
 }
 .tab1_div .toolbar{
 	height:32px;
@@ -142,18 +153,21 @@ function setFitWidthInParent(o){
 <body>
 <div class="layui-layout layui-layout-admin">
 	<%@include file="../../inc/side.jsp"%>
-	<div class="tab1_div" id="tab1_div">
-		<div class="toolbar" id="toolbar">
-			<span class="mc_span">名称：</span>
-			<input type="text" class="mc_inp" id="mc_inp" placeholder="请输入名称"/>
-			<span class="wzlxmc_span">物资类型：</span>
-			<input type="text" class="wzlxmc_inp" id="wzlxmc_inp" placeholder="请输入物资类型"/>
-			<a class="search_but" id="search_but">查询</a>
-			<a id="add_but">添加</a>
-			<a id="remove_but">删除</a>
+	<div class="center_con_div" id="center_con_div">
+		<div class="page_location_div">物资管理-物资查询</div>
+		<div class="tab1_div" id="tab1_div">
+			<div class="toolbar" id="toolbar">
+				<span class="mc_span">名称：</span>
+				<input type="text" class="mc_inp" id="mc_inp" placeholder="请输入名称"/>
+				<span class="wzlxmc_span">物资类型：</span>
+				<input type="text" class="wzlxmc_inp" id="wzlxmc_inp" placeholder="请输入物资类型"/>
+				<a class="search_but" id="search_but">查询</a>
+				<a id="add_but">添加</a>
+				<a id="remove_but">删除</a>
+			</div>
+			<table id="tab1">
+			</table>
 		</div>
-		<table id="tab1">
-		</table>
 	</div>
 	<%@include file="../../inc/foot.jsp"%>
 </div>
