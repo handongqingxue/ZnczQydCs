@@ -219,7 +219,7 @@
 		select gbjl.*,dd.ddh,dd.cph,dd.sjxm,dd.sjsfzh from guo_bang_ji_lu gbjl,ding_dan dd where gbjl.qyDdId=dd.id and gbjl.gblx=#{gblx} and dd.id=#{ddId}
 	</select>
 	<delete id="deleteByDdId">
-		delete from guo_bang_ji_lu where gblx=#{gblx} and ddId=#{ddId}
+		delete from guo_bang_ji_lu where gblx=#{gblx} and qyDdId=#{ddId}
 	</delete>
 	<select id="getCountByDdId" resultType="java.lang.Integer">
 		select count(*) from guo_bang_ji_lu where gblx=#{gblx} and qyDdId=#{ddId}

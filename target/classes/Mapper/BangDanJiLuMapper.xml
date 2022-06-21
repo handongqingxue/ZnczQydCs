@@ -162,7 +162,7 @@
 		select bdjl.*,dd.ddh,dd.cph from bang_dan_ji_lu bdjl,ding_dan dd where bdjl.qyDdId=dd.id and bdjl.qyDdId=#{ddId}
 	</select>
 	<delete id="deleteByDdId">
-		delete from bang_dan_ji_lu where ddId=#{ddId}
+		delete from bang_dan_ji_lu where qyDdId=#{ddId}
 	</delete>
 	<select id="getCountByDdId" resultType="java.lang.Integer">
 		select count(*) from bang_dan_ji_lu where qyDdId=#{ddId}
