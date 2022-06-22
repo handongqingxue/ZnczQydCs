@@ -35,11 +35,17 @@ public class ZhiJianJiLu {
 	public void setQyDdId(Integer qyDdId) {
 		this.qyDdId = qyDdId;
 	}
-	public Integer getZjyId() {
-		return zjyId;
+	public Integer getYfwZjyId() {
+		return yfwZjyId;
 	}
-	public void setZjyId(Integer zjyId) {
-		this.zjyId = zjyId;
+	public void setYfwZjyId(Integer yfwZjyId) {
+		this.yfwZjyId = yfwZjyId;
+	}
+	public Integer getQyZjyId() {
+		return qyZjyId;
+	}
+	public void setQyZjyId(Integer qyZjyId) {
+		this.qyZjyId = qyZjyId;
 	}
 	public String getZjyZsxm() {
 		return zjyZsxm;
@@ -99,7 +105,8 @@ public class ZhiJianJiLu {
 	private Integer qyjlId;
 	private Integer yfwDdId;
 	private Integer qyDdId;
-	private Integer zjyId;
+	private Integer yfwZjyId;
+	private Integer qyZjyId;
 	private String zjyZsxm;
 	private String zjsj;
 	private Integer jg;//结果 1.合格 2.不合格
