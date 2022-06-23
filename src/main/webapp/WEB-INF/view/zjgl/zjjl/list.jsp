@@ -41,11 +41,13 @@
 var path='<%=basePath %>';
 var ddglPath=path+'ddgl/';
 var zjglPath=path+'zjgl/';
+var gkjPath=path+'gkj/';
+var syncToQyTab='${requestScope.syncToQyTab}';
 $(function(){
 	initZJJGCBB();
 	initDDZTCBB();
 	initSearchLB();
-	initTab1();
+	syncToQy();
 });
 
 function initZJJGCBB(){
@@ -87,6 +89,17 @@ function initSearchLB(){
 			tab1.datagrid("load",{ddh:ddh,jg:jg,ddztId:ddztId,zjyZsxm:zjyZsxm});
 		}
 	});
+}
+
+function syncToQy(){
+	$.post(gkjPath+"syncToQy",
+		{tabArrStr:syncToQyTab},
+		function(data){
+			if(data.status=="ok"){
+				initTab1();
+			}
+		}
+	,"json");
 }
 
 function initTab1(){

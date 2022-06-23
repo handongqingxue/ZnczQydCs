@@ -104,9 +104,9 @@ public class DDGLController {
 		
 		//publicService.selectNav(request);
 		request.setAttribute("ddztMc", DingDanZhuangTai.DAI_SHEN_HE_TEXT);
-		request.setAttribute("checkDdztMc", DingDanZhuangTai.ZHI_JIAN_PAI_DUI_ZHONG_TEXT);
+		request.setAttribute("dzjDdztMc", DingDanZhuangTai.DAI_ZHI_JIAN_TEXT);
 		request.setAttribute("shlx", ShenHeJiLu.XIA_DAN_SHEN_HE);
-		request.setAttribute("syncTab", Main.DING_DAN+","+Main.SHEN_HE_JI_LU);
+		request.setAttribute("syncToYfTab", Main.DING_DAN+","+Main.SHEN_HE_JI_LU);
 		
 		return MODULE_NAME+"/dsh/list";
 	}
@@ -173,7 +173,8 @@ public class DDGLController {
 		request.setAttribute("ejpdzDdztMc", DingDanZhuangTai.ER_JIAN_PAI_DUI_ZHONG_TEXT);
 		request.setAttribute("ejsbDdztMc", DingDanZhuangTai.ER_JIAN_SHANG_BANG_TEXT);
 		request.setAttribute("shlx", ShenHeJiLu.XIA_DAN_SHEN_HE);
-		request.setAttribute("syncTab", Main.DING_DAN+","+Main.SHEN_HE_JI_LU);
+		request.setAttribute("syncToYfTab", Main.DING_DAN+","+Main.SHEN_HE_JI_LU);
+		request.setAttribute("syncToQyTab", Main.DING_DAN+","+Main.ZHI_JIAN_JI_LU+","+Main.PAI_DUI_JI_LU);
 		
 		return MODULE_NAME+"/zhcx/list";
 	}

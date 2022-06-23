@@ -40,10 +40,12 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var pdglPath=path+'pdgl/';
+var gkjPath=path+'gkj/';
+var syncToQyTab='${requestScope.syncToQyTab}';
 $(function(){
 	initSearchLB();
 	initRemoveLB();
-	initTab1();
+	syncToQy();
 	showCompontByQx();
 });
 
@@ -72,6 +74,17 @@ function initRemoveLB(){
 			
 		}
 	});
+}
+
+function syncToQy(){
+	$.post(gkjPath+"syncToQy",
+		{tabArrStr:syncToQyTab},
+		function(data){
+			if(data.status=="ok"){
+				initTab1();
+			}
+		}
+	,"json");
 }
 
 function initTab1(){

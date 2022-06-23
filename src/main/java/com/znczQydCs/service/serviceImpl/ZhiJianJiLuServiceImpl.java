@@ -54,6 +54,11 @@ public class ZhiJianJiLuServiceImpl implements ZhiJianJiLuService {
 				Integer qyDdId=Integer.valueOf(qyDdIdObj.toString());
 				zhiJianJiLu.setQyDdId(qyDdId);
 			}
+			Object qyZjyIdObj = mainDao.getQyColValByYfwColVal("id", zjjl.getYfwZjyId()+"", "yfwjlId", "yong_hu");
+			if(qyZjyIdObj!=null) {
+				Integer qyZjyId=Integer.valueOf(qyZjyIdObj.toString());
+				zhiJianJiLu.setQyZjyId(qyZjyId);
+			}
 			zhiJianJiLu.setYfwtb(Main.YI_TONG_BU);
 			
 		    if(zhiJianJiLuDao.getCountByQyjlId(zhiJianJiLu.getQyjlId())==0)

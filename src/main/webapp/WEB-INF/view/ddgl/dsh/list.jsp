@@ -48,8 +48,10 @@
 <%@include file="../../inc/js.jsp"%>
 <script type="text/javascript">
 var path='<%=basePath %>';
+var gkjPath=path+'gkj/';
 var ddglPath=path+'ddgl/';
 var ddztMc='${requestScope.ddztMc}';
+var syncTab='${requestScope.syncTab}';
 $(function(){
 	initSearchLB();
 	initCheckLB();
@@ -111,15 +113,14 @@ function checkByIds() {
 		confirmStr="请确保所有订单都认真审核过！";
 	
 	if(confirm(confirmStr)){
-		var ddztMc='${requestScope.checkDdztMc}';
+		var ddztMc='${requestScope.dzjDdztMc}';
 		var shlx='${requestScope.shlx}';
 		var shrId='${sessionScope.yongHu.id}';
 		$.post(ddglPath + "checkDingDanByIds",
 			{ids:shIds,ddztMc:ddztMc,shlx:shlx,shjg:true,shrId:shrId},
 			function(result){
 				if(result.status==1){
-					alert(result.msg);
-					tab1.datagrid("load");
+					syncToYf(result.msg);
 				}
 				else{
 					alert(result.msg);
@@ -127,6 +128,18 @@ function checkByIds() {
 			}
 		,"json");
 	}
+}
+
+function syncToYf(cddri){
+	$.post(gkjPath+"syncToYf",
+		{tabArrStr:syncTab},
+		function(data){
+			if(data.status=="ok"){
+				alert(cddri);
+				tab1.datagrid("load");
+			}
+		}
+	,"json");
 }
 
 function initTab1(){

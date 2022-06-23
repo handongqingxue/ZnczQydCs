@@ -95,7 +95,8 @@ var dialogLeft=20;
 var cddxxdNum=0;
 var icphdNum=1;
 var dshDdztMc='${requestScope.dshDdztMc}';
-var syncTab='${requestScope.syncTab}';
+var syncToYfTab='${requestScope.syncToYfTab}';
+var syncToQyTab='${requestScope.syncToQyTab}';
 $(function(){
 	initDDZTCBB();
 	initSearchLB();
@@ -103,7 +104,7 @@ $(function(){
 	initDdfwLB();
 	initAddLB();
 	initRemoveLB();
-	initTab1();
+	syncToQy();
 	initCheckDDXXDialog();//0
 	initInputCphDialog();//1
 	
@@ -502,7 +503,7 @@ function initTab1(){
             	var str;
            		if(row.id!="<div style=\"text-align:center;\">暂无信息<div>"){
 	            	str="<a href=\"edit?id="+value+"\">编辑</a>&nbsp;&nbsp;"
-	            	   +"<a href=\"detail?id="+value+"&syncTab="+syncTab+"\">详情</a>&nbsp;&nbsp;";
+	            	   +"<a href=\"detail?id="+value+"&syncToYfTab="+syncToYfTab+"\">详情</a>&nbsp;&nbsp;";
 	           		if(row.ddztMc==dshDdztMc){
 	           			var rowJson = JSON.stringify(row).replace(/"/g, '&quot;');
 	           			str+="<a class=\"check_a\" onclick=\"openCheckDDXXDialog(true,"+rowJson+")\">审核</a>";
@@ -696,12 +697,23 @@ function checkById(){
 
 function syncToYf(cddri){
 	$.post(gkjPath+"syncToYf",
-		{tabArrStr:syncTab},
+		{tabArrStr:syncToYfTab},
 		function(data){
 			if(data.status=="ok"){
 				alert(cddri);
 				openCheckDDXXDialog(false,null);
 				tab1.datagrid("load");
+			}
+		}
+	,"json");
+}
+
+function syncToQy(){
+	$.post(gkjPath+"syncToQy",
+		{tabArrStr:syncToQyTab},
+		function(data){
+			if(data.status=="ok"){
+				initTab1();
 			}
 		}
 	,"json");

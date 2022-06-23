@@ -48,6 +48,7 @@ public class ZJGLController {
 	public String goZjjlList(HttpServletRequest request) {
 		
 		//publicService.selectNav(request);
+		request.setAttribute("syncToQyTab", Main.DING_DAN+","+Main.PAI_DUI_JI_LU);
 		
 		return MODULE_NAME+"/zjjl/list";
 	}

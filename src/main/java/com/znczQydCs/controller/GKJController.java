@@ -22,7 +22,7 @@ import com.znczQydCs.util.LoadProperties;
 
 @Controller
 @RequestMapping("/gkj")
-public class GkjController {
+public class GKJController {
 	
 	@Autowired
 	private YongHuService yongHuService;

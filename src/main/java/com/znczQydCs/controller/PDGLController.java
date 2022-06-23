@@ -26,6 +26,7 @@ public class PDGLController {
 	public String goPdjlList(HttpServletRequest request) {
 		
 		//publicService.selectNav(request);
+		request.setAttribute("syncToQyTab", Main.PAI_DUI_JI_LU);
 		
 		return MODULE_NAME+"/pdjl/list";
 	}

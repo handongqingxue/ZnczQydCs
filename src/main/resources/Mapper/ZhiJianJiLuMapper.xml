@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.znczQydCs.dao.ZhiJianJiLuMapper">
 	<select id="queryForInt" resultType="java.lang.Integer">
-		select count(*) from zhi_jian_ji_lu zjjl,yong_hu zjy,ding_dan dd,ding_dan_zhuang_tai ddzt where zjjl.zjyId=zjy.id and zjjl.qyDdId=dd.id and dd.qyDdztId=ddzt.id
+		select count(*) from zhi_jian_ji_lu zjjl,yong_hu zjy,ding_dan dd,ding_dan_zhuang_tai ddzt where zjjl.qyZjyId=zjy.id and zjjl.qyDdId=dd.id and dd.qyDdztId=ddzt.id
 		<if test="jg!=''&amp;jg!=null">
 			and zjjl.jg=#{jg}
 		</if>
@@ -19,7 +19,7 @@
 		</if> 
 	</select>
 	<select id="queryList" resultType="com.znczQydCs.entity.ZhiJianJiLu">
-		select zjjl.id,zjjl.jg,zjjl.zjsj,dd.ddh,zjy.zsxm zjyZsxm,ddzt.mc ddztMc from zhi_jian_ji_lu zjjl,yong_hu zjy,ding_dan dd,ding_dan_zhuang_tai ddzt where zjjl.zjyId=zjy.id and zjjl.qyDdId=dd.id and dd.qyDdztId=ddzt.id
+		select zjjl.id,zjjl.jg,zjjl.zjsj,dd.ddh,zjy.zsxm zjyZsxm,ddzt.mc ddztMc from zhi_jian_ji_lu zjjl,yong_hu zjy,ding_dan dd,ding_dan_zhuang_tai ddzt where zjjl.qyZjyId=zjy.id and zjjl.qyDdId=dd.id and dd.qyDdztId=ddzt.id
 		<if test="jg!=''&amp;jg!=null">
 			and zjjl.jg=#{jg}
 		</if> 
@@ -45,8 +45,11 @@
 			<if test="qyDdId!=null">
 				qyDdId,
 			</if>
-			<if test="zjyId!=null">
-				zjyId,
+			<if test="yfwZjyId!=null">
+				yfwZjyId,
+			</if>
+			<if test="qyZjyId!=null">
+				qyZjyId,
 			</if>
 				zjsj,
 			<if test="jg!=null">
@@ -67,8 +70,11 @@
 			<if test="qyDdId!=null">
 				#{qyDdId},
 			</if>
-			<if test="zjyId!=null">
-				#{zjyId},
+			<if test="yfwZjyId!=null">
+				#{yfwZjyId},
+			</if>
+			<if test="qyZjyId!=null">
+				#{qyZjyId},
 			</if>
 				now(),
 			<if test="jg!=null">
@@ -91,8 +97,11 @@
 			<if test="qyDdId!=null">
 				qyDdId,
 			</if>
-			<if test="zjyId!=null">
-				zjyId,
+			<if test="yfwZjyId!=null">
+				yfwZjyId,
+			</if>
+			<if test="qyZjyId!=null">
+				qyZjyId,
 			</if>
 			<if test="zjsj!=null">
 				zjsj,
@@ -115,8 +124,11 @@
 			<if test="qyDdId!=null">
 				#{qyDdId},
 			</if>
-			<if test="zjyId!=null">
-				#{zjyId},
+			<if test="yfwZjyId!=null">
+				#{yfwZjyId},
+			</if>
+			<if test="qyZjyId!=null">
+				#{qyZjyId},
 			</if>
 			<if test="zjsj!=null">
 				#{zjsj},
@@ -141,8 +153,11 @@
 			<if test="qyDdId!=null">
 				qyDdId=#{qyDdId},
 			</if>
-			<if test="zjyId!=null">
-				zjyId=#{zjyId},
+			<if test="yfwZjyId!=null">
+				yfwZjyId=#{yfwZjyId},
+			</if>
+			<if test="qyZjyId!=null">
+				qyZjyId=#{qyZjyId},
 			</if>
 			<if test="zjsj!=null">
 				zjsj=#{zjsj},
@@ -160,7 +175,7 @@
 		where id=#{qyjlId}
 	</update>
 	<select id="selectById" resultType="com.znczQydCs.entity.ZhiJianJiLu">
-		select zjjl.*,dd.ddh,ddzt.mc ddztMc,zjy.zsxm zjyZsxm from zhi_jian_ji_lu zjjl,yong_hu zjy,ding_dan dd,ding_dan_zhuang_tai ddzt where zjjl.zjyId=zjy.id and zjjl.qyDdId=dd.id and dd.qyDdztId=ddzt.id and zjjl.id=#{0}
+		select zjjl.*,dd.ddh,ddzt.mc ddztMc,zjy.zsxm zjyZsxm from zhi_jian_ji_lu zjjl,yong_hu zjy,ding_dan dd,ding_dan_zhuang_tai ddzt where zjjl.qyZjyId=zjy.id and zjjl.qyDdId=dd.id and dd.qyDdztId=ddzt.id and zjjl.id=#{0}
 	</select>
 	<select id="getCountByQyjlId" resultType="java.lang.Integer">
 		select count(*) from zhi_jian_ji_lu where id=#{qyjlId}

@@ -31,7 +31,7 @@ var gkjPath=path+'gkj/';
 var dialogTop=70;
 var dialogLeft=20;
 var ddNum=0;
-var syncTab='${requestScope.syncTab}';
+var syncToYfTab='${requestScope.syncToYfTab}';
 $(function(){
 	initDetailDialog();//0
 
@@ -127,7 +127,7 @@ function checkById(){
 
 function syncToYf(cddri){
 	$.post(gkjPath+"syncToYf",
-		{tabArrStr:syncTab},
+		{tabArrStr:syncToYfTab},
 		function(data){
 			if(data.status=="ok"){
 				alert(cddri);
