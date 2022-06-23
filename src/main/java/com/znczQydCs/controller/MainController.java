@@ -118,7 +118,7 @@ public class MainController {
 		
 		plan.setStatus(0);
 		plan.setMsg("验证通过");
-		plan.setUrl("/ddgl/zhcx/list");
+		plan.setUrl("ddgl/zhcx/list");
 		return JsonUtil.getJsonFromObject(plan);
 	}
 

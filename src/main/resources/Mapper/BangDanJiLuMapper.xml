@@ -102,6 +102,7 @@
 			<if test="bz!=null">
 				bz=#{bz},
 			</if>
+				yfwtb=${@com.znczQydCs.entity.Main@WEI_TONG_BU}
 		</trim>
 		where id=#{id}
 	</update>
